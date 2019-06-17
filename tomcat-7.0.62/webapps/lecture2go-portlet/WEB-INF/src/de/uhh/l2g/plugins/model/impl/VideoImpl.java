@@ -58,13 +58,12 @@ public class VideoImpl extends VideoBaseImpl {
 	/**
 	 * This model uses quite a few constants, some may be better kept in a config file...
 	 */
-	private static final String SERVERPORT 				= PropsUtil.get("web.server.http.port");
-	private static final String WEBROOT 				= SERVERPORT.equals("80") ? PropsUtil.get("lecture2go.web.root") : PropsUtil.get("lecture2go.web.root")+":"+SERVERPORT;
+	private static final String WEBROOT 				= PropsUtil.get("lecture2go.web.root");
 	private static final String WEBHOME 				= WEBROOT.contains("localhost") ? WEBROOT+"/web/vod" : WEBROOT;
 	private static final String MEDIA_REPOSITORY		= PropsUtil.get("lecture2go.media.repository");
 	private static final String IMAGES_REPOSITORY		= PropsUtil.get("lecture2go.images.system.path") + "/";
 	private static final String DOWNLOAD_SERVER			= PropsUtil.get("lecture2go.downloadserver.web.root");
-	private static final String IMAGES_URL 				= PropsUtil.get("lecture2go.web.root") + "/images/";
+	private static final String IMAGES_URL 				= WEBROOT + "/images/";
 	private static final String CHAPTERFOLDER 			= PropsUtil.get("lecture2go.chapters.web.root");
 	private static final String CAPTIONSFOLDER 			= PropsUtil.get("lecture2go.captions.web.root");
 	private static final String DOWNLOADFOLDER 			= DOWNLOAD_SERVER + "/abo/";
