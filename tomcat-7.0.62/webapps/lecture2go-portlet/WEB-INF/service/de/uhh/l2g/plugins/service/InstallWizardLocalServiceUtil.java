@@ -275,6 +275,12 @@ public class InstallWizardLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void activate(de.uhh.l2g.plugins.model.InstallWizard wiz)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().activate(wiz);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
