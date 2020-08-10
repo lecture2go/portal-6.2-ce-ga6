@@ -10,7 +10,7 @@ Change Log
 ==============
 
 Security Update for 6.2-ce-ga6 [master-v.2-b5226] on Thursday, Augus 06, 2020
-- https://liferay.dev/blogs/-/blogs/security-patches-for-liferay-portal-6-2-7-0-and-7-1
+- https://github.com/community-security-team/liferay-portal/blob/6.2.5-cumulative/README.markdown
 
 Bug Fix and Feature Package [master-v.1-b5226] on Thursday, February 27, 2020
 
