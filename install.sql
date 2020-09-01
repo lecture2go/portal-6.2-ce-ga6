@@ -4675,7 +4675,7 @@ LOCK TABLES `LG_InstallWizard` WRITE;
 
 INSERT INTO `LG_InstallWizard` (`installWizardId`, `wizartActive`, `groupId`, `companyId`)
 VALUES
-	(1,0,20182,20155);
+	(1,1,20182,20155);
 
 /*!40000 ALTER TABLE `LG_InstallWizard` ENABLE KEYS */;
 UNLOCK TABLES;
