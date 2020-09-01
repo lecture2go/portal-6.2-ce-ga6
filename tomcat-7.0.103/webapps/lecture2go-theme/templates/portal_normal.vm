@@ -109,7 +109,7 @@ $theme.include($body_top_include)
 		<div class="right">
 			<a href="/web/vod/impressum" id="impressum">#language("impressum")</a>			
 			<span class="sep">|</span>
-			<a href="/disclaimer" id="disclaimer">#language("disclaimer")</a>
+			<a href="/web/vod/disclaimer" id="disclaimer">#language("disclaimer")</a>
 			<span class="sep">|</span>
 			#language("privacy-policy")
 			<span class="sep">|</span>
