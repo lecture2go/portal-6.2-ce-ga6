@@ -4,7 +4,7 @@
 @import "compass/css3/user-interface";
 @import "mixins";
 
-@import url(variables.css);
+@import "variables";
 
 * {
 	@include box-sizing(border-box);

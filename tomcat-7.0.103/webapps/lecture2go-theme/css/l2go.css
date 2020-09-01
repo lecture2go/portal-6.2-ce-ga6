@@ -1,5 +1,5 @@
 @import "compass";
-@import url(variables.css);
+@import "variables";
 
 /*** these styles may be needed for an in-between resolution (between 768 and 960/980) ***/
 /*
