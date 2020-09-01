@@ -318,11 +318,11 @@ public class HostUtil {
 	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static de.uhh.l2g.plugins.model.Host findByDirectory(
+	public static de.uhh.l2g.plugins.model.Host findBydirectory(
 		java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence().findByDirectory(directory);
+		return getPersistence().findBydirectory(directory);
 	}
 
 	/**
@@ -332,10 +332,10 @@ public class HostUtil {
 	* @return the matching host, or <code>null</code> if a matching host could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static de.uhh.l2g.plugins.model.Host fetchByDirectory(
+	public static de.uhh.l2g.plugins.model.Host fetchBydirectory(
 		java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByDirectory(directory);
+		return getPersistence().fetchBydirectory(directory);
 	}
 
 	/**
@@ -346,10 +346,10 @@ public class HostUtil {
 	* @return the matching host, or <code>null</code> if a matching host could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static de.uhh.l2g.plugins.model.Host fetchByDirectory(
+	public static de.uhh.l2g.plugins.model.Host fetchBydirectory(
 		java.lang.String directory, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByDirectory(directory, retrieveFromCache);
+		return getPersistence().fetchBydirectory(directory, retrieveFromCache);
 	}
 
 	/**
@@ -359,11 +359,11 @@ public class HostUtil {
 	* @return the host that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static de.uhh.l2g.plugins.model.Host removeByDirectory(
+	public static de.uhh.l2g.plugins.model.Host removeBydirectory(
 		java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence().removeByDirectory(directory);
+		return getPersistence().removeBydirectory(directory);
 	}
 
 	/**
@@ -373,9 +373,9 @@ public class HostUtil {
 	* @return the number of matching hosts
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByDirectory(java.lang.String directory)
+	public static int countBydirectory(java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByDirectory(directory);
+		return getPersistence().countBydirectory(directory);
 	}
 
 	/**

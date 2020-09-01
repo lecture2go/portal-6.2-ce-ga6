@@ -164,9 +164,6 @@
 		<column name="name" type="String"></column>
 		<column name="defaultHost" type="int"></column>
 		<column name="prefix" type="String"></column>
-		<order by="asc">
-			<order-column name="directory"></order-column>
-		</order>
 		<finder name="hostId" return-type="Host">
 			<finder-column name="hostId"></finder-column>
 		</finder>
@@ -176,7 +173,7 @@
 		<finder name="defaultHost" return-type="Host">
 			<finder-column name="defaultHost"></finder-column>
 		</finder>
-		<finder name="Directory" return-type="Host">
+		<finder name="directory" return-type="Host">
 			<finder-column name="directory"></finder-column>
 		</finder>
 	</entity>

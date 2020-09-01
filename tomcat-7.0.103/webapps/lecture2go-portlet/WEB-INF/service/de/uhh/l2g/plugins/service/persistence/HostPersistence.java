@@ -210,7 +210,7 @@ public interface HostPersistence extends BasePersistence<Host> {
 	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public de.uhh.l2g.plugins.model.Host findByDirectory(
+	public de.uhh.l2g.plugins.model.Host findBydirectory(
 		java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchHostException;
@@ -222,7 +222,7 @@ public interface HostPersistence extends BasePersistence<Host> {
 	* @return the matching host, or <code>null</code> if a matching host could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public de.uhh.l2g.plugins.model.Host fetchByDirectory(
+	public de.uhh.l2g.plugins.model.Host fetchBydirectory(
 		java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -234,7 +234,7 @@ public interface HostPersistence extends BasePersistence<Host> {
 	* @return the matching host, or <code>null</code> if a matching host could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public de.uhh.l2g.plugins.model.Host fetchByDirectory(
+	public de.uhh.l2g.plugins.model.Host fetchBydirectory(
 		java.lang.String directory, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -245,7 +245,7 @@ public interface HostPersistence extends BasePersistence<Host> {
 	* @return the host that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public de.uhh.l2g.plugins.model.Host removeByDirectory(
+	public de.uhh.l2g.plugins.model.Host removeBydirectory(
 		java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchHostException;
@@ -257,7 +257,7 @@ public interface HostPersistence extends BasePersistence<Host> {
 	* @return the number of matching hosts
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByDirectory(java.lang.String directory)
+	public int countBydirectory(java.lang.String directory)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

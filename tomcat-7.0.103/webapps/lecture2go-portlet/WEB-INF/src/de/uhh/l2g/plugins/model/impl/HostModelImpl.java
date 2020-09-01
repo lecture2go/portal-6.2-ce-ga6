@@ -65,8 +65,8 @@ public class HostModelImpl extends BaseModelImpl<Host> implements HostModel {
 		};
 	public static final String TABLE_SQL_CREATE = "create table LG_Host (hostId LONG not null primary key,directory VARCHAR(75) null,name STRING null,defaultHost INTEGER,prefix VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table LG_Host";
-	public static final String ORDER_BY_JPQL = " ORDER BY host.directory ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY LG_Host.directory ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY host.hostId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY LG_Host.hostId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -199,7 +199,7 @@ public class HostModelImpl extends BaseModelImpl<Host> implements HostModel {
 
 	@Override
 	public void setDirectory(String directory) {
-		_columnBitmask = -1L;
+		_columnBitmask |= DIRECTORY_COLUMN_BITMASK;
 
 		if (_originalDirectory == null) {
 			_originalDirectory = _directory;
@@ -318,15 +318,17 @@ public class HostModelImpl extends BaseModelImpl<Host> implements HostModel {
 
 	@Override
 	public int compareTo(Host host) {
-		int value = 0;
+		long primaryKey = host.getPrimaryKey();
 
-		value = getDirectory().compareTo(host.getDirectory());
-
-		if (value != 0) {
-			return value;
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
 		}
-
-		return 0;
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
