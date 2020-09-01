@@ -1,3 +1,8 @@
+create table LG_Autocomplete (
+	autocompleteId LONG not null primary key,
+	searchWordsJson VARCHAR(75) null
+);
+
 create table LG_Category (
 	categoryId LONG not null primary key,
 	parentId LONG,
@@ -26,12 +31,10 @@ create table LG_Creator (
 
 create table LG_Host (
 	hostId LONG not null primary key,
-	protocol STRING null,
-	streamer STRING null,
-	port INTEGER,
-	serverRoot STRING null,
+	directory VARCHAR(75) null,
 	name STRING null,
-	defaultHost INTEGER
+	defaultHost INTEGER,
+	prefix VARCHAR(75) null
 );
 
 create table LG_InstallWizard (
@@ -58,7 +61,7 @@ create table LG_Institution_Host (
 );
 
 create table LG_Lastvideolist (
-	lastvideolistId INTEGER not null primary key,
+	lastvideolistId LONG not null primary key,
 	videoId LONG
 );
 

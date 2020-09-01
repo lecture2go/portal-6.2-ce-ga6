@@ -1,3 +1,5 @@
+@import url(variables.css);
+
 @media (max-width: 767px) {	
 	 
 	#heading .meta {
@@ -30,14 +32,30 @@
 	}
 
 	.aui #navigation .nav .dropdown-menu > li a:hover {
-    	background: #ddd url("/lecture2go-portlet/img/rot_navi-pfeil-rechts.png") no-repeat scroll 9px 13px !important;
-		line-height: 29px;
+	    background: transparent none repeat scroll 0 0 !important;
 	}
 
-	.aui #navigation .nav .dropdown-menu > li a {
-    	background: #f9f9f9 url("/lecture2go-portlet/img/rot_navi-pfeil-rechts.png") no-repeat scroll 9px 13px !important;
-    	line-height: 29px;
+	.aui #navigation .nav .dropdown-menu > li:hover {
+    	background: #e3e3e3 none repeat scroll 0 0!important;
 	}
+	
+	.aui #navigation .nav .dropdown-menu > li {
+		margin: 0 1px 1px 0;
+	
+    	/*padding-left: 30px;*/
+	}   
+
+	.aui #navigation .nav .dropdown-menu > li a {
+    	background: rgba(0,0,0,0) linear-gradient(180deg,#f3f3f3 0,#f3f3f3 100%) repeat scroll 0 0 !important;
+    	line-height: 29px;
+    	font-size: 14px;
+    	padding-left: 60px;
+	}
+	.aui #navigation .navbar-inner li.has-child a {
+		height: 38px;
+	}
+	
+	
 	
 	.aui .portlet-borderless-container {
     	padding: 0;
@@ -93,8 +111,11 @@
 	}
 	
 	.dropdown-menu.child-menu {
-	    display: none;
-	    visibility: hidden;
+	    display: block !important;
+	    width: 100% !important;
+	   	background: rgba(0,0,0,0) linear-gradient(180deg,#f3f3f3 0,#f3f3f3 100%) repeat scroll 0 0 !important;
+	   	border: none !important;
+	   	margin: 0 1px 1px 0 !important;
 	}
 	
 	.aui #navigation .nav li.open > a {
@@ -105,6 +126,25 @@
 	    height: 38px;
 	    padding-left: 30px;
 	    padding-top: 3px;
+	}
+	
+	.aui #navigation .nav li.open.has-child > a {
+	    background: #e40613 url("/lecture2go-portlet/img/pfeil-schwarz-unten.png") no-repeat scroll 15px 13px !important;
+	}
+	
+	.aui #navigation .nav li.open > a {
+	    background-color: #d81b1b;
+	    background-image: linear-gradient(180deg, #e5331c 0%, #c90219 100%);
+	    border-radius: 0;
+	    color: #fff;
+	    height: 38px;
+	    padding-left: 30px;
+	    padding-top: 3px;
+	}
+	
+	
+	.aui #navigation .nav li.has-child {
+    	height: auto;
 	}
 
 	.responsive_li_item:hover {
@@ -207,12 +247,13 @@
 	
 	.responsive_li_item {
 	    display: block;
-	    font-family: TheSansUHH,sans-serif !important;
+	    font-family: $font-default !important;
 	    padding-left: 0;
 	    visibility: visible;
 	}
 	
-	.aui #navigation .nav li {
+	.aui #navigation .nav li,
+	.aui #navigation .nav li ul.dropdown-menu.child-menu li {
 	    background: rgba(0, 0, 0, 0) linear-gradient(180deg, #f3f3f3 0%, #f3f3f3 100%) repeat scroll 0 0;
 	    border-radius: 0;
 	    height: 38px;

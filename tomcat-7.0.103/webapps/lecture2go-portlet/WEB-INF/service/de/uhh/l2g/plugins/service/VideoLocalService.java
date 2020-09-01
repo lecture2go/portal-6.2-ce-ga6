@@ -393,6 +393,10 @@ public interface VideoLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<de.uhh.l2g.plugins.model.Video> getByHits();
 
+	public de.uhh.l2g.plugins.model.Video incrementHitCounter(
+		de.uhh.l2g.plugins.model.Video video)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.Long getLatestClosedAccessVideoId(
 		java.lang.Long lectureseriesId);
@@ -433,4 +437,19 @@ public interface VideoLocalService extends BaseLocalService,
 	*/
 	public java.lang.String retrieveLanguageDisplayNameOfCaptionFile(
 		java.io.File captionFile, java.util.Locale userLocale);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasMissingMetadata(java.lang.Long videoId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<de.uhh.l2g.plugins.model.Video> getVideosWithMissingMetadata();
+
+	public java.util.List<de.uhh.l2g.plugins.model.Video> stripVideosWithMissingMetadataFromList(
+		java.util.List<de.uhh.l2g.plugins.model.Video> videos);
+
+	/**
+	* This method is only used to fix missing database entries
+	* Uses the lectureseries information for filling the missing data
+	*/
+	public void fixMissingMetadataForVideosFromRelatedLectureseries();
 }

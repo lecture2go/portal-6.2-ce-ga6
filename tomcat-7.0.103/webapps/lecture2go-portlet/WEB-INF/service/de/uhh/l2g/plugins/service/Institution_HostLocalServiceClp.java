@@ -175,10 +175,6 @@ public class Institution_HostLocalServiceClp
 		_methodParameterTypes31 = new String[] {
 				"de.uhh.l2g.plugins.model.Institution", "long", "long"
 			};
-
-		_methodName32 = "updateCounter";
-
-		_methodParameterTypes32 = new String[] {  };
 	}
 
 	@Override
@@ -1194,39 +1190,6 @@ public class Institution_HostLocalServiceClp
 		return (de.uhh.l2g.plugins.model.Institution_Host)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@Override
-	public long updateCounter()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Long)returnObj).longValue();
-	}
-
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -1290,6 +1253,4 @@ public class Institution_HostLocalServiceClp
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
 }

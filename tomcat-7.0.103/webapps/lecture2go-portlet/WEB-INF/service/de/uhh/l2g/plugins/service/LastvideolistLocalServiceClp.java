@@ -33,11 +33,11 @@ public class LastvideolistLocalServiceClp implements LastvideolistLocalService {
 
 		_methodName1 = "createLastvideolist";
 
-		_methodParameterTypes1 = new String[] { "int" };
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteLastvideolist";
 
-		_methodParameterTypes2 = new String[] { "int" };
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteLastvideolist";
 
@@ -83,11 +83,11 @@ public class LastvideolistLocalServiceClp implements LastvideolistLocalService {
 
 		_methodName10 = "fetchLastvideolist";
 
-		_methodParameterTypes10 = new String[] { "int" };
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getLastvideolist";
 
-		_methodParameterTypes11 = new String[] { "int" };
+		_methodParameterTypes11 = new String[] { "long" };
 
 		_methodName12 = "getPersistedModel";
 
@@ -152,7 +152,7 @@ public class LastvideolistLocalServiceClp implements LastvideolistLocalService {
 
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist createLastvideolist(
-		int lastvideolistId) {
+		long lastvideolistId) {
 		Object returnObj = null;
 
 		try {
@@ -176,7 +176,7 @@ public class LastvideolistLocalServiceClp implements LastvideolistLocalService {
 
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist deleteLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -437,7 +437,7 @@ public class LastvideolistLocalServiceClp implements LastvideolistLocalService {
 
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist fetchLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -466,7 +466,7 @@ public class LastvideolistLocalServiceClp implements LastvideolistLocalService {
 
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist getLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

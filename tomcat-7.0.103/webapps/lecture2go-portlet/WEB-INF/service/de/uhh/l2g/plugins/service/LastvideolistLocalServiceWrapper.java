@@ -53,7 +53,7 @@ public class LastvideolistLocalServiceWrapper
 	*/
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist createLastvideolist(
-		int lastvideolistId) {
+		long lastvideolistId) {
 		return _lastvideolistLocalService.createLastvideolist(lastvideolistId);
 	}
 
@@ -67,7 +67,7 @@ public class LastvideolistLocalServiceWrapper
 	*/
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist deleteLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _lastvideolistLocalService.deleteLastvideolist(lastvideolistId);
@@ -186,7 +186,7 @@ public class LastvideolistLocalServiceWrapper
 
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist fetchLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _lastvideolistLocalService.fetchLastvideolist(lastvideolistId);
 	}
@@ -201,7 +201,7 @@ public class LastvideolistLocalServiceWrapper
 	*/
 	@Override
 	public de.uhh.l2g.plugins.model.Lastvideolist getLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _lastvideolistLocalService.getLastvideolist(lastvideolistId);

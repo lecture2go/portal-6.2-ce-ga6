@@ -33,6 +33,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import de.uhh.l2g.plugins.model.Institution_Host;
 import de.uhh.l2g.plugins.service.Institution_HostLocalService;
+import de.uhh.l2g.plugins.service.persistence.AutocompletePersistence;
 import de.uhh.l2g.plugins.service.persistence.CategoryFinder;
 import de.uhh.l2g.plugins.service.persistence.CategoryPersistence;
 import de.uhh.l2g.plugins.service.persistence.CoordinatorPersistence;
@@ -318,6 +319,44 @@ public abstract class Institution_HostLocalServiceBaseImpl
 	public Institution_Host updateInstitution_Host(
 		Institution_Host institution_Host) throws SystemException {
 		return institution_HostPersistence.update(institution_Host);
+	}
+
+	/**
+	 * Returns the autocomplete local service.
+	 *
+	 * @return the autocomplete local service
+	 */
+	public de.uhh.l2g.plugins.service.AutocompleteLocalService getAutocompleteLocalService() {
+		return autocompleteLocalService;
+	}
+
+	/**
+	 * Sets the autocomplete local service.
+	 *
+	 * @param autocompleteLocalService the autocomplete local service
+	 */
+	public void setAutocompleteLocalService(
+		de.uhh.l2g.plugins.service.AutocompleteLocalService autocompleteLocalService) {
+		this.autocompleteLocalService = autocompleteLocalService;
+	}
+
+	/**
+	 * Returns the autocomplete persistence.
+	 *
+	 * @return the autocomplete persistence
+	 */
+	public AutocompletePersistence getAutocompletePersistence() {
+		return autocompletePersistence;
+	}
+
+	/**
+	 * Sets the autocomplete persistence.
+	 *
+	 * @param autocompletePersistence the autocomplete persistence
+	 */
+	public void setAutocompletePersistence(
+		AutocompletePersistence autocompletePersistence) {
+		this.autocompletePersistence = autocompletePersistence;
 	}
 
 	/**
@@ -1841,6 +1880,10 @@ public abstract class Institution_HostLocalServiceBaseImpl
 		}
 	}
 
+	@BeanReference(type = de.uhh.l2g.plugins.service.AutocompleteLocalService.class)
+	protected de.uhh.l2g.plugins.service.AutocompleteLocalService autocompleteLocalService;
+	@BeanReference(type = AutocompletePersistence.class)
+	protected AutocompletePersistence autocompletePersistence;
 	@BeanReference(type = de.uhh.l2g.plugins.service.CategoryLocalService.class)
 	protected de.uhh.l2g.plugins.service.CategoryLocalService categoryLocalService;
 	@BeanReference(type = CategoryPersistence.class)

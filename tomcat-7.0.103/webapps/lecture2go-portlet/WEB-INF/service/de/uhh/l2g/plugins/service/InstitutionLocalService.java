@@ -343,4 +343,15 @@ public interface InstitutionLocalService extends BaseLocalService,
 	public long updateCounter()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Prepares the list of institutions for pending producers selection
+	* (institutions which should not be selected can be defined via properties file)
+	*
+	* @return the list of institutions for the producer to select
+	* @throws SystemException
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<de.uhh.l2g.plugins.model.Institution> getForProducerPending()
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -280,18 +280,6 @@ public interface SegmentLocalService extends BaseLocalService,
 	public void deleteByVideoId(java.lang.Long videoId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	/**
-	* Adds the segment to the database and generates thumb nail. Also notifies the appropriate model listeners.
-	*
-	* @param segment the segment
-	* @return the segment that was added
-	* @throws SystemException if a system exception occurred
-	*/
-	public de.uhh.l2g.plugins.model.Segment createSegment(
-		de.uhh.l2g.plugins.model.Segment segment)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public de.uhh.l2g.plugins.model.Segment removeSegment(
 		java.lang.Long segmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,

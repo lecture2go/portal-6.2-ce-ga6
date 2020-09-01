@@ -370,7 +370,7 @@ public class LastvideolistPersistenceImpl extends BasePersistenceImpl<Lastvideol
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Lastvideolist[] findByVideo_PrevAndNext(int lastvideolistId,
+	public Lastvideolist[] findByVideo_PrevAndNext(long lastvideolistId,
 		long videoId, OrderByComparator orderByComparator)
 		throws NoSuchLastvideolistException, SystemException {
 		Lastvideolist lastvideolist = findByPrimaryKey(lastvideolistId);
@@ -665,7 +665,7 @@ public class LastvideolistPersistenceImpl extends BasePersistenceImpl<Lastvideol
 	 * @return the new lastvideolist
 	 */
 	@Override
-	public Lastvideolist create(int lastvideolistId) {
+	public Lastvideolist create(long lastvideolistId) {
 		Lastvideolist lastvideolist = new LastvideolistImpl();
 
 		lastvideolist.setNew(true);
@@ -683,7 +683,7 @@ public class LastvideolistPersistenceImpl extends BasePersistenceImpl<Lastvideol
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Lastvideolist remove(int lastvideolistId)
+	public Lastvideolist remove(long lastvideolistId)
 		throws NoSuchLastvideolistException, SystemException {
 		return remove((Serializable)lastvideolistId);
 	}
@@ -875,7 +875,7 @@ public class LastvideolistPersistenceImpl extends BasePersistenceImpl<Lastvideol
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Lastvideolist findByPrimaryKey(int lastvideolistId)
+	public Lastvideolist findByPrimaryKey(long lastvideolistId)
 		throws NoSuchLastvideolistException, SystemException {
 		return findByPrimaryKey((Serializable)lastvideolistId);
 	}
@@ -936,7 +936,7 @@ public class LastvideolistPersistenceImpl extends BasePersistenceImpl<Lastvideol
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Lastvideolist fetchByPrimaryKey(int lastvideolistId)
+	public Lastvideolist fetchByPrimaryKey(long lastvideolistId)
 		throws SystemException {
 		return fetchByPrimaryKey((Serializable)lastvideolistId);
 	}

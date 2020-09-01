@@ -276,22 +276,13 @@ public interface HostLocalService extends BaseLocalService, InvokableLocalServic
 	public int getLockingElements(long hostId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	/**
-	* Special handling for default entries (no update)
-	*/
-	public de.uhh.l2g.plugins.model.Host addDefaultHost(
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	public de.uhh.l2g.plugins.model.Host addHost(java.lang.String name,
-		java.lang.String streamLocation, java.lang.String protocol, int port)
+		java.lang.String prefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public de.uhh.l2g.plugins.model.Host updateHost(long hostId,
-		java.lang.String name, java.lang.String streamLocation,
-		java.lang.String protocol, int port)
+		java.lang.String name, java.lang.String prefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -302,10 +293,6 @@ public interface HostLocalService extends BaseLocalService, InvokableLocalServic
 	*/
 	public de.uhh.l2g.plugins.model.Host deleteHost(long hostId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public long updateCounter()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

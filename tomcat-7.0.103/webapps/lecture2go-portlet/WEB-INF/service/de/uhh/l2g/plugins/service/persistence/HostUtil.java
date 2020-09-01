@@ -174,330 +174,6 @@ public class HostUtil {
 	}
 
 	/**
-	* Returns all the hosts where protocol = &#63;.
-	*
-	* @param protocol the protocol
-	* @return the matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<de.uhh.l2g.plugins.model.Host> findByprotocol(
-		java.lang.String protocol)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByprotocol(protocol);
-	}
-
-	/**
-	* Returns a range of all the hosts where protocol = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param protocol the protocol
-	* @param start the lower bound of the range of hosts
-	* @param end the upper bound of the range of hosts (not inclusive)
-	* @return the range of matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<de.uhh.l2g.plugins.model.Host> findByprotocol(
-		java.lang.String protocol, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByprotocol(protocol, start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the hosts where protocol = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param protocol the protocol
-	* @param start the lower bound of the range of hosts
-	* @param end the upper bound of the range of hosts (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<de.uhh.l2g.plugins.model.Host> findByprotocol(
-		java.lang.String protocol, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByprotocol(protocol, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first host in the ordered set where protocol = &#63;.
-	*
-	* @param protocol the protocol
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching host
-	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host findByprotocol_First(
-		java.lang.String protocol,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence().findByprotocol_First(protocol, orderByComparator);
-	}
-
-	/**
-	* Returns the first host in the ordered set where protocol = &#63;.
-	*
-	* @param protocol the protocol
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching host, or <code>null</code> if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host fetchByprotocol_First(
-		java.lang.String protocol,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByprotocol_First(protocol, orderByComparator);
-	}
-
-	/**
-	* Returns the last host in the ordered set where protocol = &#63;.
-	*
-	* @param protocol the protocol
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching host
-	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host findByprotocol_Last(
-		java.lang.String protocol,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence().findByprotocol_Last(protocol, orderByComparator);
-	}
-
-	/**
-	* Returns the last host in the ordered set where protocol = &#63;.
-	*
-	* @param protocol the protocol
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching host, or <code>null</code> if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host fetchByprotocol_Last(
-		java.lang.String protocol,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByprotocol_Last(protocol, orderByComparator);
-	}
-
-	/**
-	* Returns the hosts before and after the current host in the ordered set where protocol = &#63;.
-	*
-	* @param hostId the primary key of the current host
-	* @param protocol the protocol
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next host
-	* @throws de.uhh.l2g.plugins.NoSuchHostException if a host with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host[] findByprotocol_PrevAndNext(
-		long hostId, java.lang.String protocol,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence()
-				   .findByprotocol_PrevAndNext(hostId, protocol,
-			orderByComparator);
-	}
-
-	/**
-	* Removes all the hosts where protocol = &#63; from the database.
-	*
-	* @param protocol the protocol
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByprotocol(java.lang.String protocol)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByprotocol(protocol);
-	}
-
-	/**
-	* Returns the number of hosts where protocol = &#63;.
-	*
-	* @param protocol the protocol
-	* @return the number of matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByprotocol(java.lang.String protocol)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByprotocol(protocol);
-	}
-
-	/**
-	* Returns all the hosts where streamer = &#63;.
-	*
-	* @param streamer the streamer
-	* @return the matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<de.uhh.l2g.plugins.model.Host> findBystreamer(
-		java.lang.String streamer)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findBystreamer(streamer);
-	}
-
-	/**
-	* Returns a range of all the hosts where streamer = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param streamer the streamer
-	* @param start the lower bound of the range of hosts
-	* @param end the upper bound of the range of hosts (not inclusive)
-	* @return the range of matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<de.uhh.l2g.plugins.model.Host> findBystreamer(
-		java.lang.String streamer, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findBystreamer(streamer, start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the hosts where streamer = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param streamer the streamer
-	* @param start the lower bound of the range of hosts
-	* @param end the upper bound of the range of hosts (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<de.uhh.l2g.plugins.model.Host> findBystreamer(
-		java.lang.String streamer, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findBystreamer(streamer, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first host in the ordered set where streamer = &#63;.
-	*
-	* @param streamer the streamer
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching host
-	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host findBystreamer_First(
-		java.lang.String streamer,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence().findBystreamer_First(streamer, orderByComparator);
-	}
-
-	/**
-	* Returns the first host in the ordered set where streamer = &#63;.
-	*
-	* @param streamer the streamer
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching host, or <code>null</code> if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host fetchBystreamer_First(
-		java.lang.String streamer,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchBystreamer_First(streamer, orderByComparator);
-	}
-
-	/**
-	* Returns the last host in the ordered set where streamer = &#63;.
-	*
-	* @param streamer the streamer
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching host
-	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host findBystreamer_Last(
-		java.lang.String streamer,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence().findBystreamer_Last(streamer, orderByComparator);
-	}
-
-	/**
-	* Returns the last host in the ordered set where streamer = &#63;.
-	*
-	* @param streamer the streamer
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching host, or <code>null</code> if a matching host could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host fetchBystreamer_Last(
-		java.lang.String streamer,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchBystreamer_Last(streamer, orderByComparator);
-	}
-
-	/**
-	* Returns the hosts before and after the current host in the ordered set where streamer = &#63;.
-	*
-	* @param hostId the primary key of the current host
-	* @param streamer the streamer
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next host
-	* @throws de.uhh.l2g.plugins.NoSuchHostException if a host with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static de.uhh.l2g.plugins.model.Host[] findBystreamer_PrevAndNext(
-		long hostId, java.lang.String streamer,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			de.uhh.l2g.plugins.NoSuchHostException {
-		return getPersistence()
-				   .findBystreamer_PrevAndNext(hostId, streamer,
-			orderByComparator);
-	}
-
-	/**
-	* Removes all the hosts where streamer = &#63; from the database.
-	*
-	* @param streamer the streamer
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeBystreamer(java.lang.String streamer)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeBystreamer(streamer);
-	}
-
-	/**
-	* Returns the number of hosts where streamer = &#63;.
-	*
-	* @param streamer the streamer
-	* @return the number of matching hosts
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countBystreamer(java.lang.String streamer)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countBystreamer(streamer);
-	}
-
-	/**
 	* Returns the host where name = &#63; or throws a {@link de.uhh.l2g.plugins.NoSuchHostException} if it could not be found.
 	*
 	* @param name the name
@@ -632,6 +308,74 @@ public class HostUtil {
 	public static int countBydefaultHost(int defaultHost)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countBydefaultHost(defaultHost);
+	}
+
+	/**
+	* Returns the host where directory = &#63; or throws a {@link de.uhh.l2g.plugins.NoSuchHostException} if it could not be found.
+	*
+	* @param directory the directory
+	* @return the matching host
+	* @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static de.uhh.l2g.plugins.model.Host findByDirectory(
+		java.lang.String directory)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			de.uhh.l2g.plugins.NoSuchHostException {
+		return getPersistence().findByDirectory(directory);
+	}
+
+	/**
+	* Returns the host where directory = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param directory the directory
+	* @return the matching host, or <code>null</code> if a matching host could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static de.uhh.l2g.plugins.model.Host fetchByDirectory(
+		java.lang.String directory)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByDirectory(directory);
+	}
+
+	/**
+	* Returns the host where directory = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param directory the directory
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching host, or <code>null</code> if a matching host could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static de.uhh.l2g.plugins.model.Host fetchByDirectory(
+		java.lang.String directory, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByDirectory(directory, retrieveFromCache);
+	}
+
+	/**
+	* Removes the host where directory = &#63; from the database.
+	*
+	* @param directory the directory
+	* @return the host that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static de.uhh.l2g.plugins.model.Host removeByDirectory(
+		java.lang.String directory)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			de.uhh.l2g.plugins.NoSuchHostException {
+		return getPersistence().removeByDirectory(directory);
+	}
+
+	/**
+	* Returns the number of hosts where directory = &#63;.
+	*
+	* @param directory the directory
+	* @return the number of matching hosts
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByDirectory(java.lang.String directory)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByDirectory(directory);
 	}
 
 	/**

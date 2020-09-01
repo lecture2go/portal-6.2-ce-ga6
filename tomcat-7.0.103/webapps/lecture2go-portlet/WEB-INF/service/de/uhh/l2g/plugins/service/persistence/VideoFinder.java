@@ -43,4 +43,8 @@ public interface VideoFinder {
 		java.lang.Long lectureseriesId);
 
 	public java.util.List<de.uhh.l2g.plugins.model.Video> findLatestVideos();
+
+	public boolean checkVideoHasMissingMetadata(java.lang.Long videoId);
+
+	public java.util.List<de.uhh.l2g.plugins.model.Video> findVideosWithMissingMetadata();
 }

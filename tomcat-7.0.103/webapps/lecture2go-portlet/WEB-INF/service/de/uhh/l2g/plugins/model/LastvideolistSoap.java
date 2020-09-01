@@ -75,19 +75,19 @@ public class LastvideolistSoap implements Serializable {
 	public LastvideolistSoap() {
 	}
 
-	public int getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _lastvideolistId;
 	}
 
-	public void setPrimaryKey(int pk) {
+	public void setPrimaryKey(long pk) {
 		setLastvideolistId(pk);
 	}
 
-	public int getLastvideolistId() {
+	public long getLastvideolistId() {
 		return _lastvideolistId;
 	}
 
-	public void setLastvideolistId(int lastvideolistId) {
+	public void setLastvideolistId(long lastvideolistId) {
 		_lastvideolistId = lastvideolistId;
 	}
 
@@ -99,6 +99,6 @@ public class LastvideolistSoap implements Serializable {
 		_videoId = videoId;
 	}
 
-	private int _lastvideolistId;
+	private long _lastvideolistId;
 	private long _videoId;
 }

@@ -11,6 +11,7 @@ create index IX_2CE50242 on LG_Creator (middleName);
 
 create index IX_24BB7F54 on LG_Host (companyId, groupId);
 create index IX_95D61FE7 on LG_Host (defaultHost);
+create index IX_97BA48CB on LG_Host (directory);
 create index IX_B56E8218 on LG_Host (groupId);
 create index IX_35EC15AF on LG_Host (groupId, hostId);
 create index IX_59DDB869 on LG_Host (hostId);

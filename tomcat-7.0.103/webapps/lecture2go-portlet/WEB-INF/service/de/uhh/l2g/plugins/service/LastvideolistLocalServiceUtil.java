@@ -59,7 +59,7 @@ public class LastvideolistLocalServiceUtil {
 	* @return the new lastvideolist
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist createLastvideolist(
-		int lastvideolistId) {
+		long lastvideolistId) {
 		return getService().createLastvideolist(lastvideolistId);
 	}
 
@@ -72,7 +72,7 @@ public class LastvideolistLocalServiceUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist deleteLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteLastvideolist(lastvideolistId);
@@ -182,7 +182,7 @@ public class LastvideolistLocalServiceUtil {
 	}
 
 	public static de.uhh.l2g.plugins.model.Lastvideolist fetchLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchLastvideolist(lastvideolistId);
 	}
@@ -196,7 +196,7 @@ public class LastvideolistLocalServiceUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist getLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLastvideolist(lastvideolistId);

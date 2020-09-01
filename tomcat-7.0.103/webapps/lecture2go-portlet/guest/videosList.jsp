@@ -132,9 +132,9 @@
 	</portlet:actionURL>
 		
 	<div class="path-wide">
-	<A HREF=<%=portalURL%>><%=companyName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-	<A HREF="<%=backURL0%>"><%=pageName %></A>
-	<span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+	<A HREF=<%=portalURL%>><%=companyName %></A><span class="uhh-icon-arrow-right"></span> 
+	<A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="page-name"/>: <%=pageName %>'><%=pageName %></A>
+	<span class="uhh-icon-arrow-right"></span> 
 	<%
 	try{
 		rInst=InstitutionLocalServiceUtil.getRoot(); 
@@ -154,8 +154,8 @@
 			<portlet:param name="categoryId" value="0"/>
 			<portlet:param name="creatorId" value="0"/>
 		</portlet:actionURL>
-		<span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-		<A HREF="<%=backURL1%>"><%=pInst.getName() %></A>
+		<span class="uhh-icon-arrow-right"></span> 
+		<A HREF="<%=backURL1%>" aria-label='<liferay-ui:message key="parent-institution-name"/>: <%=pInst.getName() %>'><%=pInst.getName() %></A>
 	<%}		
 	}catch(Exception e){}
 
@@ -170,8 +170,8 @@
 				<portlet:param name="categoryId" value="0"/>
 				<portlet:param name="creatorId" value="0"/>
 			</portlet:actionURL>	
-			<span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-			<A HREF="<%=backURL2%>"><%=insti.getName() %></A> 
+			<span class="uhh-icon-arrow-right"></span> 
+			<A HREF="<%=backURL2%>" aria-label='<liferay-ui:message key="institution-name"/>: <%=insti.getName() %>'><%=insti.getName() %></A> 
 		<%}		
 	}catch(Exception e){}
 %>
@@ -184,7 +184,7 @@
 			<liferay-ui:panel-container>
 				<!-- 	parentinstitution filter -->
 				<%if(presentParentInstitutions.size()>0){ %>
-				<liferay-ui:panel extended="false" defaultState="collapsed" title="institution" cssClass='${hasParentInstitutionFiltered ? "filtered" : "notFiltered"}'>
+				<liferay-ui:panel id="filter-institution" extended="false" defaultState="collapsed" title="institution" cssClass='${hasParentInstitutionFiltered ? "filtered" : "notFiltered"}'>
 					<ul>
 					<c:forEach items="<%=presentParentInstitutions %>" var="parentInstitution">
 						<portlet:actionURL var="filterByParentInstitution" name="addFilter">
@@ -205,7 +205,7 @@
 			 	<!-- 	institution filter  -->
 				<c:if test="${hasParentInstitutionFiltered}">
 				<%if(presentInstitutions.size()>0){ %>
-				<liferay-ui:panel extended="false" defaultState="collapsed" title="sub-institution" cssClass='${hasInstitutionFiltered ? "filtered" : "notFiltered"}'>
+				<liferay-ui:panel id="filter-subinstitution" extended="false" defaultState="collapsed" title="sub-institution" cssClass='${hasInstitutionFiltered ? "filtered" : "notFiltered"}'>
 					<ul>
 					<c:forEach items="<%=presentInstitutions %>" var="institution">
 						<portlet:actionURL var="filterByInstitution" name="addFilter">
@@ -226,7 +226,7 @@
 				
 				<!-- 	terms filter -->
 				<%if(presentTerms.size()>0){%>
-				<liferay-ui:panel extended="false" defaultState="collapsed" title="term" cssClass='${hasTermFiltered ? "filtered" : "notFiltered"}'>
+				<liferay-ui:panel id="filter-term" extended="false" defaultState="collapsed" title="term" cssClass='${hasTermFiltered ? "filtered" : "notFiltered"}'>
 					<ul class="terms">
 					<c:forEach items="<%=presentTerms %>" var="term">
 						<portlet:actionURL var="filterByTerm" name="addFilter">
@@ -242,7 +242,7 @@
 					</c:forEach>
 					</ul>
 					<c:if test="${hasManyTerms}">
-						<div id="loadMoreTerms"><liferay-ui:message key="more"/></div>
+						<a href="#" id="loadMoreTerms" aria-label='<liferay-ui:message key="load-more-terms"/>'><liferay-ui:message key="more"/></a>
 					</c:if>
 				</liferay-ui:panel>
 				<%}%>
@@ -250,7 +250,7 @@
 				
 				<!-- category filter -->
 				<%if(presentCategories.size()>0){%>
-				<liferay-ui:panel extended="false" defaultState="collapsed" title="category" cssClass='${hasCategoryFiltered ? "filtered" : "notFiltered"}'>
+				<liferay-ui:panel id="filter-category" extended="false" defaultState="collapsed" title="category" cssClass='${hasCategoryFiltered ? "filtered" : "notFiltered"}'>
 					<ul>
 					<c:forEach items="<%=presentCategories %>" var="category">
 			    		<portlet:actionURL var="filterByCategory" name="addFilter">
@@ -262,7 +262,7 @@
 							<portlet:param name="creatorId" value="<%=creatorId.toString() %>"/>	
 							<portlet:param name="searchQuery" value="<%=searchQuery %>"/>	
 						</portlet:actionURL>
-						<li class="filter-menu"><a href="${filterByCategory}"><div class="filter-menu-link"><span ${hasCategoryFiltered ? 'class="icon-large icon-remove"' : ''}></span>${category.name}</div></a></li>
+						<li class="filter-menu"><a href="${filterByCategory}" aria-label='<liferay-ui:message key="category-filter"/>'><div class="filter-menu-link"><span ${hasCategoryFiltered ? 'class="icon-large icon-remove"' : ''}></span>${category.name}</div></a></li>
 					</c:forEach>
 					</ul>
 				</liferay-ui:panel>
@@ -345,7 +345,7 @@
 									%>
 								<div class="videotile wide" onClick="window.location='<%=view1URL%>'">
 									<div class="video-image-wrapper">
-									   <img class="video-image-big" src="<%=vidDummy.getImageMedium()%>"/>
+									   <img class="video-image-big" src="<%=vidDummy.getImageMedium()%>" alt="<liferay-ui:message key="thumbnail"/> - <%=vidDummy.getTitle() %>" />
 									</div>
 									<div class="video-content-wrapper">
 										<div class="video-content">
@@ -355,13 +355,13 @@
 											%>
 											<span class="term-of-creation"><%=term%></span>
 											
-									        <div class="lectureseries-title dot-ellipsis dot-resize-update">
+									        <h2 class="lectureseries-title dot-ellipsis dot-resize-update">
 									        	<%
 									        	String lectName = "";
 									        	try{lectName=lectser.getName();}catch(Exception e){}
 									        	%>
-									        	<a href="<%=view1URL%>"><%=lectName%></a>
-									        </div>
+									        	<a href="<%=view1URL%>" aria-label='<liferay-ui:message key="lectureseries-title"/>: <%=lectName%>'><%=lectName%></a>
+									        </h2>
 												
 												<div class="allcreators">
 													<%=vidDummy.getLinkedCreators() %>
@@ -375,7 +375,7 @@
 										        	List<Video_Institution> vi = Video_InstitutionLocalServiceUtil.getByVideo(vidDummy.getVideoId());
 										            try{
 										            	Long cId = Video_CategoryLocalServiceUtil.getByVideo(lectser.getLectureseriesId()).get(0).getCategoryId();
-										            	cat ="<a href='/l2go/-/get/0/0/"+cId+"/0/0/'>"+CategoryLocalServiceUtil.getById(cId).getName()+"</a>";
+										            	cat ="<a href='/l2go/-/get/0/0/"+cId+"/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"category")+": "+CategoryLocalServiceUtil.getById(cId).getName()+"'>"+CategoryLocalServiceUtil.getById(cId).getName()+"</a>";
 	
 										            }catch(Exception e){
 										            	System.out.print(e);
@@ -386,12 +386,12 @@
 										          		String instLink= "";
 										         	 	try{
 															Institution inst = InstitutionLocalServiceUtil.getById(vi.get(0).getInstitutionId());
-															instLink="<a href='/l2go/-/get/"+inst.getInstitutionId() + "/" + inst.getParentId() + "/0/0/0/'>" + inst.getName() + "</a>"; 
+															instLink="<a href='/l2go/-/get/"+inst.getInstitutionId() + "/" + inst.getParentId() + "/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"institution-name")+": " +inst.getName() + "'>" + inst.getName() + "</a>"; 
 											          		
 										          		}catch(Exception e){
 										          			// no institution for the video, use the root institution
 										          			Institution rootInst=InstitutionLocalServiceUtil.getById(vidDummy.getRootInstitutionId());
-															instLink="<a href='/l2go/-/get/0/" + rootInst.getInstitutionId() + "/0/0/0/'>" + rootInst.getName() + "</a>"; 
+															instLink="<a href='/l2go/-/get/0/" + rootInst.getInstitutionId() + "/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"root-institution-name")+": " + rootInst.getName() +"'>" + rootInst.getName() + "</a>"; 
 										          		}
 											          %>
 											         	 <span class="label label-light2"><%=instLink%></span>
@@ -407,7 +407,7 @@
 								%>
 										<div class="videotile wide">
 									        <div class="video-image-wrapper">
-									          <img class="video-image-big layered-paper darker" src="<%=vidDummy.getImageMedium()%>"/>
+									          <img class="video-image-big layered-paper darker" src="<%=vidDummy.getImageMedium()%>" alt="<liferay-ui:message key="thumbnail"/> - <%=vidDummy.getTitle() %>" />
 											  <span class="badge"><%=videoCount%></span>
 									          <span class="tri"></span>
 									          <span class="overlay"></span>
@@ -421,13 +421,13 @@
 											%>
 											<span class="term-of-creation"><%=term%></span>
 										        
-											<div class="lectureseries-title dot-ellipsis dot-resize-update dot-height-40">
+											<h2 class="lectureseries-title dot-ellipsis dot-resize-update dot-height-40">
 									        	<%
 									        	String lectName = "";
 									        	try{lectName=lectser.getName();}catch(Exception e){}
 									        	%>
-									        	<a href="<%=view1URL%>"><%=lectName%></a>
-									        </div>
+									        	<a href="<%=view1URL%>" aria-label='<liferay-ui:message key="lectureseries-title"/>'><%=lectName%></a>
+									        </h2>
 												
 												<div class="allcreators">
 													<%=CreatorLocalServiceUtil.getCommaSeparatedLinkedCreatorsByLectureseriesIdAndMaxCreators(vidDummy.getLectureseriesId(), 3)%>
@@ -435,7 +435,7 @@
 											</div>
 											
 											<div class="video-content-footer">
-										        <button id="<%="b"+oId%>" >
+										        <button title="<liferay-ui:message key='open-video-list'/>" aria-label="<liferay-ui:message key='open-video-list'/>" id="<%="b"+oId%>" >
 													<span class="lfr-icon-menu-text">
 														<i class="icon-large icon-chevron-down"></i>
 													</span>	
@@ -444,7 +444,7 @@
 										          <%
 										        	String cat ="";
 										            try{
-											        	cat ="<a href='/l2go/-/get/0/0/"+lectser.getCategoryId()+"/0/0/'>"+CategoryLocalServiceUtil.getById(lectser.getCategoryId()).getName()+"</a>";
+											        	cat ="<a href='/l2go/-/get/0/0/"+lectser.getCategoryId()+"/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"category")+": "+CategoryLocalServiceUtil.getById(lectser.getCategoryId()).getName()+"'>"+CategoryLocalServiceUtil.getById(lectser.getCategoryId()).getName()+"</a>";
 										            }catch(Exception e){}
 										        	List<Lectureseries_Institution> li = Lectureseries_InstitutionLocalServiceUtil.getByLectureseries(lectser.getLectureseriesId());
 													%>
@@ -453,7 +453,7 @@
 										          		try{
 												        	Institution inst = InstitutionLocalServiceUtil.getById(li.get(0).getInstitutionId());
 												        	
-															String instLink="<a href='/l2go/-/get/"+inst.getInstitutionId()+"/" + inst.getParentId() + "/0/0/0/'>"+inst.getName()+"</a>"; 
+															String instLink="<a href='/l2go/-/get/"+inst.getInstitutionId()+"/" + inst.getParentId() + "/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"institution")+": " + inst.getName() +"'>"+inst.getName()+"</a>"; 
 											          		%>
 													          <span class="label label-light2"><%=instLink%></span>
 											          		<%
@@ -491,7 +491,7 @@
 								<li class="videotile small" onClick="window.location='<%=vURL%>'">
 										<div class="videotile metainfolist small">
 											<div class="video-image-wrapper-small">
-												<img class="video-image" src="<%=v.getImageSmall()%>">
+												<img class="video-image" src="<%=v.getImageSmall()%>" alt="<liferay-ui:message key="thumbnail"/> - <%=v.getTitle() %>" />
 											</div>
 										</div>
 										<%
@@ -502,7 +502,9 @@
 		              					%>
 										<div class="metainfo-small">
 		              						<div class="generation-date"><%=date%></div>
-											<div class="title-small"><%=v.getTitle()%></div>		              							
+											<a href='<%=vURL%>' aria-label='<liferay-ui:message key="video-title"/>'>
+												<h3 class="title-small"><%=v.getTitle()%></h3>		   
+											</a>           							
 			              					<div class="allcreators">		              							
 		              							<%=v.getLinkedCreators()%>
 		              						</div>
@@ -544,7 +546,11 @@ var checkExist = setInterval(function() {
 				 // open the video list of a lectureseries if a search query is found in a video BUT NOT in the lectureseries itself
 				 if(!(($(node).closest(".table-cell").find(".videotile.wide").find("mark")).length)){
 					// open the video list of a lectureseries if a video is found
-					 $(node).closest("ul").show();
+					$(node).closest("ul").show();
+					$button = $(node).closest(".table-cell").find(".video-content-footer").find("button");
+				 	$button.addClass("rotated");
+				 	$button.attr("aria-label","<liferay-ui:message key='close-video-list'/>");
+					$button.attr("title","<liferay-ui:message key='close-video-list'/>");				
 				 }
 			
 			 }

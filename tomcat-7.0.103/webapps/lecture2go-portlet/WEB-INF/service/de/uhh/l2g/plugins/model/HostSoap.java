@@ -30,12 +30,10 @@ public class HostSoap implements Serializable {
 		HostSoap soapModel = new HostSoap();
 
 		soapModel.setHostId(model.getHostId());
-		soapModel.setProtocol(model.getProtocol());
-		soapModel.setStreamer(model.getStreamer());
-		soapModel.setPort(model.getPort());
-		soapModel.setServerRoot(model.getServerRoot());
+		soapModel.setDirectory(model.getDirectory());
 		soapModel.setName(model.getName());
 		soapModel.setDefaultHost(model.getDefaultHost());
+		soapModel.setPrefix(model.getPrefix());
 
 		return soapModel;
 	}
@@ -96,36 +94,12 @@ public class HostSoap implements Serializable {
 		_hostId = hostId;
 	}
 
-	public String getProtocol() {
-		return _protocol;
+	public String getDirectory() {
+		return _directory;
 	}
 
-	public void setProtocol(String protocol) {
-		_protocol = protocol;
-	}
-
-	public String getStreamer() {
-		return _streamer;
-	}
-
-	public void setStreamer(String streamer) {
-		_streamer = streamer;
-	}
-
-	public int getPort() {
-		return _port;
-	}
-
-	public void setPort(int port) {
-		_port = port;
-	}
-
-	public String getServerRoot() {
-		return _serverRoot;
-	}
-
-	public void setServerRoot(String serverRoot) {
-		_serverRoot = serverRoot;
+	public void setDirectory(String directory) {
+		_directory = directory;
 	}
 
 	public String getName() {
@@ -144,11 +118,17 @@ public class HostSoap implements Serializable {
 		_defaultHost = defaultHost;
 	}
 
+	public String getPrefix() {
+		return _prefix;
+	}
+
+	public void setPrefix(String prefix) {
+		_prefix = prefix;
+	}
+
 	private long _hostId;
-	private String _protocol;
-	private String _streamer;
-	private int _port;
-	private String _serverRoot;
+	private String _directory;
 	private String _name;
 	private int _defaultHost;
+	private String _prefix;
 }

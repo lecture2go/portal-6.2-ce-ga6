@@ -10,6 +10,7 @@ function showCreatorsList(data) {
 
 
 function autocompleteCreator($creatorInputObject, validationFunction, newCreatorHandler) {
+	// validationFunction is not used any more...
 	avoidClosing = false;
 	$creatorInputObject.autocomplete({
 	    source: function(request, response) {
@@ -28,9 +29,6 @@ function autocompleteCreator($creatorInputObject, validationFunction, newCreator
 				$creatorInputObject.val('');
 				c++;
 				appendCreator(c, newCreatorHandler);
-				if( typeof validationFunction == "function" ) {
-					validationFunction();
-				}
 				$creatorInputObject.autocomplete('close');
 			});
 		},
@@ -47,12 +45,11 @@ function autocompleteCreator($creatorInputObject, validationFunction, newCreator
         	}
         },
 		select: function (event, ui) {
+			hasFormChanged = true;
 			if(ui.item.id>0){
   		        var vars = getJSONCreator(ui.item.id);
   		        $.template( "filesTemplate", $("#created") );
   		        $.tmpl( "filesTemplate", vars ).appendTo( "#creators" );
-  		        if( typeof validationFunction == "function" )
-					validationFunction();
   		        if( typeof newCreatorHandler == "function" ) {
   		        	newCreatorHandler();
   		        }
@@ -73,6 +70,12 @@ function appendCreator(c, newCreatorHandler){
     		if( typeof newCreatorHandler == "function" ) {
 				newCreatorHandler();
 			}
+    	});
+    	// the user can save the new creator(s) with an enter key press
+    	$('#nc'+c).on('keypress', function(event) {
+    		if(event.which == 13) {
+    			updateCreators();
+    		}
     	});
 	});
 };

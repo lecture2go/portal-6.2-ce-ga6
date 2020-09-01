@@ -106,23 +106,29 @@ public class Lectureseries_CategoryLocalServiceClpInvoker {
 				"de.uhh.l2g.plugins.model.Lectureseries_Category"
 			};
 
-		_methodName172 = "getBeanIdentifier";
+		_methodName176 = "getBeanIdentifier";
 
-		_methodParameterTypes172 = new String[] {  };
+		_methodParameterTypes176 = new String[] {  };
 
-		_methodName173 = "setBeanIdentifier";
+		_methodName177 = "setBeanIdentifier";
 
-		_methodParameterTypes173 = new String[] { "java.lang.String" };
+		_methodParameterTypes177 = new String[] { "java.lang.String" };
 
-		_methodName178 = "updateCategoryByLectureseriesAndCategory";
+		_methodName182 = "addLectureseries_Category";
 
-		_methodParameterTypes178 = new String[] {
+		_methodParameterTypes182 = new String[] {
+				"de.uhh.l2g.plugins.model.Lectureseries_Category"
+			};
+
+		_methodName183 = "updateCategoryByLectureseriesAndCategory";
+
+		_methodParameterTypes183 = new String[] {
 				"java.lang.Long", "java.lang.Long", "java.lang.Long"
 			};
 
-		_methodName179 = "removeByLectureseriesId";
+		_methodName184 = "removeByLectureseriesId";
 
-		_methodParameterTypes179 = new String[] { "java.lang.Long" };
+		_methodParameterTypes184 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -214,28 +220,33 @@ public class Lectureseries_CategoryLocalServiceClpInvoker {
 			return Lectureseries_CategoryLocalServiceUtil.updateLectureseries_Category((de.uhh.l2g.plugins.model.Lectureseries_Category)arguments[0]);
 		}
 
-		if (_methodName172.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes172, parameterTypes)) {
+		if (_methodName176.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes176, parameterTypes)) {
 			return Lectureseries_CategoryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName173.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes173, parameterTypes)) {
+		if (_methodName177.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes177, parameterTypes)) {
 			Lectureseries_CategoryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName178.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes178, parameterTypes)) {
+		if (_methodName182.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes182, parameterTypes)) {
+			return Lectureseries_CategoryLocalServiceUtil.addLectureseries_Category((de.uhh.l2g.plugins.model.Lectureseries_Category)arguments[0]);
+		}
+
+		if (_methodName183.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes183, parameterTypes)) {
 			Lectureseries_CategoryLocalServiceUtil.updateCategoryByLectureseriesAndCategory((java.lang.Long)arguments[0],
 				(java.lang.Long)arguments[1], (java.lang.Long)arguments[2]);
 
 			return null;
 		}
 
-		if (_methodName179.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes179, parameterTypes)) {
+		if (_methodName184.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes184, parameterTypes)) {
 			return Lectureseries_CategoryLocalServiceUtil.removeByLectureseriesId((java.lang.Long)arguments[0]);
 		}
 
@@ -274,12 +285,14 @@ public class Lectureseries_CategoryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName172;
-	private String[] _methodParameterTypes172;
-	private String _methodName173;
-	private String[] _methodParameterTypes173;
-	private String _methodName178;
-	private String[] _methodParameterTypes178;
-	private String _methodName179;
-	private String[] _methodParameterTypes179;
+	private String _methodName176;
+	private String[] _methodParameterTypes176;
+	private String _methodName177;
+	private String[] _methodParameterTypes177;
+	private String _methodName182;
+	private String[] _methodParameterTypes182;
+	private String _methodName183;
+	private String[] _methodParameterTypes183;
+	private String _methodName184;
+	private String[] _methodParameterTypes184;
 }

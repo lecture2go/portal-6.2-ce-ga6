@@ -202,6 +202,10 @@ public class InstitutionLocalServiceClp implements InstitutionLocalService {
 		_methodName38 = "updateCounter";
 
 		_methodParameterTypes38 = new String[] {  };
+
+		_methodName39 = "getForProducerPending";
+
+		_methodParameterTypes39 = new String[] {  };
 	}
 
 	@Override
@@ -1368,6 +1372,34 @@ public class InstitutionLocalServiceClp implements InstitutionLocalService {
 		return ((Long)returnObj).longValue();
 	}
 
+	@Override
+	public java.util.List<de.uhh.l2g.plugins.model.Institution> getForProducerPending()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName39,
+					_methodParameterTypes39, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<de.uhh.l2g.plugins.model.Institution>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -1445,4 +1477,6 @@ public class InstitutionLocalServiceClp implements InstitutionLocalService {
 	private String[] _methodParameterTypes37;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
 }

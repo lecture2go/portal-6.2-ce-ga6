@@ -307,30 +307,18 @@ public class HostLocalServiceUtil {
 		return getService().getLockingElements(hostId);
 	}
 
-	/**
-	* Special handling for default entries (no update)
-	*/
-	public static de.uhh.l2g.plugins.model.Host addDefaultHost(
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addDefaultHost(serviceContext);
-	}
-
 	public static de.uhh.l2g.plugins.model.Host addHost(java.lang.String name,
-		java.lang.String streamLocation, java.lang.String protocol, int port)
+		java.lang.String prefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addHost(name, streamLocation, protocol, port);
+		return getService().addHost(name, prefix);
 	}
 
 	public static de.uhh.l2g.plugins.model.Host updateHost(long hostId,
-		java.lang.String name, java.lang.String streamLocation,
-		java.lang.String protocol, int port)
+		java.lang.String name, java.lang.String prefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateHost(hostId, name, streamLocation, protocol, port);
+		return getService().updateHost(hostId, name, prefix);
 	}
 
 	/**
@@ -343,12 +331,6 @@ public class HostLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteHost(hostId, serviceContext);
-	}
-
-	public static long updateCounter()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateCounter();
 	}
 
 	public static void clearService() {

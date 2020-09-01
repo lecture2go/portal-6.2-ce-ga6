@@ -830,6 +830,11 @@ public class VideoWrapper implements Video, ModelWrapper<Video> {
 	}
 
 	@Override
+	public boolean isWithMissingMetadata() {
+		return _video.isWithMissingMetadata();
+	}
+
+	@Override
 	public de.uhh.l2g.plugins.model.Host getHost() {
 		return _video.getHost();
 	}

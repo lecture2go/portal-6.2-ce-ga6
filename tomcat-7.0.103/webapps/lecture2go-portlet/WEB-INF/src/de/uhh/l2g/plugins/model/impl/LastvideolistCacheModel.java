@@ -60,17 +60,17 @@ public class LastvideolistCacheModel implements CacheModel<Lastvideolist>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		lastvideolistId = objectInput.readInt();
+		lastvideolistId = objectInput.readLong();
 		videoId = objectInput.readLong();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeInt(lastvideolistId);
+		objectOutput.writeLong(lastvideolistId);
 		objectOutput.writeLong(videoId);
 	}
 
-	public int lastvideolistId;
+	public long lastvideolistId;
 	public long videoId;
 }

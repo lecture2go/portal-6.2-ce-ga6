@@ -72,63 +72,19 @@ public interface HostModel extends BaseModel<Host> {
 	public void setHostId(long hostId);
 
 	/**
-	 * Returns the protocol of this host.
+	 * Returns the directory of this host.
 	 *
-	 * @return the protocol of this host
+	 * @return the directory of this host
 	 */
 	@AutoEscape
-	public String getProtocol();
+	public String getDirectory();
 
 	/**
-	 * Sets the protocol of this host.
+	 * Sets the directory of this host.
 	 *
-	 * @param protocol the protocol of this host
+	 * @param directory the directory of this host
 	 */
-	public void setProtocol(String protocol);
-
-	/**
-	 * Returns the streamer of this host.
-	 *
-	 * @return the streamer of this host
-	 */
-	@AutoEscape
-	public String getStreamer();
-
-	/**
-	 * Sets the streamer of this host.
-	 *
-	 * @param streamer the streamer of this host
-	 */
-	public void setStreamer(String streamer);
-
-	/**
-	 * Returns the port of this host.
-	 *
-	 * @return the port of this host
-	 */
-	public int getPort();
-
-	/**
-	 * Sets the port of this host.
-	 *
-	 * @param port the port of this host
-	 */
-	public void setPort(int port);
-
-	/**
-	 * Returns the server root of this host.
-	 *
-	 * @return the server root of this host
-	 */
-	@AutoEscape
-	public String getServerRoot();
-
-	/**
-	 * Sets the server root of this host.
-	 *
-	 * @param serverRoot the server root of this host
-	 */
-	public void setServerRoot(String serverRoot);
+	public void setDirectory(String directory);
 
 	/**
 	 * Returns the name of this host.
@@ -158,6 +114,21 @@ public interface HostModel extends BaseModel<Host> {
 	 * @param defaultHost the default host of this host
 	 */
 	public void setDefaultHost(int defaultHost);
+
+	/**
+	 * Returns the prefix of this host.
+	 *
+	 * @return the prefix of this host
+	 */
+	@AutoEscape
+	public String getPrefix();
+
+	/**
+	 * Sets the prefix of this host.
+	 *
+	 * @param prefix the prefix of this host
+	 */
+	public void setPrefix(String prefix);
 
 	@Override
 	public boolean isNew();

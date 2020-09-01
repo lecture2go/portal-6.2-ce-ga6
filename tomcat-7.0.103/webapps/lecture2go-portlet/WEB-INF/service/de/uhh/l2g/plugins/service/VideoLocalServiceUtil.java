@@ -465,6 +465,12 @@ public class VideoLocalServiceUtil {
 		return getService().getByHits();
 	}
 
+	public static de.uhh.l2g.plugins.model.Video incrementHitCounter(
+		de.uhh.l2g.plugins.model.Video video)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().incrementHitCounter(video);
+	}
+
 	public static java.lang.Long getLatestClosedAccessVideoId(
 		java.lang.Long lectureseriesId) {
 		return getService().getLatestClosedAccessVideoId(lectureseriesId);
@@ -517,6 +523,27 @@ public class VideoLocalServiceUtil {
 		return getService()
 				   .retrieveLanguageDisplayNameOfCaptionFile(captionFile,
 			userLocale);
+	}
+
+	public static boolean hasMissingMetadata(java.lang.Long videoId) {
+		return getService().hasMissingMetadata(videoId);
+	}
+
+	public static java.util.List<de.uhh.l2g.plugins.model.Video> getVideosWithMissingMetadata() {
+		return getService().getVideosWithMissingMetadata();
+	}
+
+	public static java.util.List<de.uhh.l2g.plugins.model.Video> stripVideosWithMissingMetadataFromList(
+		java.util.List<de.uhh.l2g.plugins.model.Video> videos) {
+		return getService().stripVideosWithMissingMetadataFromList(videos);
+	}
+
+	/**
+	* This method is only used to fix missing database entries
+	* Uses the lectureseries information for filling the missing data
+	*/
+	public static void fixMissingMetadataForVideosFromRelatedLectureseries() {
+		getService().fixMissingMetadataForVideosFromRelatedLectureseries();
 	}
 
 	public static void clearService() {

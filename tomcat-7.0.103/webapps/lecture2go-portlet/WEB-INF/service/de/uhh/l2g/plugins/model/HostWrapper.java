@@ -49,12 +49,10 @@ public class HostWrapper implements Host, ModelWrapper<Host> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("hostId", getHostId());
-		attributes.put("protocol", getProtocol());
-		attributes.put("streamer", getStreamer());
-		attributes.put("port", getPort());
-		attributes.put("serverRoot", getServerRoot());
+		attributes.put("directory", getDirectory());
 		attributes.put("name", getName());
 		attributes.put("defaultHost", getDefaultHost());
+		attributes.put("prefix", getPrefix());
 
 		return attributes;
 	}
@@ -67,28 +65,10 @@ public class HostWrapper implements Host, ModelWrapper<Host> {
 			setHostId(hostId);
 		}
 
-		String protocol = (String)attributes.get("protocol");
+		String directory = (String)attributes.get("directory");
 
-		if (protocol != null) {
-			setProtocol(protocol);
-		}
-
-		String streamer = (String)attributes.get("streamer");
-
-		if (streamer != null) {
-			setStreamer(streamer);
-		}
-
-		Integer port = (Integer)attributes.get("port");
-
-		if (port != null) {
-			setPort(port);
-		}
-
-		String serverRoot = (String)attributes.get("serverRoot");
-
-		if (serverRoot != null) {
-			setServerRoot(serverRoot);
+		if (directory != null) {
+			setDirectory(directory);
 		}
 
 		String name = (String)attributes.get("name");
@@ -101,6 +81,12 @@ public class HostWrapper implements Host, ModelWrapper<Host> {
 
 		if (defaultHost != null) {
 			setDefaultHost(defaultHost);
+		}
+
+		String prefix = (String)attributes.get("prefix");
+
+		if (prefix != null) {
+			setPrefix(prefix);
 		}
 	}
 
@@ -145,83 +131,23 @@ public class HostWrapper implements Host, ModelWrapper<Host> {
 	}
 
 	/**
-	* Returns the protocol of this host.
+	* Returns the directory of this host.
 	*
-	* @return the protocol of this host
+	* @return the directory of this host
 	*/
 	@Override
-	public java.lang.String getProtocol() {
-		return _host.getProtocol();
+	public java.lang.String getDirectory() {
+		return _host.getDirectory();
 	}
 
 	/**
-	* Sets the protocol of this host.
+	* Sets the directory of this host.
 	*
-	* @param protocol the protocol of this host
+	* @param directory the directory of this host
 	*/
 	@Override
-	public void setProtocol(java.lang.String protocol) {
-		_host.setProtocol(protocol);
-	}
-
-	/**
-	* Returns the streamer of this host.
-	*
-	* @return the streamer of this host
-	*/
-	@Override
-	public java.lang.String getStreamer() {
-		return _host.getStreamer();
-	}
-
-	/**
-	* Sets the streamer of this host.
-	*
-	* @param streamer the streamer of this host
-	*/
-	@Override
-	public void setStreamer(java.lang.String streamer) {
-		_host.setStreamer(streamer);
-	}
-
-	/**
-	* Returns the port of this host.
-	*
-	* @return the port of this host
-	*/
-	@Override
-	public int getPort() {
-		return _host.getPort();
-	}
-
-	/**
-	* Sets the port of this host.
-	*
-	* @param port the port of this host
-	*/
-	@Override
-	public void setPort(int port) {
-		_host.setPort(port);
-	}
-
-	/**
-	* Returns the server root of this host.
-	*
-	* @return the server root of this host
-	*/
-	@Override
-	public java.lang.String getServerRoot() {
-		return _host.getServerRoot();
-	}
-
-	/**
-	* Sets the server root of this host.
-	*
-	* @param serverRoot the server root of this host
-	*/
-	@Override
-	public void setServerRoot(java.lang.String serverRoot) {
-		_host.setServerRoot(serverRoot);
+	public void setDirectory(java.lang.String directory) {
+		_host.setDirectory(directory);
 	}
 
 	/**
@@ -262,6 +188,26 @@ public class HostWrapper implements Host, ModelWrapper<Host> {
 	@Override
 	public void setDefaultHost(int defaultHost) {
 		_host.setDefaultHost(defaultHost);
+	}
+
+	/**
+	* Returns the prefix of this host.
+	*
+	* @return the prefix of this host
+	*/
+	@Override
+	public java.lang.String getPrefix() {
+		return _host.getPrefix();
+	}
+
+	/**
+	* Sets the prefix of this host.
+	*
+	* @param prefix the prefix of this host
+	*/
+	@Override
+	public void setPrefix(java.lang.String prefix) {
+		_host.setPrefix(prefix);
 	}
 
 	@Override

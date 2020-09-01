@@ -10,8 +10,6 @@
 
 <%
 	String actionURL = "";
-	//liferay's scheduler entry ist
-	List<SchedulerEntry> schedulerEntries = PortletScheduler.ListSchedulerEntries(portletDisplay.getRootPortletId());
 	//quartz responses/jobs
 	List<PortletScheduler> portletScheduler = PortletScheduler.ListSchedulers();
 	//Portlet URL

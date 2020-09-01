@@ -151,7 +151,7 @@ public interface LastvideolistPersistence extends BasePersistence<Lastvideolist>
 	* @throws SystemException if a system exception occurred
 	*/
 	public de.uhh.l2g.plugins.model.Lastvideolist[] findByVideo_PrevAndNext(
-		int lastvideolistId, long videoId,
+		long lastvideolistId, long videoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchLastvideolistException;
@@ -197,7 +197,7 @@ public interface LastvideolistPersistence extends BasePersistence<Lastvideolist>
 	* @param lastvideolistId the primary key for the new lastvideolist
 	* @return the new lastvideolist
 	*/
-	public de.uhh.l2g.plugins.model.Lastvideolist create(int lastvideolistId);
+	public de.uhh.l2g.plugins.model.Lastvideolist create(long lastvideolistId);
 
 	/**
 	* Removes the lastvideolist with the primary key from the database. Also notifies the appropriate model listeners.
@@ -207,7 +207,7 @@ public interface LastvideolistPersistence extends BasePersistence<Lastvideolist>
 	* @throws de.uhh.l2g.plugins.NoSuchLastvideolistException if a lastvideolist with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public de.uhh.l2g.plugins.model.Lastvideolist remove(int lastvideolistId)
+	public de.uhh.l2g.plugins.model.Lastvideolist remove(long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchLastvideolistException;
 
@@ -224,7 +224,7 @@ public interface LastvideolistPersistence extends BasePersistence<Lastvideolist>
 	* @throws SystemException if a system exception occurred
 	*/
 	public de.uhh.l2g.plugins.model.Lastvideolist findByPrimaryKey(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchLastvideolistException;
 
@@ -236,7 +236,7 @@ public interface LastvideolistPersistence extends BasePersistence<Lastvideolist>
 	* @throws SystemException if a system exception occurred
 	*/
 	public de.uhh.l2g.plugins.model.Lastvideolist fetchByPrimaryKey(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

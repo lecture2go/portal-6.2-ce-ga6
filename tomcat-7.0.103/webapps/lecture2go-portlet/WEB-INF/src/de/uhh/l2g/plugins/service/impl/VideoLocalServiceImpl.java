@@ -1,57 +1,53 @@
 /*******************************************************************************
  * License
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
+ * Lecture2Go 
+ * 
  * The Lecture2Go software is based on the liferay portal 6.2-ga6
  * <http://www.liferay.com> (Copyright notice see below)
- * 
  * Lecture2Go <http://lecture2go.uni-hamburg.de> is an open source
  * platform for media management and distribution. Our goal is to
  * support the free access to knowledge because this is a component
  * of each democratic society. The open source software is aimed at
  * academic institutions and has to strengthen the blended learning.
- * 
  * All Lecture2Go plugins are continuously being developed and improved.
  * For more details please visit <http://lecture2go-open-source.rrz.uni-hamburg.de>
- * 
  * Copyright (c) 2013 - present University of Hamburg / Computer and Data Center (RRZ)
- * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
- * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
- * 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *  
  * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
  * 
  * The Liferay Plugins SDK:
  * 
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
  * Third Party Software
  * 
- * Lecture2Go uses third-party libraries which may be distributed under different licenses 
- * to the above (but are compatible with the used GPL license). Informations about these 
- * licenses and copyright informations are mostly detailed in the library source code or jars themselves. 
- * You must agree to the terms of these licenses, in addition to  the above Lecture2Go source code license, 
+ * Lecture2Go uses third-party libraries which may be distributed under different licenses
+ * to the above (but are compatible with the used GPL license). Informations about these
+ * licenses and copyright informations are mostly detailed in the library source code or jars themselves.
+ * You must agree to the terms of these licenses, in addition tothe above Lecture2Go source code license,
  * in order to use this software.
  ******************************************************************************/
 /**
@@ -70,19 +66,13 @@
 
 package de.uhh.l2g.plugins.service.impl;
 
-import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.PropsUtil;
-
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,27 +82,53 @@ import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.http.util.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.liferay.portal.NoSuchModelException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
+
+import de.uhh.l2g.plugins.NoSuchInstitutionException;
+import de.uhh.l2g.plugins.NoSuchLectureseriesException;
 import de.uhh.l2g.plugins.NoSuchProducerException;
 import de.uhh.l2g.plugins.NoSuchVideoException;
 import de.uhh.l2g.plugins.model.Host;
+import de.uhh.l2g.plugins.model.Institution;
 import de.uhh.l2g.plugins.model.Lastvideolist;
 import de.uhh.l2g.plugins.model.Lectureseries;
 import de.uhh.l2g.plugins.model.Producer;
+import de.uhh.l2g.plugins.model.Segment;
 import de.uhh.l2g.plugins.model.Video;
+import de.uhh.l2g.plugins.model.Video_Category;
+import de.uhh.l2g.plugins.model.Videohitlist;
 import de.uhh.l2g.plugins.model.impl.HostImpl;
+import de.uhh.l2g.plugins.model.impl.InstitutionImpl;
 import de.uhh.l2g.plugins.model.impl.LastvideolistImpl;
+import de.uhh.l2g.plugins.model.impl.LectureseriesImpl;
 import de.uhh.l2g.plugins.model.impl.ProducerImpl;
 import de.uhh.l2g.plugins.model.impl.VideoImpl;
+import de.uhh.l2g.plugins.model.impl.Video_CategoryImpl;
+import de.uhh.l2g.plugins.service.CreatorLocalServiceUtil;
 import de.uhh.l2g.plugins.service.HostLocalServiceUtil;
 import de.uhh.l2g.plugins.service.LastvideolistLocalServiceUtil;
+import de.uhh.l2g.plugins.service.LectureseriesLocalServiceUtil;
+import de.uhh.l2g.plugins.service.MetadataLocalServiceUtil;
+import de.uhh.l2g.plugins.service.SegmentLocalServiceUtil;
+import de.uhh.l2g.plugins.service.Video_CategoryLocalServiceUtil;
 import de.uhh.l2g.plugins.service.base.VideoLocalServiceBaseImpl;
 import de.uhh.l2g.plugins.service.persistence.VideoFinderUtil;
 import de.uhh.l2g.plugins.util.FFmpegManager;
@@ -144,6 +160,21 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 	 * de.uhh.l2g.plugins.service.VideoLocalServiceUtil} to access the video
 	 * local service.
 	 */
+	
+	protected static Log LOG = LogFactoryUtil.getLog(Video.class.getName());
+
+	public Video addVideo(Video object){
+		Long id;
+		try {
+			id = counterLocalService.increment(Video.class.getName());
+			object.setPrimaryKey(id);
+			super.addVideo(object);
+		} catch (SystemException e) {
+			LOG.error("can't add new object with id " + object.getPrimaryKey() + "!");
+		}
+		return object;
+	}
+	
 	public List<Video> getByOpenAccess(int bool) throws SystemException {
 		return videoPersistence.findByOpenAccess(bool);
 	}
@@ -231,18 +262,25 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 					//SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 					//the above commented line was changed to the one below, as per Grodriguez's pertinent comment:
 					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+					java.util.Date date = null;
 					try {
-						java.util.Date date = sdf.parse(myDateString);
+						date = sdf.parse(myDateString);
+					} catch (Exception e) {
+						// the duration could not be parsed
+					}
+					int dur;
+					if (date != null) {
 						Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
 						calendar.setTime(date);   // assigns calendar to given date 
 						int hour = calendar.get(Calendar.HOUR);
 						int min = calendar.get(Calendar.MINUTE);
 						int sec = calendar.get(Calendar.SECOND);
-						int dur = hour+sec+min;
-						FFmpegManager.createThumbnail(videoFile.getPath(), thumbnailLocation, dur/2);
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
+						dur = hour+sec+min;
+					} else {
+						// if duration could not be parsed use a default of 2 seconds
+						dur = 2;
 					}
+					FFmpegManager.createThumbnail(videoFile.getPath(), thumbnailLocation, dur/2);
 				}
 			}
 		}
@@ -262,14 +300,17 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 		// check if file with download-suffix exists, if not create it 
 		// (we always create a _symlink_ with download suffix even if download is not permitted, as this file is also used as an RSTP fallback)
 		if(checkSmilFile(objectVideo)){
-			File file = new File(PropsUtil.get("lecture2go.media.repository") + "/" + objectHost.getServerRoot() + "/" + objectProducer.getHomeDir() + "/" + objectVideo.getCurrentPrefix()+PropsUtil.get("lecture2go.videoprocessing.downloadsuffix")+".mp4");
+			File file = new File(PropsUtil.get("lecture2go.media.repository") + "/" + objectHost.getDirectory() + "/" + objectProducer.getHomeDir() + "/" + objectVideo.getCurrentPrefix()+PropsUtil.get("lecture2go.videoprocessing.downloadsuffix")+".mp4");
 			try {
 				if (!isSymlink(file)) {
 					ProzessManager pm = new ProzessManager();
 					pm.createSymLinkToDownloadableFile(objectHost, objectVideo, objectProducer);
 					// remove the download sym link to the original video file in the download repository and replace it with a symlink to the new downloadable file
-					File symLink = new File(PropsUtil.get("lecture2go.symboliclinks.repository.root") + "/" + objectVideo.getFilename());
-					symLink.delete(); 
+					if (!TextUtils.isEmpty(objectVideo.getFilename())) {
+						File symLink = new File(PropsUtil.get("lecture2go.symboliclinks.repository.root") + "/" + objectVideo.getFilename());
+						symLink.delete(); 
+					}
+					
 					// recreate the sym link if applicable
 					if (objectVideo.getOpenAccess() == 1 && objectVideo.getDownloadLink() == 1) {
 						pm.generateSymbolicLinks(objectVideo);
@@ -506,11 +547,12 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 			}
 			playerUri = playerUri.replace("[filename]", filename);
 			//
-			playerUri = playerUri.replace("[host]", host.getStreamer());
+			playerUri = playerUri.replace("[host]", host.getName());
 			playerUri = playerUri.replace("[ext]", video.getContainerFormat());
+			playerUri = playerUri.replace("[prefix]", host.getPrefix());
 			playerUri = playerUri.replace("[l2go_path]", l2go_path);
-			playerUri = playerUri.replace("[protocol]", host.getProtocol());
-			playerUri = playerUri.replace("[port]", host.getPort()+"");
+//			playerUri = playerUri.replace("[protocol]", host.getProtocol());
+//			playerUri = playerUri.replace("[port]", host.getPort()+"");
 			//
 			if( playerUri.length()>0 && !playerUri.contains("[") && !playerUri.contains("]") )playerUris.add(playerUri);
 			
@@ -536,7 +578,7 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 				//custom case for download allowed 
 				//and oper or closed case
 				if(downloadAllowed && video.getOpenAccess()==0){
-					String downloadServerDownPath = "/" + PropsUtil.get("lecture2go.downloadserver.videorep.path") + "/";
+					String downloadServerDownPath = "/" + PropsUtil.get("lecture2go.downloadserver.down.path") + "/";
 					uri=downloadServ+downloadServerDownPath+l2go_path+"/"+video.getSecureFilename();
 				}
 				// in some cases this is necessary to correct the filename of the open access files in the download folder
@@ -645,6 +687,16 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 		return v;
 	}
 	
+	public Video incrementHitCounter(Video video) throws SystemException {
+		/* We explicitly clear the cache. This seems necessary for clustering, as the remove cache trigger is send and handled with some delay, so a page view may
+		   overwrite changes made in the backend if the entity still remains in the cache. */
+		videoPersistence.clearCache(video);
+		video = videoPersistence.fetchByPrimaryKey(video.getVideoId());
+		video.setHits(video.getHits()+1);
+		videoPersistence.update(video);
+		return video;
+	}
+	
 	
 	private List<Video> getSortedVideoList(List<Video> vl, Long lectureseriesId) throws SystemException
 	{ 
@@ -685,6 +737,7 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 		List<Video> vl = new ArrayList<Video>();
 		try {
 			vl = getByLectureseriesAndOpenaccess(lectureseriesId,0);
+			vl = stripVideosWithMissingMetadataFromList(vl);
 		} catch (SystemException e) {
 			//e.printStackTrace();
 		}
@@ -711,7 +764,7 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 		} catch (SystemException e1) {
 //			e1.printStackTrace();
 		}
-		String  mediaRep = PropsUtil.get("lecture2go.media.repository") + "/" + host.getServerRoot() + "/" + producer.getHomeDir();
+		String  mediaRep = PropsUtil.get("lecture2go.media.repository") + "/" + host.getDirectory() + "/" + producer.getHomeDir();
 
 		// set prefix according to openaccess filename or secured
 		String prefix = video.getOpenAccess()==1 ? video.getPreffix() : video.getSPreffix();
@@ -756,8 +809,7 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 	 * @throws IOException
 	 */
 	public boolean isSymlink(File file) throws IOException {
-		Path path = FileSystems.getDefault().getPath(file.getPath());
-		return Files.isSymbolicLink(path);
+		return Files.isSymbolicLink(file.toPath());
 	}
 	
 	/**
@@ -792,7 +844,13 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 			    	String languageId = matcher.group(1);
 			    	// use Liferay API to get a user readable name for the language from the language-id while using the current users local
 			    	// e.g. "German" for the languageId "de_DE" when the userLocale is english
-					language = LocaleUtil.fromLanguageId(languageId,true).getDisplayLanguage(userLocale);
+					
+					if (userLocale != null) {
+						language = LocaleUtil.fromLanguageId(languageId,true).getDisplayLanguage(userLocale);
+					} else {
+				    	// for iframe embeds we have no userLocale, use the default language
+				    	language = LocaleUtil.fromLanguageId(languageId,true).getDisplayLanguage();
+					}
 			    	break;
 			    }
             }
@@ -804,5 +862,67 @@ public class VideoLocalServiceImpl extends VideoLocalServiceBaseImpl {
 		}
 	    
 	    return language;
+	}
+	
+	public boolean hasMissingMetadata(Long videoId) {
+		return VideoFinderUtil.checkVideoHasMissingMetadata(videoId);
+	}
+	
+	public List<Video> getVideosWithMissingMetadata() {
+		return VideoFinderUtil.findVideosWithMissingMetadata();
+	}
+	
+	public List<Video> stripVideosWithMissingMetadataFromList(List<Video> videos) {
+		ListIterator<Video> vi = videos.listIterator();
+		while (vi.hasNext()) {
+		   Video v = vi.next();
+		   if (v.isWithMissingMetadata()) {
+			   vi.remove();
+		   }
+		}
+		return videos;
+	}
+	
+	/**
+	 * This method is only used to fix missing database entries
+	 * Uses the lectureseries information for filling the missing data
+	 */
+	public void fixMissingMetadataForVideosFromRelatedLectureseries() {
+		// get list of videos with missing metadata
+		List<Video> lv = getVideosWithMissingMetadata();
+		for (Video v: lv) {
+			// only fix videos with related lectureseries, otherwise we have no information which data is correct, those need to be fixed manually
+			if (v.getLectureseriesId()>0) {
+				Lectureseries l = new LectureseriesImpl();
+				try {
+					l = LectureseriesLocalServiceUtil.getLectureseries(v.getLectureseriesId());
+				} catch (Exception e) {
+					// there is no lectureseries with the given id (should not happen), continue to next video in loop
+					e.printStackTrace();
+					continue;
+				}
+				
+				// fix wrong term with information from lectureseries
+				if (v.getTermId()==0) {
+					v.setTermId(l.getTermId());
+					this.updateVideo(v);
+				}
+				
+				// fix missing category with information from lectureseries
+				try {
+					if (Video_CategoryLocalServiceUtil.getByVideo(v.getVideoId()).isEmpty()) {
+						Video_Category vc = Video_CategoryLocalServiceUtil.createVideo_Category(0);
+						vc.setVideoId(v.getVideoId());
+						vc.setCategoryId(l.getCategoryId());
+						Video_CategoryLocalServiceUtil.addVideo_Category(vc);
+					}
+				} catch (SystemException e) {
+					e.printStackTrace();
+					continue;
+				}
+			}
+			
+		}
+		
 	}
 }

@@ -6,8 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="/lecture2go-portlet/js/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="/lecture2go-portlet/player/jwplayer-7.12.13/jwplayer.js"></script>
-	<script type="text/javascript">jwplayer.key="201IIc3/RasApk0L1+d1fv9pi5UCUsF6VvHj1C+EfkI=";</script>
+	<script type="text/javascript" src="https://content.jwplatform.com/libraries/meCDJ4WV.js"></script>
 
 	<title>Lecture2o-Embed</title>
 	<style type="text/css">
@@ -42,7 +41,7 @@
 
 		.jw-icon.jw-dock-image.jw-reset::before {
 		    color: #fff;
-		    content: "HFBK-Mediathek";
+		    content: "Lecture2Go";
 		    float: right;
 		    font-family: arial;
 		    font-size: 15px;
@@ -93,22 +92,7 @@
 		}
 
 	</script>
-	<!-- Matomo -->
-	<script type="text/javascript">
-	  var _paq = window._paq || [];
-	  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-	  _paq.push(['trackPageView']);
-	  _paq.push(['enableLinkTracking']);
-	  (function() {
-	    var u="https://matomo.uni-hamburg.de/";
-	    _paq.push(['setTrackerUrl', u+'matomo.php']);
-	    _paq.push(['setSiteId', '210']);
-	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-	  })();
-	</script>
-	<noscript><p><img src="https://matomo.uni-hamburg.de/matomo.php?idsite=210&amp;rec=1" style="border:0;" alt="" /></p></noscript>
-	<!-- End Matomo Code -->
+
 </head>
 
 <%@ page import="de.uhh.l2g.plugins.service.VideoLocalServiceUtil"%>
@@ -123,45 +107,48 @@
 	String end = null;
 	String[] al = new String[3];
 	String[] s = new String[3];
-
-	try{//parameter is long
-		videoId = new Long(request.getParameter("v"));
-		//not allowed for requested long id and closed access
-		//becouse cloased access id should be ecoded string
-		video = VideoLocalServiceUtil.getVideo(videoId);
-		if (video.getOpenAccess()==0)video.setVideoId(0);
-	}catch(NumberFormatException e){//parameter is path
-		al = request.getParameter("v").split("/");
-		// it can be on open access or closed access video !!!
-
-		//for a closesed access video, check this
-		//don't forget cases in commsy like this -> 37l2gbar8265/00.000_video-22005_2017-10-06_13-00.mp4
-		if(al.length==1){
-			int t =  al[0].split("_").length;
-			if(t==4)videoId = VideoLocalServiceUtil.getByFilename(al[0]).iterator().next().getVideoId();
-			else videoId = VideoLocalServiceUtil.getBySecureUrl(al[0]).getVideoId();
-		}
-		if(al.length==2){
-			int t =  al[1].split("_").length;
-			if(t==4)videoId = VideoLocalServiceUtil.getByFilename(al[1]).iterator().next().getVideoId();
-			else videoId = VideoLocalServiceUtil.getBySecureUrl(al[1]).getVideoId();
-		}
-
-		//has time parameters
-		if(al.length==3){
-			try{
-				s = request.getQueryString().split("/");
-				videoId = new Long(s[0].split("=")[1]);
-				start = s[1];
-				end = s[2];
-			}catch(Exception a){}
-		}
-		//
-		try {
+	
+	if (request.getParameterMap().containsKey("v")) {
+			
+		try{//parameter is long
+			videoId = new Long(request.getParameter("v"));
+			//not allowed for requested long id and closed access
+			//becouse cloased access id should be ecoded string
 			video = VideoLocalServiceUtil.getVideo(videoId);
-		} catch (Exception e2) {
+			if (video.getOpenAccess()==0)video.setVideoId(0);
+		}catch(NumberFormatException e){//parameter is path
+			al = request.getParameter("v").split("/");
+			// it can be on open access or closed access video !!!
+	
+			//for a closesed access video, check this
+			//don't forget cases in commsy like this -> 37l2gbar8265/00.000_video-22005_2017-10-06_13-00.mp4
+			if(al.length==1){
+				int t =  al[0].split("_").length;
+				if(t==4)videoId = VideoLocalServiceUtil.getByFilename(al[0]).iterator().next().getVideoId();
+				else videoId = VideoLocalServiceUtil.getBySecureUrl(al[0]).getVideoId();
+			}
+			if(al.length==2){
+				int t =  al[1].split("_").length;
+				if(t==4)videoId = VideoLocalServiceUtil.getByFilename(al[1]).iterator().next().getVideoId();
+				else videoId = VideoLocalServiceUtil.getBySecureUrl(al[1]).getVideoId();
+			}
+	
+			//has time parameters
+			if(al.length==3){
+				try{
+					s = request.getQueryString().split("/");
+					videoId = new Long(s[0].split("=")[1]);
+					start = s[1];
+					end = s[2];
+				}catch(Exception a){}
+			}
 			//
-		}		
+			try {
+				video = VideoLocalServiceUtil.getVideo(videoId);
+			} catch (Exception e2) {
+				//
+			}		
+		}
 	}
 
 %>
@@ -261,13 +248,13 @@
 
 			        });
 			        //
-			        var tit="HFBK-Mediathek";
+			        var tit="Lecture2Go";
 			        if(isCitation){
 			        	tit="Zitat2Go";
 			        }
 			        jwplayer().addButton(
 			        	"",
-			        	"Dieses Video auf der HFBK-Mediathek ansehen",
+			        	"Dieses Video auf Lecture2Go ansehen",
 			        	function() {
 			        		//stop player
 			        		jwplayer().stop();

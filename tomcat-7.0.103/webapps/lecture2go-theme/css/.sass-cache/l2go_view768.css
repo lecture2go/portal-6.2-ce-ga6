@@ -141,7 +141,7 @@
     margin-top: 15px; }
 
   /* Catalog */
-  .lectureseries-title {
+  h2.lectureseries-title {
     font-size: 14px;
     /*height: 60px; */
     margin-bottom: 5px; }
@@ -282,7 +282,7 @@
     margin-bottom: 5px;
     height: auto; }
 
-  .video-box-content .title-small {
+  .video-box-content h3.title-small {
     width: 100%;
     margin: 0;
     color: #000;
@@ -353,13 +353,17 @@
     padding: 0; }
 
   #banner .meta {
+    top: 3px;
+    right: 5px; }
+
+  #banner .meta a:not(.language) {
     display: none; }
 
   #_lgopenaccessvideos_WAR_lecture2goportlet_searchButton {
     height: 31px;
     padding: 2px;
     right: 6px;
-    top: 2px;
+    top: 14px;
     width: 31px; }
 
   #_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery {
@@ -464,7 +468,10 @@
     margin: 0px; }
 
   #footer .right {
-    display: none; }
+    float: left !important;
+    margin-left: 10px;
+    font-size: 13px;
+    text-align: left; }
 
   #footer #fuss {
     margin-top: 0px; }

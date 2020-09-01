@@ -321,33 +321,20 @@ public class HostLocalServiceWrapper implements HostLocalService,
 		return _hostLocalService.getLockingElements(hostId);
 	}
 
-	/**
-	* Special handling for default entries (no update)
-	*/
-	@Override
-	public de.uhh.l2g.plugins.model.Host addDefaultHost(
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _hostLocalService.addDefaultHost(serviceContext);
-	}
-
 	@Override
 	public de.uhh.l2g.plugins.model.Host addHost(java.lang.String name,
-		java.lang.String streamLocation, java.lang.String protocol, int port)
+		java.lang.String prefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _hostLocalService.addHost(name, streamLocation, protocol, port);
+		return _hostLocalService.addHost(name, prefix);
 	}
 
 	@Override
 	public de.uhh.l2g.plugins.model.Host updateHost(long hostId,
-		java.lang.String name, java.lang.String streamLocation,
-		java.lang.String protocol, int port)
+		java.lang.String name, java.lang.String prefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _hostLocalService.updateHost(hostId, name, streamLocation,
-			protocol, port);
+		return _hostLocalService.updateHost(hostId, name, prefix);
 	}
 
 	/**
@@ -361,13 +348,6 @@ public class HostLocalServiceWrapper implements HostLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _hostLocalService.deleteHost(hostId, serviceContext);
-	}
-
-	@Override
-	public long updateCounter()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _hostLocalService.updateCounter();
 	}
 
 	/**

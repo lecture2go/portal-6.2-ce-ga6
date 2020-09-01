@@ -106,49 +106,55 @@ public class TagcloudLocalServiceClpInvoker {
 				"de.uhh.l2g.plugins.model.Tagcloud"
 			};
 
-		_methodName172 = "getBeanIdentifier";
+		_methodName176 = "getBeanIdentifier";
 
-		_methodParameterTypes172 = new String[] {  };
+		_methodParameterTypes176 = new String[] {  };
 
-		_methodName173 = "setBeanIdentifier";
+		_methodName177 = "setBeanIdentifier";
 
-		_methodParameterTypes173 = new String[] { "java.lang.String" };
+		_methodParameterTypes177 = new String[] { "java.lang.String" };
 
-		_methodName178 = "deleteByObjectId";
+		_methodName182 = "addTagcloud";
 
-		_methodParameterTypes178 = new String[] { "long" };
+		_methodParameterTypes182 = new String[] {
+				"de.uhh.l2g.plugins.model.Tagcloud"
+			};
 
-		_methodName179 = "getByObjectIdAndObjectClassType";
+		_methodName183 = "deleteByObjectId";
 
-		_methodParameterTypes179 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes183 = new String[] { "long" };
 
-		_methodName180 = "add";
+		_methodName184 = "getByObjectIdAndObjectClassType";
 
-		_methodParameterTypes180 = new String[] {
+		_methodParameterTypes184 = new String[] { "long", "java.lang.String" };
+
+		_methodName185 = "add";
+
+		_methodParameterTypes185 = new String[] {
 				"java.util.ArrayList", "java.lang.String", "java.lang.Long"
 			};
 
-		_methodName181 = "updateByObjectIdAndObjectClassType";
+		_methodName186 = "updateByObjectIdAndObjectClassType";
 
-		_methodParameterTypes181 = new String[] {
+		_methodParameterTypes186 = new String[] {
 				"java.util.ArrayList", "java.lang.String", "long"
 			};
 
-		_methodName182 = "generateForAllLectureseries";
+		_methodName187 = "generateForAllLectureseries";
 
-		_methodParameterTypes182 = new String[] {  };
+		_methodParameterTypes187 = new String[] {  };
 
-		_methodName183 = "generateForLectureseries";
+		_methodName188 = "generateForLectureseries";
 
-		_methodParameterTypes183 = new String[] { "java.lang.Long" };
+		_methodParameterTypes188 = new String[] { "java.lang.Long" };
 
-		_methodName184 = "generateForAllVideos";
+		_methodName189 = "generateForAllVideos";
 
-		_methodParameterTypes184 = new String[] {  };
+		_methodParameterTypes189 = new String[] {  };
 
-		_methodName185 = "generateForVideo";
+		_methodName190 = "generateForVideo";
 
-		_methodParameterTypes185 = new String[] { "java.lang.Long" };
+		_methodParameterTypes190 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -240,70 +246,75 @@ public class TagcloudLocalServiceClpInvoker {
 			return TagcloudLocalServiceUtil.updateTagcloud((de.uhh.l2g.plugins.model.Tagcloud)arguments[0]);
 		}
 
-		if (_methodName172.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes172, parameterTypes)) {
+		if (_methodName176.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes176, parameterTypes)) {
 			return TagcloudLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName173.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes173, parameterTypes)) {
+		if (_methodName177.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes177, parameterTypes)) {
 			TagcloudLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName178.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes178, parameterTypes)) {
-			TagcloudLocalServiceUtil.deleteByObjectId(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
-		if (_methodName179.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes179, parameterTypes)) {
-			return TagcloudLocalServiceUtil.getByObjectIdAndObjectClassType(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
-		}
-
-		if (_methodName180.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes180, parameterTypes)) {
-			TagcloudLocalServiceUtil.add((java.util.ArrayList<java.lang.String>)arguments[0],
-				(java.lang.String)arguments[1], (java.lang.Long)arguments[2]);
-
-			return null;
-		}
-
-		if (_methodName181.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes181, parameterTypes)) {
-			TagcloudLocalServiceUtil.updateByObjectIdAndObjectClassType((java.util.ArrayList<java.lang.String>)arguments[0],
-				(java.lang.String)arguments[1], ((Long)arguments[2]).longValue());
 
 			return null;
 		}
 
 		if (_methodName182.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes182, parameterTypes)) {
-			TagcloudLocalServiceUtil.generateForAllLectureseries();
-
-			return null;
+			return TagcloudLocalServiceUtil.addTagcloud((de.uhh.l2g.plugins.model.Tagcloud)arguments[0]);
 		}
 
 		if (_methodName183.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes183, parameterTypes)) {
-			TagcloudLocalServiceUtil.generateForLectureseries((java.lang.Long)arguments[0]);
+			TagcloudLocalServiceUtil.deleteByObjectId(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName184.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes184, parameterTypes)) {
+			return TagcloudLocalServiceUtil.getByObjectIdAndObjectClassType(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName185.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes185, parameterTypes)) {
+			TagcloudLocalServiceUtil.add((java.util.ArrayList<java.lang.String>)arguments[0],
+				(java.lang.String)arguments[1], (java.lang.Long)arguments[2]);
+
+			return null;
+		}
+
+		if (_methodName186.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes186, parameterTypes)) {
+			TagcloudLocalServiceUtil.updateByObjectIdAndObjectClassType((java.util.ArrayList<java.lang.String>)arguments[0],
+				(java.lang.String)arguments[1], ((Long)arguments[2]).longValue());
+
+			return null;
+		}
+
+		if (_methodName187.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes187, parameterTypes)) {
+			TagcloudLocalServiceUtil.generateForAllLectureseries();
+
+			return null;
+		}
+
+		if (_methodName188.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes188, parameterTypes)) {
+			TagcloudLocalServiceUtil.generateForLectureseries((java.lang.Long)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName189.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes189, parameterTypes)) {
 			TagcloudLocalServiceUtil.generateForAllVideos();
 
 			return null;
 		}
 
-		if (_methodName185.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes185, parameterTypes)) {
+		if (_methodName190.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes190, parameterTypes)) {
 			TagcloudLocalServiceUtil.generateForVideo((java.lang.Long)arguments[0]);
 
 			return null;
@@ -344,18 +355,10 @@ public class TagcloudLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName172;
-	private String[] _methodParameterTypes172;
-	private String _methodName173;
-	private String[] _methodParameterTypes173;
-	private String _methodName178;
-	private String[] _methodParameterTypes178;
-	private String _methodName179;
-	private String[] _methodParameterTypes179;
-	private String _methodName180;
-	private String[] _methodParameterTypes180;
-	private String _methodName181;
-	private String[] _methodParameterTypes181;
+	private String _methodName176;
+	private String[] _methodParameterTypes176;
+	private String _methodName177;
+	private String[] _methodParameterTypes177;
 	private String _methodName182;
 	private String[] _methodParameterTypes182;
 	private String _methodName183;
@@ -364,4 +367,14 @@ public class TagcloudLocalServiceClpInvoker {
 	private String[] _methodParameterTypes184;
 	private String _methodName185;
 	private String[] _methodParameterTypes185;
+	private String _methodName186;
+	private String[] _methodParameterTypes186;
+	private String _methodName187;
+	private String[] _methodParameterTypes187;
+	private String _methodName188;
+	private String[] _methodParameterTypes188;
+	private String _methodName189;
+	private String[] _methodParameterTypes189;
+	private String _methodName190;
+	private String[] _methodParameterTypes190;
 }

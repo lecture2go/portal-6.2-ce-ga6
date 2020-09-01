@@ -45,7 +45,7 @@
   text-align: center;
   top: 2px;
   width: 1em; }
-@media (min-width: 980px) {
+@media (min-width: 768px) {
   .modify-pages .lfr-nav-sortable > a > span {
     padding-left: 0; }
   .modify-pages .drag-handle {

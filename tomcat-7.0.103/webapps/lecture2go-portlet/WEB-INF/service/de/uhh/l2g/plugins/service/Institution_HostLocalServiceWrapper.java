@@ -404,13 +404,6 @@ public class Institution_HostLocalServiceWrapper
 			groupId, companyId);
 	}
 
-	@Override
-	public long updateCounter()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _institution_HostLocalService.updateCounter();
-	}
-
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

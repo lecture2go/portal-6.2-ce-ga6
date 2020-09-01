@@ -31,6 +31,8 @@ public interface Video extends VideoModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link de.uhh.l2g.plugins.model.impl.VideoImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public boolean isWithMissingMetadata();
+
 	public de.uhh.l2g.plugins.model.Host getHost();
 
 	public de.uhh.l2g.plugins.model.Producer getProducer();

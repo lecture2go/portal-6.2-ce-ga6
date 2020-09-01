@@ -326,21 +326,6 @@ public class SegmentLocalServiceWrapper implements SegmentLocalService,
 		_segmentLocalService.deleteByVideoId(videoId);
 	}
 
-	/**
-	* Adds the segment to the database and generates thumb nail. Also notifies the appropriate model listeners.
-	*
-	* @param segment the segment
-	* @return the segment that was added
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public de.uhh.l2g.plugins.model.Segment createSegment(
-		de.uhh.l2g.plugins.model.Segment segment)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _segmentLocalService.createSegment(segment);
-	}
-
 	@Override
 	public de.uhh.l2g.plugins.model.Segment removeSegment(
 		java.lang.Long segmentId)

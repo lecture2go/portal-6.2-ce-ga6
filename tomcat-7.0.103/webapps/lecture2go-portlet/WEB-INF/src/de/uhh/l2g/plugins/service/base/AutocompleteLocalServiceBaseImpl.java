@@ -40,6 +40,7 @@ import de.uhh.l2g.plugins.service.persistence.CoordinatorPersistence;
 import de.uhh.l2g.plugins.service.persistence.CreatorFinder;
 import de.uhh.l2g.plugins.service.persistence.CreatorPersistence;
 import de.uhh.l2g.plugins.service.persistence.HostPersistence;
+import de.uhh.l2g.plugins.service.persistence.InstallWizardPersistence;
 import de.uhh.l2g.plugins.service.persistence.InstitutionFinder;
 import de.uhh.l2g.plugins.service.persistence.InstitutionPersistence;
 import de.uhh.l2g.plugins.service.persistence.Institution_HostPersistence;
@@ -541,6 +542,44 @@ public abstract class AutocompleteLocalServiceBaseImpl
 	 */
 	public void setHostPersistence(HostPersistence hostPersistence) {
 		this.hostPersistence = hostPersistence;
+	}
+
+	/**
+	 * Returns the install wizard local service.
+	 *
+	 * @return the install wizard local service
+	 */
+	public de.uhh.l2g.plugins.service.InstallWizardLocalService getInstallWizardLocalService() {
+		return installWizardLocalService;
+	}
+
+	/**
+	 * Sets the install wizard local service.
+	 *
+	 * @param installWizardLocalService the install wizard local service
+	 */
+	public void setInstallWizardLocalService(
+		de.uhh.l2g.plugins.service.InstallWizardLocalService installWizardLocalService) {
+		this.installWizardLocalService = installWizardLocalService;
+	}
+
+	/**
+	 * Returns the install wizard persistence.
+	 *
+	 * @return the install wizard persistence
+	 */
+	public InstallWizardPersistence getInstallWizardPersistence() {
+		return installWizardPersistence;
+	}
+
+	/**
+	 * Sets the install wizard persistence.
+	 *
+	 * @param installWizardPersistence the install wizard persistence
+	 */
+	public void setInstallWizardPersistence(
+		InstallWizardPersistence installWizardPersistence) {
+		this.installWizardPersistence = installWizardPersistence;
 	}
 
 	/**
@@ -1865,6 +1904,10 @@ public abstract class AutocompleteLocalServiceBaseImpl
 	protected de.uhh.l2g.plugins.service.HostLocalService hostLocalService;
 	@BeanReference(type = HostPersistence.class)
 	protected HostPersistence hostPersistence;
+	@BeanReference(type = de.uhh.l2g.plugins.service.InstallWizardLocalService.class)
+	protected de.uhh.l2g.plugins.service.InstallWizardLocalService installWizardLocalService;
+	@BeanReference(type = InstallWizardPersistence.class)
+	protected InstallWizardPersistence installWizardPersistence;
 	@BeanReference(type = de.uhh.l2g.plugins.service.InstitutionLocalService.class)
 	protected de.uhh.l2g.plugins.service.InstitutionLocalService institutionLocalService;
 	@BeanReference(type = InstitutionPersistence.class)

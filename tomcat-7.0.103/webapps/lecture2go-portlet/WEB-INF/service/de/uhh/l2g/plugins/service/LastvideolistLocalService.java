@@ -65,7 +65,7 @@ public interface LastvideolistLocalService extends BaseLocalService,
 	* @return the new lastvideolist
 	*/
 	public de.uhh.l2g.plugins.model.Lastvideolist createLastvideolist(
-		int lastvideolistId);
+		long lastvideolistId);
 
 	/**
 	* Deletes the lastvideolist with the primary key from the database. Also notifies the appropriate model listeners.
@@ -77,7 +77,7 @@ public interface LastvideolistLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public de.uhh.l2g.plugins.model.Lastvideolist deleteLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -172,7 +172,7 @@ public interface LastvideolistLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public de.uhh.l2g.plugins.model.Lastvideolist fetchLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -185,7 +185,7 @@ public interface LastvideolistLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public de.uhh.l2g.plugins.model.Lastvideolist getLastvideolist(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

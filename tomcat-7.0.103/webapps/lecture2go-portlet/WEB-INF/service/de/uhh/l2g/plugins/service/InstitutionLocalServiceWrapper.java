@@ -428,6 +428,19 @@ public class InstitutionLocalServiceWrapper implements InstitutionLocalService,
 	}
 
 	/**
+	* Prepares the list of institutions for pending producers selection
+	* (institutions which should not be selected can be defined via properties file)
+	*
+	* @return the list of institutions for the producer to select
+	* @throws SystemException
+	*/
+	@Override
+	public java.util.List<de.uhh.l2g.plugins.model.Institution> getForProducerPending()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _institutionLocalService.getForProducerPending();
+	}
+
+	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
 	public InstitutionLocalService getWrappedInstitutionLocalService() {

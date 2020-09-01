@@ -59,9 +59,9 @@ public class AutocompleteModelImpl extends BaseModelImpl<Autocomplete>
 	public static final String TABLE_NAME = "LG_Autocomplete";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "autocompleteId", Types.BIGINT },
-			{ "searchWordsJson", Types.CLOB }
+			{ "searchWordsJson", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table LG_Autocomplete (autocompleteId LONG not null primary key,searchWordsJson TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table LG_Autocomplete (autocompleteId LONG not null primary key,searchWordsJson VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table LG_Autocomplete";
 	public static final String ORDER_BY_JPQL = " ORDER BY autocomplete.autocompleteId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LG_Autocomplete.autocompleteId ASC";

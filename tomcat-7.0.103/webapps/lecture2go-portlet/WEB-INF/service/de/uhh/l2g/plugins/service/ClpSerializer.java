@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import de.uhh.l2g.plugins.model.AutocompleteClp;
 import de.uhh.l2g.plugins.model.CategoryClp;
 import de.uhh.l2g.plugins.model.CoordinatorClp;
 import de.uhh.l2g.plugins.model.CreatorClp;
@@ -131,6 +132,10 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(AutocompleteClp.class.getName())) {
+			return translateInputAutocomplete(oldModel);
+		}
 
 		if (oldModelClassName.equals(CategoryClp.class.getName())) {
 			return translateInputCategory(oldModel);
@@ -270,6 +275,16 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputAutocomplete(BaseModel<?> oldModel) {
+		AutocompleteClp oldClpModel = (AutocompleteClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getAutocompleteRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
 	}
 
 	public static Object translateInputCategory(BaseModel<?> oldModel) {
@@ -602,6 +617,43 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(
+					"de.uhh.l2g.plugins.model.impl.AutocompleteImpl")) {
+			return translateOutputAutocomplete(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
 
 		if (oldModelClassName.equals(
 					"de.uhh.l2g.plugins.model.impl.CategoryImpl")) {
@@ -1857,6 +1909,10 @@ public class ClpSerializer {
 			return new de.uhh.l2g.plugins.StatisticValueException();
 		}
 
+		if (className.equals("de.uhh.l2g.plugins.NoSuchAutocompleteException")) {
+			return new de.uhh.l2g.plugins.NoSuchAutocompleteException();
+		}
+
 		if (className.equals("de.uhh.l2g.plugins.NoSuchCategoryException")) {
 			return new de.uhh.l2g.plugins.NoSuchCategoryException();
 		}
@@ -1990,6 +2046,16 @@ public class ClpSerializer {
 		}
 
 		return throwable;
+	}
+
+	public static Object translateOutputAutocomplete(BaseModel<?> oldModel) {
+		AutocompleteClp newModel = new AutocompleteClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setAutocompleteRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputCategory(BaseModel<?> oldModel) {

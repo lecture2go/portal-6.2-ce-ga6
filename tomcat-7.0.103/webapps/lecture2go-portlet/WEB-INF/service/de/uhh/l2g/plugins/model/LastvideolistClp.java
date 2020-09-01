@@ -50,12 +50,12 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 	}
 
 	@Override
-	public int getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _lastvideolistId;
 	}
 
 	@Override
-	public void setPrimaryKey(int primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setLastvideolistId(primaryKey);
 	}
 
@@ -66,7 +66,7 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Integer)primaryKeyObj).intValue());
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Integer lastvideolistId = (Integer)attributes.get("lastvideolistId");
+		Long lastvideolistId = (Long)attributes.get("lastvideolistId");
 
 		if (lastvideolistId != null) {
 			setLastvideolistId(lastvideolistId);
@@ -95,19 +95,19 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 	}
 
 	@Override
-	public int getLastvideolistId() {
+	public long getLastvideolistId() {
 		return _lastvideolistId;
 	}
 
 	@Override
-	public void setLastvideolistId(int lastvideolistId) {
+	public void setLastvideolistId(long lastvideolistId) {
 		_lastvideolistId = lastvideolistId;
 
 		if (_lastvideolistRemoteModel != null) {
 			try {
 				Class<?> clazz = _lastvideolistRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setLastvideolistId", int.class);
+				Method method = clazz.getMethod("setLastvideolistId", long.class);
 
 				method.invoke(_lastvideolistRemoteModel, lastvideolistId);
 			}
@@ -218,7 +218,7 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public int compareTo(Lastvideolist lastvideolist) {
-		int primaryKey = lastvideolist.getPrimaryKey();
+		long primaryKey = lastvideolist.getPrimaryKey();
 
 		if (getPrimaryKey() < primaryKey) {
 			return -1;
@@ -243,7 +243,7 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 
 		LastvideolistClp lastvideolist = (LastvideolistClp)obj;
 
-		int primaryKey = lastvideolist.getPrimaryKey();
+		long primaryKey = lastvideolist.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -259,7 +259,7 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -297,7 +297,7 @@ public class LastvideolistClp extends BaseModelImpl<Lastvideolist>
 		return sb.toString();
 	}
 
-	private int _lastvideolistId;
+	private long _lastvideolistId;
 	private long _videoId;
 	private BaseModel<?> _lastvideolistRemoteModel;
 	private Class<?> _clpSerializerClass = de.uhh.l2g.plugins.service.ClpSerializer.class;

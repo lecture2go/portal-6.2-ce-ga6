@@ -17,6 +17,7 @@ package de.uhh.l2g.plugins.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import de.uhh.l2g.plugins.service.AutocompleteLocalServiceUtil;
 import de.uhh.l2g.plugins.service.CategoryLocalServiceUtil;
 import de.uhh.l2g.plugins.service.ClpSerializer;
 import de.uhh.l2g.plugins.service.CoordinatorLocalServiceUtil;
@@ -65,6 +66,8 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			AutocompleteLocalServiceUtil.clearService();
+
 			CategoryLocalServiceUtil.clearService();
 
 			CoordinatorLocalServiceUtil.clearService();

@@ -999,13 +999,13 @@ public class VideoClp extends BaseModelImpl<Video> implements Video {
 	}
 
 	@Override
-	public void setLectureseriesUrl(java.lang.String lectureseriesUrl) {
+	public void setLectureseriesName(java.lang.String lectureseriesName) {
 		try {
-			String methodName = "setLectureseriesUrl";
+			String methodName = "setLectureseriesName";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
 
-			Object[] parameterValues = new Object[] { lectureseriesUrl };
+			Object[] parameterValues = new Object[] { lectureseriesName };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}
@@ -1015,13 +1015,13 @@ public class VideoClp extends BaseModelImpl<Video> implements Video {
 	}
 
 	@Override
-	public void setLectureseriesName(java.lang.String lectureseriesName) {
+	public void setLectureseriesUrl(java.lang.String lectureseriesUrl) {
 		try {
-			String methodName = "setLectureseriesName";
+			String methodName = "setLectureseriesUrl";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
 
-			Object[] parameterValues = new Object[] { lectureseriesName };
+			Object[] parameterValues = new Object[] { lectureseriesUrl };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}
@@ -1327,9 +1327,9 @@ public class VideoClp extends BaseModelImpl<Video> implements Video {
 	}
 
 	@Override
-	public java.lang.String getFlvRssLink() {
+	public java.lang.String getBitrate() {
 		try {
-			String methodName = "getFlvRssLink";
+			String methodName = "getBitrate";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -1346,9 +1346,9 @@ public class VideoClp extends BaseModelImpl<Video> implements Video {
 	}
 
 	@Override
-	public java.lang.String getBitrate() {
+	public java.lang.String getFlvRssLink() {
 		try {
-			String methodName = "getBitrate";
+			String methodName = "getFlvRssLink";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -1727,6 +1727,25 @@ public class VideoClp extends BaseModelImpl<Video> implements Video {
 			Object[] parameterValues = new Object[] {  };
 
 			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public boolean isWithMissingMetadata() {
+		try {
+			String methodName = "isWithMissingMetadata";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

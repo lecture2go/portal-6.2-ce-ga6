@@ -1,57 +1,53 @@
 /*******************************************************************************
  * License
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
+ * Lecture2Go 
+ * 
  * The Lecture2Go software is based on the liferay portal 6.2-ga6
  * <http://www.liferay.com> (Copyright notice see below)
- * 
  * Lecture2Go <http://lecture2go.uni-hamburg.de> is an open source
  * platform for media management and distribution. Our goal is to
  * support the free access to knowledge because this is a component
  * of each democratic society. The open source software is aimed at
  * academic institutions and has to strengthen the blended learning.
- * 
  * All Lecture2Go plugins are continuously being developed and improved.
  * For more details please visit <http://lecture2go-open-source.rrz.uni-hamburg.de>
- * 
  * Copyright (c) 2013 - present University of Hamburg / Computer and Data Center (RRZ)
- * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
- * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
- * 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *  
  * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
  * 
  * The Liferay Plugins SDK:
  * 
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
  * Third Party Software
  * 
- * Lecture2Go uses third-party libraries which may be distributed under different licenses 
- * to the above (but are compatible with the used GPL license). Informations about these 
- * licenses and copyright informations are mostly detailed in the library source code or jars themselves. 
- * You must agree to the terms of these licenses, in addition to  the above Lecture2Go source code license, 
+ * Lecture2Go uses third-party libraries which may be distributed under different licenses
+ * to the above (but are compatible with the used GPL license). Informations about these
+ * licenses and copyright informations are mostly detailed in the library source code or jars themselves.
+ * You must agree to the terms of these licenses, in addition tothe above Lecture2Go source code license,
  * in order to use this software.
  ******************************************************************************/
 package de.uhh.l2g.plugins.util;
@@ -294,7 +290,7 @@ public class RepositoryManager {
 	 */
 	public static boolean symlinkToUserHome(Host host, Producer producer){
 		boolean ret = false;
-		File folder = new File(PropsUtil.get("lecture2go.media.repository") + "/" + host.getServerRoot() + "/" + producer.getHomeDir() + "/");
+		File folder = new File(PropsUtil.get("lecture2go.media.repository") + "/" + host.getDirectory() + "/" + producer.getHomeDir() + "/");
 		File httpFolder = new File(PropsUtil.get("lecture2go.httpstreaming.video.repository") + "/" + producer.getInstitutionId() + "l2g" + producer.getHomeDir());
 		if (!httpFolder.exists()) {
 			String cmd = "ln -s " + folder.getAbsolutePath() + " " + httpFolder.getAbsolutePath();
@@ -326,10 +322,10 @@ public class RepositoryManager {
 					
 					List<Producer> producers = ProducerLocalServiceUtil.getProducersByHostId(h.getHostId());
 					//create host
-					createFolder(PropsUtil.get("lecture2go.media.repository")+"/"+h.getServerRoot());
+					createFolder(PropsUtil.get("lecture2go.media.repository")+"/"+h.getDirectory());
 					//and user directories 
 					for (Producer p : producers) {
-						createFolder(PropsUtil.get("lecture2go.media.repository")+"/"+h.getServerRoot()+"/"+p.getHomeDir());
+						createFolder(PropsUtil.get("lecture2go.media.repository")+"/"+h.getDirectory()+"/"+p.getHomeDir());
 						//create symbolic link to required directory
 						symlinkToUserHome(h, p);
 					}
@@ -341,67 +337,4 @@ public class RepositoryManager {
 		}
 	}
 	
-	/**
-	 * Prepare directory name by extending server Root prefix with id.
-	 * 
-	 * Does not distinguish default directory for multi site/company yet
-	 * 
-	 * @param hostId
-	 * @return the directory name
-	 */
-	public static String prepareServerRoot(long hostId){
-		String base = GetterUtil.getString(PropsUtil.get("lecture2go.default.serverRoot"),SYS_ROOT);
-		if (base == null || base.isEmpty()) return "";
-		
-		String[] segs = base.split(Pattern.quote( "_" ) );
-
-		String prefix = segs[0];
-		int positions = segs[1].length();
-		if (positions<1) positions = 4; //default
-		
-		String numbering = "";
-		int id = (int) hostId;
-		if (id < Math.pow(10,positions)){
-			for (int i = 1; i <= positions; i++){
-				numbering = numbering+String.valueOf((int)Math.floor(id/(Math.pow(10,positions-i))));
-				id = (int) (id % (Math.pow(10,positions-i)));
-				LOG.debug(numbering);
-			}
-			return prefix+"_"+numbering;
-		}
-		else return "";
-		
-	}
-	
-	/**
-	 * Retrieve highest Folder Id from repository
-	 * 
-	 * @return maximum folder id
-	 * @throws SystemException 
-	 * @throws PortalException 
-	 */
-	public static long getMaximumRealServerRootId() throws SystemException, PortalException{
-		
-		//Retrieve maximum host id (highest existing folder name must end with larger)	
-		Counter hcounter = CounterLocalServiceUtil.getCounter(Host.class.getName());
-		long hId =  hcounter.getCurrentId();    //directory numbering will overflow for large values...
-		String curRootDir = prepareServerRoot(hId);
-		if (PropsUtil.get("lecture2go.media.repository").isEmpty()){ 
-			LOG.error("Portal Property lecture2go.media.repository not set. This property is required before instalation!");
-			throw new NoPropertyException();
-		}
-		File folder = new File(PropsUtil.get("lecture2go.media.repository")+"/"+curRootDir);
-		while(folder.isDirectory()){
-			hId++;
-			curRootDir = prepareServerRoot(hId);
-			folder = new File(PropsUtil.get("lecture2go.media.repository")+"/"+curRootDir);
-		}
-		return hId-1;
-			
-	}
-
-
-	
-	
-
 }

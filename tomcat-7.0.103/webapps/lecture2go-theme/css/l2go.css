@@ -1,4 +1,5 @@
 @import "compass";
+@import url(variables.css);
 
 /*** these styles may be needed for an in-between resolution (between 768 and 960/980) ***/
 /*
@@ -41,6 +42,11 @@
 
 /*** MOVED FROM MIN-960  ***/
 
+.add-link {
+font-size: 20px;
+margin-bottom: 10px;
+} 
+
 .aui #navigation {
     display: table;
     float: left;
@@ -57,7 +63,9 @@
     margin: 0 5px;
     overflow: hidden;
     text-align: center;
-    width: 13px;	
+    width: 13px;
+    height: 8px;
+    display: inline-block;
 }
 
 .aui .icon-chevron-right::before {
@@ -108,7 +116,7 @@
     float: right;
     margin-right: 6px;
     margin-top: 41px;
-    font-family: TheSansUHHBold,sans-serif;
+    font-family: $font-bold;
     font-weight: normal;
     font-size: 20px;
 }
@@ -118,7 +126,7 @@
 }
 
 .aui a:hover {
-    color: #c40017;
+    color: $primary-color;
     text-decoration: underline;
 }
 
@@ -247,7 +255,7 @@
     border-width: 1px;
     color: #4e4e4e;
     display: block;
-    font-family: TheSansUHH,sans-serif !important;
+    font-family: $font-bold !important;
     font-size: 12px;
     margin-left: 3px;
     margin-top: -3px;
@@ -326,7 +334,7 @@ mark {
 }
 
 .aui .navbar .nav {
-    font-family: TheSansUHHBold,sans-serif !important;
+    font-family: $font-bold !important;
     font-size: 14px;
     width: 100%;
 }
@@ -393,7 +401,7 @@ p.smallitalic {
 }
 
 .allcreators a:hover {
-    color: #c40017 !important;
+    color: $primary-color !important;
 }
 
 #myToggler .toggler-header-collapsed:hover .video-image-overlay, #myToggler .toggler-header-collapsed:hover .tri, #myToggler .toggler-header-expanded .video-image-overlay, #myToggler .toggler-header-expanded .tri {
@@ -465,7 +473,7 @@ p.smallitalic {
     left: 10px;
     position: absolute;
     top: 10px;
-    background-color: #C40017;
+    background-color: $primary-color;
     color: #FFF;
     margin-left: 7px;
     visibility: hidden;
@@ -582,7 +590,7 @@ p.smallitalic {
 
 .path > span,
 .path-wide > span {
-   	font-family: TheSansUHHBold, sans-serif;
+   	font-family: $font-bold;
     font-weight: normal;
 }
 
@@ -652,7 +660,7 @@ p.smallitalic {
 }
 
 .creator-small2.related:hover {
-    color: #c40017;
+    color: $primary-color;
 }
 
 .creator-small2.related {
@@ -822,6 +830,12 @@ not used anymore??
     margin-left: 13px;
 }
 
+#videolist h3 {
+	font-size: 14px;
+	line-height: 17px;
+	margin: 0 0 5px 0;
+}
+
 #searchedvideo {
     display: block;
     overflow: hidden;
@@ -879,8 +893,11 @@ a.list-group-item:hover, a.list-group-item:focus {
     border-top: 1px solid #E5E5E5;
 }
 
-.tileheading {
+.sharetile h3 {
     font-size: 17px;
+    font-family: $font-bold;
+    margin: 0;
+    line-height: 20px;
 }
 
 thead, th {
@@ -960,7 +977,7 @@ thead, th {
 }
 
 .title-small {
-	font-family: TheSansUHHBold, sans-serif;
+	font-family: $font-bold;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
@@ -1106,7 +1123,7 @@ thead, th {
 }
 
 .aui .nav-tabs > .active > a, .aui .nav-tabs > .active > a:hover, .aui .nav-tabs > .active > a:focus {
-    color: #c40017;
+    color: $primary-color;
     background-color: #eee;
     -moz-border-top-colors: none;
     -moz-border-right-colors: none;
@@ -1158,15 +1175,15 @@ thead, th {
     margin-top: 53px;
 }
 
-.lectureseries-title {
-	font-family: TheSansUHHBold, sans-serif;
+h2.lectureseries-title {
+	font-family: $font-bold;
 	font-size: 16px;
 	margin-bottom: 10px;
 	overflow: hidden;
 }
 
 .lectureseries-title a:hover {
-    color: #c40017;
+    color: $primary-color;
 }
 
 .aui .nav {
@@ -1189,13 +1206,13 @@ thead, th {
     float: right;
 }
 
-.meta-title {
+h2.meta-title {
 	color: #4d4d4d;
     font-size: 15px;
     font-weight: normal;
-    font-family: TheSansUHHBold, sans-serif;
+    font-family: $font-bold;
     line-height: inherit;
-    margin-top: 30px;
+    margin: 30px 0 0 0;
 }
 
 .views {
@@ -1267,6 +1284,14 @@ thead, th {
 .related-lectureseries-name {
 	font-size: 13px;
 	padding-bottom: 5px;
+}
+
+.related-lectureseries-name h3 {
+	font-size: 13px;
+    line-height: 20px;
+    display: inline;
+    padding-left: 5px;
+    padding-right: 3px;
 }
 
 .date.related {
@@ -1351,7 +1376,7 @@ thead, th {
     width: 100%;
 }
 
-#permissions, #embed, #license, #_lgadminvideomanagement_WAR_lecture2goportlet_metadata, #embed, #postprocessing, #video-thumbnail, #video-rawdata {
+#permissions, #embed, #license, #_lgadminvideomanagement_WAR_lecture2goportlet_metadata, #embed, #postprocessing, #video-thumbnail {
     margin-top: 50px;
     overflow: auto;
 }
@@ -1580,7 +1605,7 @@ li.chaptertile {
 
 .admintile.wide > a {
     font-size: 14px;
-    font-family: TheSansUHHBold,sans-serif;
+    font-family: $font-bold;
 }
 
 .admintile.wide.icons > a {
@@ -1612,12 +1637,12 @@ li.chaptertile {
 }
 
 .admintile.wide .admin-videolist-video-title {
-    font-family: TheSansUHHBold, sans-serif;
+    font-family: $font-bold;
     margin-bottom: 0px;
 }
 
 .admintile.wide .admin-videolist-lectureseries-title {
-	font-family: TheSansUHHItalic,sans-serif;
+	font-family: $font-italics;
     margin-bottom: 0px;
 }
 
@@ -1674,7 +1699,7 @@ li.chaptertile {
 }
 
 .aui input[type="color"], .aui input[type="date"], .aui input[type="datetime"], .aui input[type="datetime-local"], .aui input[type="email"], .aui input[type="month"], .aui input[type="number"], .aui input[type="password"], .aui input[type="search"], .aui input[type="tel"], .aui input[type="text"], .aui input[type="time"], .aui input[type="url"], .aui input[type="week"], .aui select, .aui textarea, .aui .uneditable-input {
-    font-family: TheSansUHH,sans-serif;
+    font-family: $font-bold;
     font-size: 14px;
 }
 
@@ -1723,6 +1748,7 @@ li.chaptertile {
 
 #heading {
    	margin-top: -30px;
+   	margin-bottom: 12px;
    	padding-bottom: 7px;
 }
 
@@ -1774,7 +1800,7 @@ li.chaptertile {
     border-color: #fff -moz-use-text-color -moz-use-text-color;
     border-style: solid none none;
     border-width: 1px 0 0;
-    color: #c40017;
+    color: $primary-color;
     padding-left: 0;
     word-wrap: break-word;
 }
@@ -1977,7 +2003,7 @@ input#_lgadmincreatorsmanagement_WAR_lecture2goportlet_orcidId {
 
 .edit-video-lable {
     border-bottom: 3px solid #f0f0f0;
-    font-family: TheSansUHHBold, sans-serif;
+    font-family: $font-bold;
     font-size: 15px !important;
     font-style: normal;
 }
@@ -2087,6 +2113,18 @@ label.edit-video-lable.first {
     z-index: 9999;
 }
 
+#banner .meta a:not(.language) {
+    margin: 0 8px;
+}
+
+#banner .meta a:last-child:not(.language) {
+    margin: 0 0 0 8px;
+}
+
+a.language {
+    margin: 0px 2px;
+}
+
 .aui .dockbar-split .dockbar .navbar-inner .nav-account-controls > li > a, .aui .dockbar-split .dockbar .navbar-inner .nav-account-controls li.open > a {
     color: #4e4e4e;
     margin-right: 0px;
@@ -2126,7 +2164,7 @@ label.edit-video-lable.first {
 }
 
 .aui .navbar.dockbar .navbar-inner li.sign-in {
-    font-family: TheSansUHH,sans-serif;
+    font-family: $font-bold;
     font-size: 11px;
 }
 
@@ -2207,8 +2245,8 @@ div.filter-menu-link span.icon-large.icon-remove {
     height: 12px !important;
 }
 
-#impressum, #disclaimer, #tw, #fb, #privacy-policy {
-    font-family: TheSansUHHBold,sans-serif;
+#impressum, #disclaimer, #tw, #fb, #privacy-policy, #accessibility {
+    font-family: $font-bold;
 }
 
 #license .control-group.form-inline {
@@ -2259,7 +2297,7 @@ div.filter-menu-link span.icon-large.icon-remove {
 }
 
 .title-text {
-	font-family: TheSansUHHBold, sans-serif;
+	font-family: $font-bold;
     color: #4d4d4d !important;
     float: left;
     font-size: 14px;
@@ -2553,6 +2591,11 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 	position: relative;
 }
 
+#front-page-content h2 {
+	font-size: 17.5px;
+	margin-top: 10px;
+}
+
 /*** front page background-video specific ***/
 	
 .bg-video-container {
@@ -2616,7 +2659,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .l2go-subtitle {
     font-size: 18px;
     text-align: center;
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 }
 
 .lead-box {
@@ -2639,7 +2682,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 
 .lead-box a,
 .meta-description a {
-    color: #c40017;
+    color: $primary-color;
 }
 
 .big-search {
@@ -2800,14 +2843,17 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 }
 
 
-.video-box-content .title-small {
+.video-box-content h3.title-small   {
 	color: #4d4d4d;
 	font-size: 14px;
 	width: 100%;
 	margin: 19px 0 8px 0;
 	color: #000;
+	line-height: 17px;
 	/*height: 60px;*/
 }
+
+
 
 .video-box-content .creator-small2 {
     margin: 0 0 8px 0;
@@ -2841,7 +2887,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 }
 
 .journal-content-article a {
-    color: #c40017;
+    color: $primary-color;
 }
 
 .journal-content-article a:HOVER {
@@ -2938,8 +2984,8 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 }
 
 strong, b, th, #kopf .sprachwechsel {
-    font-family: TheSansUHHBold,sans-serif;
-    font-weight: normal !important;
+    font-family: $font-bold;
+    font-weight: normal;
 }
 
 .aui .portlet, .aui .portlet-borderless-container {
@@ -3165,7 +3211,7 @@ strong, b, th, #kopf .sprachwechsel {
 }
 
 .conversion-failed {
-	color: #c40017;
+	color: $primary-color;
 }
 
 #postprocessing-content label.control-label {
@@ -3227,4 +3273,8 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
 
 .disabled {
 	color: #eaeaea !important;
+}
+
+:focus {
+	outline: solid 1px blue !important; 
 }

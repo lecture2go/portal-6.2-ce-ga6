@@ -1,66 +1,56 @@
 /*******************************************************************************
  * License
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
+ * Lecture2Go 
+ * 
  * The Lecture2Go software is based on the liferay portal 6.2-ga6
  * <http://www.liferay.com> (Copyright notice see below)
- * 
  * Lecture2Go <http://lecture2go.uni-hamburg.de> is an open source
  * platform for media management and distribution. Our goal is to
  * support the free access to knowledge because this is a component
  * of each democratic society. The open source software is aimed at
  * academic institutions and has to strengthen the blended learning.
- * 
  * All Lecture2Go plugins are continuously being developed and improved.
  * For more details please visit <http://lecture2go-open-source.rrz.uni-hamburg.de>
- * 
  * Copyright (c) 2013 - present University of Hamburg / Computer and Data Center (RRZ)
- * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
- * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
- * 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *  
  * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
  * 
  * The Liferay Plugins SDK:
  * 
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
  * Third Party Software
  * 
- * Lecture2Go uses third-party libraries which may be distributed under different licenses 
- * to the above (but are compatible with the used GPL license). Informations about these 
- * licenses and copyright informations are mostly detailed in the library source code or jars themselves. 
- * You must agree to the terms of these licenses, in addition to  the above Lecture2Go source code license, 
+ * Lecture2Go uses third-party libraries which may be distributed under different licenses
+ * to the above (but are compatible with the used GPL license). Informations about these
+ * licenses and copyright informations are mostly detailed in the library source code or jars themselves.
+ * You must agree to the terms of these licenses, in addition tothe above Lecture2Go source code license,
  * in order to use this software.
  ******************************************************************************/
 package de.uhh.l2g.plugins.util;
-
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.PropsUtil;
 
 /***************************************************************************
  * The Lecture2Go software is based on the liferay portal 6.1.1 
@@ -96,14 +86,23 @@ import com.liferay.portal.kernel.util.PropsUtil;
  ***************************************************************************/
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -117,16 +116,27 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
+
+import de.uhh.l2g.plugins.model.Host;
 import de.uhh.l2g.plugins.model.Institution;
 import de.uhh.l2g.plugins.model.Lectureseries;
 import de.uhh.l2g.plugins.model.Metadata;
+import de.uhh.l2g.plugins.model.Producer;
 import de.uhh.l2g.plugins.model.Video;
 import de.uhh.l2g.plugins.model.Video_Institution;
 import de.uhh.l2g.plugins.model.impl.InstitutionImpl;
 import de.uhh.l2g.plugins.model.impl.MetadataImpl;
+import de.uhh.l2g.plugins.service.HostLocalServiceUtil;
 import de.uhh.l2g.plugins.service.InstitutionLocalServiceUtil;
 import de.uhh.l2g.plugins.service.LectureseriesLocalServiceUtil;
 import de.uhh.l2g.plugins.service.MetadataLocalServiceUtil;
+import de.uhh.l2g.plugins.service.ProducerLocalServiceUtil;
+import de.uhh.l2g.plugins.service.VideoLocalServiceUtil;
 import de.uhh.l2g.plugins.service.Video_InstitutionLocalServiceUtil;
 
 
@@ -504,15 +514,15 @@ public class RSSManager {
 			channelElement.appendChild(languageElement);
 			// copyright
 			Element copyrightElement = doc.createElement("copyright");
-			copyrightElement.setTextContent(PropsUtil.get("lecture2go.rss.copyrightholder") + " " + Calendar.getInstance().get(Calendar.YEAR));
+			copyrightElement.setTextContent("University of Hamburg Lecture2Go " + Calendar.getInstance().get(Calendar.YEAR));
 			channelElement.appendChild(copyrightElement);
 			// itunes:author 
 			Element authorElement = doc.createElement("itunes:author");
-			authorElement.setTextContent(PropsUtil.get("lecture2go.rss.publisher"));
+			authorElement.setTextContent("University of Hamburg - Lecture2Go");
 			channelElement.appendChild(authorElement);
 			// itunes:summary
 			Element summaryElement = doc.createElement("itunes:summary");
-			summaryElement.setTextContent(PropsUtil.get("lecture2go.rss.description"));
+			summaryElement.setTextContent("The University of Hamburg offers a steadily growing portion of its lectures online and similar to a take-away. For further information and more video lectures visit the central media platform of the University of Hamburg at http://lecture2go.uni-hamburg.de!");
 			channelElement.appendChild(summaryElement);
 			// itunes:image
 			Element itunesImageElement = doc.createElement("itunes:image");

@@ -300,1068 +300,6 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	}
 
 	private static final String _FINDER_COLUMN_HOSTID_HOSTID_2 = "host.hostId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_PROTOCOL = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
-			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByprotocol",
-			new String[] {
-				String.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROTOCOL =
-		new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
-			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByprotocol",
-			new String[] { String.class.getName() },
-			HostModelImpl.PROTOCOL_COLUMN_BITMASK |
-			HostModelImpl.SERVERROOT_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_PROTOCOL = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
-			HostModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByprotocol",
-			new String[] { String.class.getName() });
-
-	/**
-	 * Returns all the hosts where protocol = &#63;.
-	 *
-	 * @param protocol the protocol
-	 * @return the matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<Host> findByprotocol(String protocol) throws SystemException {
-		return findByprotocol(protocol, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
-	}
-
-	/**
-	 * Returns a range of all the hosts where protocol = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param protocol the protocol
-	 * @param start the lower bound of the range of hosts
-	 * @param end the upper bound of the range of hosts (not inclusive)
-	 * @return the range of matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<Host> findByprotocol(String protocol, int start, int end)
-		throws SystemException {
-		return findByprotocol(protocol, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the hosts where protocol = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param protocol the protocol
-	 * @param start the lower bound of the range of hosts
-	 * @param end the upper bound of the range of hosts (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<Host> findByprotocol(String protocol, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		boolean pagination = true;
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROTOCOL;
-			finderArgs = new Object[] { protocol };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_PROTOCOL;
-			finderArgs = new Object[] { protocol, start, end, orderByComparator };
-		}
-
-		List<Host> list = (List<Host>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Host host : list) {
-				if (!Validator.equals(protocol, host.getProtocol())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_HOST_WHERE);
-
-			boolean bindProtocol = false;
-
-			if (protocol == null) {
-				query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_1);
-			}
-			else if (protocol.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_3);
-			}
-			else {
-				bindProtocol = true;
-
-				query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_2);
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-			else
-			 if (pagination) {
-				query.append(HostModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindProtocol) {
-					qPos.add(protocol);
-				}
-
-				if (!pagination) {
-					list = (List<Host>)QueryUtil.list(q, getDialect(), start,
-							end, false);
-
-					Collections.sort(list);
-
-					list = new UnmodifiableList<Host>(list);
-				}
-				else {
-					list = (List<Host>)QueryUtil.list(q, getDialect(), start,
-							end);
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first host in the ordered set where protocol = &#63;.
-	 *
-	 * @param protocol the protocol
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching host
-	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host findByprotocol_First(String protocol,
-		OrderByComparator orderByComparator)
-		throws NoSuchHostException, SystemException {
-		Host host = fetchByprotocol_First(protocol, orderByComparator);
-
-		if (host != null) {
-			return host;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("protocol=");
-		msg.append(protocol);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchHostException(msg.toString());
-	}
-
-	/**
-	 * Returns the first host in the ordered set where protocol = &#63;.
-	 *
-	 * @param protocol the protocol
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching host, or <code>null</code> if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host fetchByprotocol_First(String protocol,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Host> list = findByprotocol(protocol, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last host in the ordered set where protocol = &#63;.
-	 *
-	 * @param protocol the protocol
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching host
-	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host findByprotocol_Last(String protocol,
-		OrderByComparator orderByComparator)
-		throws NoSuchHostException, SystemException {
-		Host host = fetchByprotocol_Last(protocol, orderByComparator);
-
-		if (host != null) {
-			return host;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("protocol=");
-		msg.append(protocol);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchHostException(msg.toString());
-	}
-
-	/**
-	 * Returns the last host in the ordered set where protocol = &#63;.
-	 *
-	 * @param protocol the protocol
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching host, or <code>null</code> if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host fetchByprotocol_Last(String protocol,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByprotocol(protocol);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<Host> list = findByprotocol(protocol, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the hosts before and after the current host in the ordered set where protocol = &#63;.
-	 *
-	 * @param hostId the primary key of the current host
-	 * @param protocol the protocol
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next host
-	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a host with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host[] findByprotocol_PrevAndNext(long hostId, String protocol,
-		OrderByComparator orderByComparator)
-		throws NoSuchHostException, SystemException {
-		Host host = findByPrimaryKey(hostId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Host[] array = new HostImpl[3];
-
-			array[0] = getByprotocol_PrevAndNext(session, host, protocol,
-					orderByComparator, true);
-
-			array[1] = host;
-
-			array[2] = getByprotocol_PrevAndNext(session, host, protocol,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Host getByprotocol_PrevAndNext(Session session, Host host,
-		String protocol, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_HOST_WHERE);
-
-		boolean bindProtocol = false;
-
-		if (protocol == null) {
-			query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_1);
-		}
-		else if (protocol.equals(StringPool.BLANK)) {
-			query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_3);
-		}
-		else {
-			bindProtocol = true;
-
-			query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_2);
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-		else {
-			query.append(HostModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		if (bindProtocol) {
-			qPos.add(protocol);
-		}
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(host);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Host> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Removes all the hosts where protocol = &#63; from the database.
-	 *
-	 * @param protocol the protocol
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeByprotocol(String protocol) throws SystemException {
-		for (Host host : findByprotocol(protocol, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
-			remove(host);
-		}
-	}
-
-	/**
-	 * Returns the number of hosts where protocol = &#63;.
-	 *
-	 * @param protocol the protocol
-	 * @return the number of matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int countByprotocol(String protocol) throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_PROTOCOL;
-
-		Object[] finderArgs = new Object[] { protocol };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_HOST_WHERE);
-
-			boolean bindProtocol = false;
-
-			if (protocol == null) {
-				query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_1);
-			}
-			else if (protocol.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_3);
-			}
-			else {
-				bindProtocol = true;
-
-				query.append(_FINDER_COLUMN_PROTOCOL_PROTOCOL_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindProtocol) {
-					qPos.add(protocol);
-				}
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_PROTOCOL_PROTOCOL_1 = "host.protocol IS NULL";
-	private static final String _FINDER_COLUMN_PROTOCOL_PROTOCOL_2 = "host.protocol = ?";
-	private static final String _FINDER_COLUMN_PROTOCOL_PROTOCOL_3 = "(host.protocol IS NULL OR host.protocol = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_STREAMER = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
-			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findBystreamer",
-			new String[] {
-				String.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STREAMER =
-		new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
-			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findBystreamer",
-			new String[] { String.class.getName() },
-			HostModelImpl.STREAMER_COLUMN_BITMASK |
-			HostModelImpl.SERVERROOT_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_STREAMER = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
-			HostModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countBystreamer",
-			new String[] { String.class.getName() });
-
-	/**
-	 * Returns all the hosts where streamer = &#63;.
-	 *
-	 * @param streamer the streamer
-	 * @return the matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<Host> findBystreamer(String streamer) throws SystemException {
-		return findBystreamer(streamer, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
-	}
-
-	/**
-	 * Returns a range of all the hosts where streamer = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param streamer the streamer
-	 * @param start the lower bound of the range of hosts
-	 * @param end the upper bound of the range of hosts (not inclusive)
-	 * @return the range of matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<Host> findBystreamer(String streamer, int start, int end)
-		throws SystemException {
-		return findBystreamer(streamer, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the hosts where streamer = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link de.uhh.l2g.plugins.model.impl.HostModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param streamer the streamer
-	 * @param start the lower bound of the range of hosts
-	 * @param end the upper bound of the range of hosts (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<Host> findBystreamer(String streamer, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		boolean pagination = true;
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STREAMER;
-			finderArgs = new Object[] { streamer };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_STREAMER;
-			finderArgs = new Object[] { streamer, start, end, orderByComparator };
-		}
-
-		List<Host> list = (List<Host>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (Host host : list) {
-				if (!Validator.equals(streamer, host.getStreamer())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_HOST_WHERE);
-
-			boolean bindStreamer = false;
-
-			if (streamer == null) {
-				query.append(_FINDER_COLUMN_STREAMER_STREAMER_1);
-			}
-			else if (streamer.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_STREAMER_STREAMER_3);
-			}
-			else {
-				bindStreamer = true;
-
-				query.append(_FINDER_COLUMN_STREAMER_STREAMER_2);
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-			else
-			 if (pagination) {
-				query.append(HostModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindStreamer) {
-					qPos.add(streamer);
-				}
-
-				if (!pagination) {
-					list = (List<Host>)QueryUtil.list(q, getDialect(), start,
-							end, false);
-
-					Collections.sort(list);
-
-					list = new UnmodifiableList<Host>(list);
-				}
-				else {
-					list = (List<Host>)QueryUtil.list(q, getDialect(), start,
-							end);
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first host in the ordered set where streamer = &#63;.
-	 *
-	 * @param streamer the streamer
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching host
-	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host findBystreamer_First(String streamer,
-		OrderByComparator orderByComparator)
-		throws NoSuchHostException, SystemException {
-		Host host = fetchBystreamer_First(streamer, orderByComparator);
-
-		if (host != null) {
-			return host;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("streamer=");
-		msg.append(streamer);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchHostException(msg.toString());
-	}
-
-	/**
-	 * Returns the first host in the ordered set where streamer = &#63;.
-	 *
-	 * @param streamer the streamer
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching host, or <code>null</code> if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host fetchBystreamer_First(String streamer,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<Host> list = findBystreamer(streamer, 0, 1, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last host in the ordered set where streamer = &#63;.
-	 *
-	 * @param streamer the streamer
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching host
-	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host findBystreamer_Last(String streamer,
-		OrderByComparator orderByComparator)
-		throws NoSuchHostException, SystemException {
-		Host host = fetchBystreamer_Last(streamer, orderByComparator);
-
-		if (host != null) {
-			return host;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("streamer=");
-		msg.append(streamer);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchHostException(msg.toString());
-	}
-
-	/**
-	 * Returns the last host in the ordered set where streamer = &#63;.
-	 *
-	 * @param streamer the streamer
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching host, or <code>null</code> if a matching host could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host fetchBystreamer_Last(String streamer,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countBystreamer(streamer);
-
-		if (count == 0) {
-			return null;
-		}
-
-		List<Host> list = findBystreamer(streamer, count - 1, count,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the hosts before and after the current host in the ordered set where streamer = &#63;.
-	 *
-	 * @param hostId the primary key of the current host
-	 * @param streamer the streamer
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next host
-	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a host with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Host[] findBystreamer_PrevAndNext(long hostId, String streamer,
-		OrderByComparator orderByComparator)
-		throws NoSuchHostException, SystemException {
-		Host host = findByPrimaryKey(hostId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Host[] array = new HostImpl[3];
-
-			array[0] = getBystreamer_PrevAndNext(session, host, streamer,
-					orderByComparator, true);
-
-			array[1] = host;
-
-			array[2] = getBystreamer_PrevAndNext(session, host, streamer,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Host getBystreamer_PrevAndNext(Session session, Host host,
-		String streamer, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_HOST_WHERE);
-
-		boolean bindStreamer = false;
-
-		if (streamer == null) {
-			query.append(_FINDER_COLUMN_STREAMER_STREAMER_1);
-		}
-		else if (streamer.equals(StringPool.BLANK)) {
-			query.append(_FINDER_COLUMN_STREAMER_STREAMER_3);
-		}
-		else {
-			bindStreamer = true;
-
-			query.append(_FINDER_COLUMN_STREAMER_STREAMER_2);
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-		else {
-			query.append(HostModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		if (bindStreamer) {
-			qPos.add(streamer);
-		}
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(host);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Host> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Removes all the hosts where streamer = &#63; from the database.
-	 *
-	 * @param streamer the streamer
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeBystreamer(String streamer) throws SystemException {
-		for (Host host : findBystreamer(streamer, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
-			remove(host);
-		}
-	}
-
-	/**
-	 * Returns the number of hosts where streamer = &#63;.
-	 *
-	 * @param streamer the streamer
-	 * @return the number of matching hosts
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int countBystreamer(String streamer) throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_STREAMER;
-
-		Object[] finderArgs = new Object[] { streamer };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_HOST_WHERE);
-
-			boolean bindStreamer = false;
-
-			if (streamer == null) {
-				query.append(_FINDER_COLUMN_STREAMER_STREAMER_1);
-			}
-			else if (streamer.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_STREAMER_STREAMER_3);
-			}
-			else {
-				bindStreamer = true;
-
-				query.append(_FINDER_COLUMN_STREAMER_STREAMER_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (bindStreamer) {
-					qPos.add(streamer);
-				}
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_STREAMER_STREAMER_1 = "host.streamer IS NULL";
-	private static final String _FINDER_COLUMN_STREAMER_STREAMER_2 = "host.streamer = ?";
-	private static final String _FINDER_COLUMN_STREAMER_STREAMER_3 = "(host.streamer IS NULL OR host.streamer = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_NAME = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
 			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByname",
@@ -1827,6 +765,254 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	}
 
 	private static final String _FINDER_COLUMN_DEFAULTHOST_DEFAULTHOST_2 = "host.defaultHost = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_DIRECTORY = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
+			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByDirectory",
+			new String[] { String.class.getName() },
+			HostModelImpl.DIRECTORY_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_DIRECTORY = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
+			HostModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByDirectory",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns the host where directory = &#63; or throws a {@link de.uhh.l2g.plugins.NoSuchHostException} if it could not be found.
+	 *
+	 * @param directory the directory
+	 * @return the matching host
+	 * @throws de.uhh.l2g.plugins.NoSuchHostException if a matching host could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Host findByDirectory(String directory)
+		throws NoSuchHostException, SystemException {
+		Host host = fetchByDirectory(directory);
+
+		if (host == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("directory=");
+			msg.append(directory);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchHostException(msg.toString());
+		}
+
+		return host;
+	}
+
+	/**
+	 * Returns the host where directory = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param directory the directory
+	 * @return the matching host, or <code>null</code> if a matching host could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Host fetchByDirectory(String directory) throws SystemException {
+		return fetchByDirectory(directory, true);
+	}
+
+	/**
+	 * Returns the host where directory = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param directory the directory
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching host, or <code>null</code> if a matching host could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Host fetchByDirectory(String directory, boolean retrieveFromCache)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { directory };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_DIRECTORY,
+					finderArgs, this);
+		}
+
+		if (result instanceof Host) {
+			Host host = (Host)result;
+
+			if (!Validator.equals(directory, host.getDirectory())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_HOST_WHERE);
+
+			boolean bindDirectory = false;
+
+			if (directory == null) {
+				query.append(_FINDER_COLUMN_DIRECTORY_DIRECTORY_1);
+			}
+			else if (directory.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_DIRECTORY_DIRECTORY_3);
+			}
+			else {
+				bindDirectory = true;
+
+				query.append(_FINDER_COLUMN_DIRECTORY_DIRECTORY_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindDirectory) {
+					qPos.add(directory);
+				}
+
+				List<Host> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DIRECTORY,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"HostPersistenceImpl.fetchByDirectory(String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Host host = list.get(0);
+
+					result = host;
+
+					cacheResult(host);
+
+					if ((host.getDirectory() == null) ||
+							!host.getDirectory().equals(directory)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DIRECTORY,
+							finderArgs, host);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_DIRECTORY,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Host)result;
+		}
+	}
+
+	/**
+	 * Removes the host where directory = &#63; from the database.
+	 *
+	 * @param directory the directory
+	 * @return the host that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Host removeByDirectory(String directory)
+		throws NoSuchHostException, SystemException {
+		Host host = findByDirectory(directory);
+
+		return remove(host);
+	}
+
+	/**
+	 * Returns the number of hosts where directory = &#63;.
+	 *
+	 * @param directory the directory
+	 * @return the number of matching hosts
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByDirectory(String directory) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_DIRECTORY;
+
+		Object[] finderArgs = new Object[] { directory };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_HOST_WHERE);
+
+			boolean bindDirectory = false;
+
+			if (directory == null) {
+				query.append(_FINDER_COLUMN_DIRECTORY_DIRECTORY_1);
+			}
+			else if (directory.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_DIRECTORY_DIRECTORY_3);
+			}
+			else {
+				bindDirectory = true;
+
+				query.append(_FINDER_COLUMN_DIRECTORY_DIRECTORY_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindDirectory) {
+					qPos.add(directory);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_DIRECTORY_DIRECTORY_1 = "host.directory IS NULL";
+	private static final String _FINDER_COLUMN_DIRECTORY_DIRECTORY_2 = "host.directory = ?";
+	private static final String _FINDER_COLUMN_DIRECTORY_DIRECTORY_3 = "(host.directory IS NULL OR host.directory = '')";
 
 	public HostPersistenceImpl() {
 		setModelClass(Host.class);
@@ -1850,6 +1036,9 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFAULTHOST,
 			new Object[] { host.getDefaultHost() }, host);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DIRECTORY,
+			new Object[] { host.getDirectory() }, host);
 
 		host.resetOriginalValues();
 	}
@@ -1943,6 +1132,12 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFAULTHOST, args,
 				host);
+
+			args = new Object[] { host.getDirectory() };
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DIRECTORY, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DIRECTORY, args, host);
 		}
 		else {
 			HostModelImpl hostModelImpl = (HostModelImpl)host;
@@ -1974,6 +1169,16 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 					args, Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DEFAULTHOST,
 					args, host);
+			}
+
+			if ((hostModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_DIRECTORY.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { host.getDirectory() };
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_DIRECTORY, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_DIRECTORY, args,
+					host);
 			}
 		}
 	}
@@ -2018,6 +1223,19 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DEFAULTHOST, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_DEFAULTHOST, args);
+		}
+
+		args = new Object[] { host.getDirectory() };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DIRECTORY, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_DIRECTORY, args);
+
+		if ((hostModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_DIRECTORY.getColumnBitmask()) != 0) {
+			args = new Object[] { hostModelImpl.getOriginalDirectory() };
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_DIRECTORY, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_DIRECTORY, args);
 		}
 	}
 
@@ -2128,8 +1346,6 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 
 		boolean isNew = host.isNew();
 
-		HostModelImpl hostModelImpl = (HostModelImpl)host;
-
 		Session session = null;
 
 		try {
@@ -2157,38 +1373,6 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
-		else {
-			if ((hostModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROTOCOL.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { hostModelImpl.getOriginalProtocol() };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PROTOCOL, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROTOCOL,
-					args);
-
-				args = new Object[] { hostModelImpl.getProtocol() };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_PROTOCOL, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_PROTOCOL,
-					args);
-			}
-
-			if ((hostModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STREAMER.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { hostModelImpl.getOriginalStreamer() };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_STREAMER, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STREAMER,
-					args);
-
-				args = new Object[] { hostModelImpl.getStreamer() };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_STREAMER, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_STREAMER,
-					args);
-			}
-		}
-
 		EntityCacheUtil.putResult(HostModelImpl.ENTITY_CACHE_ENABLED,
 			HostImpl.class, host.getPrimaryKey(), host);
 
@@ -2209,12 +1393,10 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 		hostImpl.setPrimaryKey(host.getPrimaryKey());
 
 		hostImpl.setHostId(host.getHostId());
-		hostImpl.setProtocol(host.getProtocol());
-		hostImpl.setStreamer(host.getStreamer());
-		hostImpl.setPort(host.getPort());
-		hostImpl.setServerRoot(host.getServerRoot());
+		hostImpl.setDirectory(host.getDirectory());
 		hostImpl.setName(host.getName());
 		hostImpl.setDefaultHost(host.getDefaultHost());
+		hostImpl.setPrefix(host.getPrefix());
 
 		return hostImpl;
 	}

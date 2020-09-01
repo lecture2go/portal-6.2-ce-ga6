@@ -72,6 +72,14 @@ public class VideoFinderUtil {
 		return getFinder().findLatestVideos();
 	}
 
+	public static boolean checkVideoHasMissingMetadata(java.lang.Long videoId) {
+		return getFinder().checkVideoHasMissingMetadata(videoId);
+	}
+
+	public static java.util.List<de.uhh.l2g.plugins.model.Video> findVideosWithMissingMetadata() {
+		return getFinder().findVideosWithMissingMetadata();
+	}
+
 	public static VideoFinder getFinder() {
 		if (_finder == null) {
 			_finder = (VideoFinder)PortletBeanLocatorUtil.locate(de.uhh.l2g.plugins.service.ClpSerializer.getServletContextName(),

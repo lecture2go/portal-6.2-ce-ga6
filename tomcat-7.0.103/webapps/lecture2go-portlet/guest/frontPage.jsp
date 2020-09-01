@@ -35,13 +35,13 @@ installWizardManager.installRepository();
    
 <div class="front-page-teaser">
  	<div class="bg-video-container">
-		<video id="bg-vid" autoplay loop poster="/lecture2go-portlet/img/background_still.jpg" preload="none" muted>
+		<video id="bg-vid" loop poster="/lecture2go-portlet/img/background_still.jpg" preload="none" muted>
 		    <!-- the video source is added dynamically to avoid unnecessary traffic -->
 		    <img src="/lecture2go-portlet/img/background_still.jpg">
 		</video>
 		<div class="dark-overlay"></div>
-		<div id="vid-control">
-			<i class="icon-pause"></i>
+		<div id="vid-control" role="button" tabindex="0" aria-label="Pause Video">
+			<i class="icon-play"></i>
 		</div>
 	</div>
 	<div class="l2go-info-container">
@@ -69,10 +69,11 @@ installWizardManager.installRepository();
 <div id="front-page-content">
 <!-- new videos -->
 	<div class="news">
-		<h4><liferay-ui:message key="last-added"/></h4>
+		<h2><liferay-ui:message key="last-added"/></h2>
 		<div class="video-box-list-container">
 			<div id="news-carousel" class="carousel slide" data-interval="false" data-wrap="false">
-            <!-- Carousel items -->
+				<a class="left carousel-control" href="#news-carousel" data-slide="prev" aria-role='button' aria-label='<liferay-ui:message key="previous-elements"/>'><i class="icon-chevron-left"></i></a>
+           		<!-- Carousel items -->
 	            <div class="carousel-inner">
 	                <div class="item active">
 						<div class="row-fluid video-box-list">
@@ -104,9 +105,13 @@ installWizardManager.installRepository();
 									List<Video_Institution> vi = Video_InstitutionLocalServiceUtil.getByVideo(vid.getVideoId());
 						        	// only get the first institution
 						        	Institution inst = new InstitutionImpl();
+						        	Institution rootInst = new InstitutionImpl();
 						        	try{
 						        		inst=InstitutionLocalServiceUtil.getById(vi.get(0).getInstitutionId());
-						        	}catch(Exception e){}
+						        	}catch(Exception e){
+						        		// no institution for the video, use the root institution
+						        		rootInst=InstitutionLocalServiceUtil.getById(vid.getRootInstitutionId());
+						        	}
 						        	
 									%>
 									
@@ -121,13 +126,15 @@ installWizardManager.installRepository();
 										<div class="span3 video-box" onClick="window.location='<%=vid.getUrl() %>'">											
 											<div class="video-box-image-container">
 												<div class="video-box-image">
-													<img src="<%=vid.getImageMedium() %>">
+													<img src="<%=vid.getImageMedium() %>" alt="<liferay-ui:message key="thumbnail"/> - <%=vid.getTitle() %>" />
 												</div>
 											</div>
 
 											<div class="video-box-content">
 												<div class="date"><%=vid.getSimpleDate() %></div>
-												<div class="title-small dot-ellipsis dot-height-60 dot-resize-update "><%=vid.getTitle() %></div>
+												<a href='<%=vid.getUrl() %>' aria-label="<liferay-ui:message key="video-title"/>: <%=vid.getTitle() %> " >					
+													<h3 class="title-small dot-ellipsis dot-height-60 dot-resize-update "><%=vid.getTitle() %></h3>
+												</a>
 												<div class="creator-small2 dot-ellipsis dot-height-25 dot-resize-update "><%=vid.getLinkedCreators() %></div>
 												<div class="lectureseries-small dot-ellipsis dot-height-25 dot-resize-update">
 													<% if (!isVideo) { %>
@@ -139,11 +146,18 @@ installWizardManager.installRepository();
 												<%if(inst.getInstitutionId()>0){ %>
 												<div class="labels">
 													<%
-														String instLink="<a href='/l2go/-/get/"+inst.getInstitutionId()+"/"+inst.getParentId()+"/0/0/0/'>"+inst.getName()+"</a>"; 
+														String instLink="<a href='/l2go/-/get/"+inst.getInstitutionId()+"/"+inst.getParentId()+"/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"institution-name")+": " + inst.getName() + "'>"+inst.getName()+"</a>"; 
 													%>
 										        	<span class="label label-light2"><%=instLink%></span>												
 												</div>
-												<%}%>
+												<%} else if(rootInst.getInstitutionId()>0){ %>
+													<div class="labels">
+														<%
+															String instLink="<a href='/l2go/-/get/0/"+rootInst.getInstitutionId()+"/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"institution-name")+": " + rootInst.getName() + "'>"+rootInst.getName()+"</a>"; 
+														%>
+											        	<span class="label label-light2"><%=instLink%></span>												
+													</div>
+												<%} %>
 											</div> 
 										</div>
 										
@@ -156,8 +170,7 @@ installWizardManager.installRepository();
 						</div>
 					</div>
 				</div>
-				<a class="left carousel-control" href="#news-carousel" data-slide="prev"><i class="icon-chevron-left"></i></a>
-				<a class="right carousel-control" href="#news-carousel" data-slide="next"><i class="icon-chevron-right"></i></a>
+				<a class="right carousel-control" href="#news-carousel" data-slide="next" aria-role='button' aria-label='<liferay-ui:message key="next-elements"/>'><i class="icon-chevron-right"></i></a>
 			</div>
 		</div>
 	</div>
@@ -168,10 +181,11 @@ installWizardManager.installRepository();
 
 <!-- popular videos -->
 	<div class="popular">
-		<h4><liferay-ui:message key="popular-videos"/></h4>
+		<h2><liferay-ui:message key="popular-videos"/></h2>
 		<div class="video-box-list-container">
 			<div id="popular-carousel" class="carousel slide" data-interval="false" data-wrap="false">
-            <!-- Carousel items -->
+				<a class="left carousel-control" href="#popular-carousel" data-slide="prev" aria-role='button' aria-label='<liferay-ui:message key="previous-elements"/>'><i class="icon-chevron-left"></i></a>
+            	<!-- Carousel items -->
 	            <div class="carousel-inner">
 	                <div class="item active">
 						<div class="row-fluid video-box-list">
@@ -194,16 +208,22 @@ installWizardManager.installRepository();
 									String lectureseries = "";
 									
 									if (!isVideo) {
-										Lectureseries lec = LectureseriesLocalServiceUtil.getLectureseries(vid.getLectureseriesId());
-										lectureseries = lec.getName();
+										try {
+											Lectureseries lec = LectureseriesLocalServiceUtil.getLectureseries(vid.getLectureseriesId());
+											lectureseries = lec.getName();
+										} catch (Exception e) {}
 									}
 									
 						        	List<Video_Institution> vi = Video_InstitutionLocalServiceUtil.getByVideo(vid.getVideoId());
 						        	// only get the first institution
 						        	Institution inst = new InstitutionImpl();
+						        	Institution rootInst = new InstitutionImpl();
 						        	try{
 						        		inst=InstitutionLocalServiceUtil.getById(vi.get(0).getInstitutionId());
-						        	}catch(Exception e){}							%>
+						        	}catch(Exception e){
+						        		// no institution for the video, use the root institution
+						        		rootInst=InstitutionLocalServiceUtil.getById(vid.getRootInstitutionId());
+						        	}						%>
 								<c:if test="${count % 4 == 0 && count != 0}">
 									<!-- row-fluid -->
 										</div>
@@ -215,13 +235,15 @@ installWizardManager.installRepository();
 									<div class="span3 video-box" onClick="window.location='<%=vid.getUrl() %>'">	
 										<div class="video-box-image-container">
 											<div class="video-box-image"> 
-												<img src="<%=vid.getImageMedium() %>">
+												<img src="<%=vid.getImageMedium() %>" alt="<liferay-ui:message key="thumbnail"/> - <%=vid.getTitle() %>" />
 											</div>
 										</div>
 	
 										<div class="video-box-content"> 
 											<div class="date"><%=vid.getSimpleDate() %></div>
-											<div class="title-small dot-ellipsis dot-height-60 dot-resize-update "><%= vid.getTitle() %></div>
+											<a href='<%=vid.getUrl() %>' aria-label="<liferay-ui:message key="video-title"/>: <%=vid.getTitle() %> ">					
+												<h3 class="title-small dot-ellipsis dot-height-60 dot-resize-update "><%= vid.getTitle() %></h3>
+											</a>
 											<div class="creator-small2 dot-ellipsis dot-height-25 dot-resize-update "><%= vid.getLinkedCreators() %></div>
 											<div class="lectureseries-small dot-ellipsis dot-height-25 dot-resize-update">
 												<% if (!isVideo) { %>
@@ -233,11 +255,18 @@ installWizardManager.installRepository();
 											<%if(inst.getInstitutionId()>0){ %>
 											<div class="labels">
 												<%
-													String instLink="<a href='/l2go/-/get/"+inst.getInstitutionId()+"/"+inst.getParentId()+"/0/0/0/'>"+inst.getName()+"</a>"; 
+													String instLink="<a href='/l2go/-/get/"+inst.getInstitutionId()+"/"+inst.getParentId()+"/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"institution-name")+": " + inst.getName() + "'>"+inst.getName()+"</a>"; 
 												%>
 									        	<span class="label label-light2"><%=instLink%></span>
 									        </div>
-									        <%} %>
+									        <%} else if(rootInst.getInstitutionId()>0){ %>
+												<div class="labels">
+													<%
+														String instLink="<a href='/l2go/-/get/0/"+rootInst.getInstitutionId()+"/0/0/0/' aria-label='"+LanguageUtil.get(themeDisplay.getLocale(),"institution-name")+": " + rootInst.getName() + "'>"+rootInst.getName()+"</a>"; 
+													%>
+										        	<span class="label label-light2"><%=instLink%></span>												
+												</div>
+											<%} %>
 										</div>
 									</div>
 								<c:set var="count" value="${count + 1}" scope="page"/>
@@ -247,8 +276,7 @@ installWizardManager.installRepository();
 						</div>
 					</div>
 				</div>
-				<a class="left carousel-control" href="#popular-carousel" data-slide="prev"><i class="icon-chevron-left"></i></a>
-				<a class="right carousel-control" href="#popular-carousel" data-slide="next"><i class="icon-chevron-right"></i></a>
+				<a class="right carousel-control" href="#popular-carousel" data-slide="next" aria-role='button' aria-label='<liferay-ui:message key="next-elements"/>'><i class="icon-chevron-right"></i></a>
 			</div>
 		</div>
 	</div>
@@ -258,12 +286,12 @@ installWizardManager.installRepository();
 
 <script>
 $(document).ready(function(){
-
     // process different things depending on the screen size
-	mediaCheck({
-	  	media: '(min-width: 768px)',
-	  	entry: function() {
-	  		transformSearchToWideView();
+    MQS.add({
+        ref: 'desktop',
+        mediaQuery: '(min-width: 768px)', 
+        action: () => {
+        	transformSearchToWideView();
 		  	//hide all carousel items but the first and show carousel navigation
 		  	$("#news-carousel .item:not(:first)").removeClass("active");
 		  	$("#popular-carousel .item:not(:first)").removeClass("active");
@@ -271,16 +299,22 @@ $(document).ready(function(){
 		  	showOrHideCarouselControl('#news-carousel');
 		  	showOrHideCarouselControl('#popular-carousel');
 		  	addBGVideo();
-		 },
-	  exit: function() {
-		  	transformSearchToSmallView();
+        } 
+    });
+    
+    MQS.add({
+        ref: 'mobile',
+        mediaQuery: '(max-width: 767px)', 
+        action: () => {
+        	transformSearchToSmallView();
 		  	// do not show the big button on desktop
 		  	$(".filter-facility-menu").hide();
 		  	//show all carousel items and hide carousel navigation
 		  	$(".item").addClass("active");
 		  	$(".carousel-control").hide();
-		 }
-	});
+        }
+    });
+    
 
 	// handle the previous and next buttons of the carousel
     //showOrHideCarouselControl('#news-carousel');
@@ -304,9 +338,11 @@ $(document).ready(function(){
   		if (video.paused) {
   			video.play();
   			$controlIcon.switchClass("icon-play", "icon-pause");
+  			$('#vid-control').attr("aria-label", "Pause video");
   		} else {
   			video.pause();
   			$controlIcon.switchClass("icon-pause", "icon-play");
+  			$('#vid-control').attr("aria-label", "Pause video");
   		}
 	});
 
@@ -338,8 +374,8 @@ function transformSearchToWideView() {
 
 function transformSearchToSmallView() {
   	// move search box from center to top
-  	$(".search").prependTo("#content");
-	$('#_lgopenaccessvideos_WAR_lecture2goportlet_searchButton span').text("");
+  	$(".search").appendTo("header");
+  	$('#_lgopenaccessvideos_WAR_lecture2goportlet_searchButton span').text("");
 	$('#_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery').attr("placeholder", "<liferay-ui:message key='search-videos'/>");
 }
 

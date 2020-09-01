@@ -395,6 +395,18 @@ public class InstitutionLocalServiceUtil {
 		return getService().updateCounter();
 	}
 
+	/**
+	* Prepares the list of institutions for pending producers selection
+	* (institutions which should not be selected can be defined via properties file)
+	*
+	* @return the list of institutions for the producer to select
+	* @throws SystemException
+	*/
+	public static java.util.List<de.uhh.l2g.plugins.model.Institution> getForProducerPending()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getForProducerPending();
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

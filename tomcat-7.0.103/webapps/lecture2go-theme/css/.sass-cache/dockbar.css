@@ -163,7 +163,7 @@
             .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li.toggle-controls a:focus {
               clip: rect(auto auto auto auto);
               position: static; }
-          @media (max-width: 979px) {
+          @media (max-width: 767px) {
             .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li.page-preview-controls {
               display: none; } }
           .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a {
@@ -432,7 +432,7 @@
   @media (max-width: 1140px) {
     .aui .dockbar-split .dockbar .info-items {
       width: 515px; } }
-  @media (max-width: 979px) {
+  @media (max-width: 767px) {
     .aui #navigation {
       display: none; }
       .aui #navigation.open {

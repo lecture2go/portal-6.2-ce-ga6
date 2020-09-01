@@ -13,7 +13,7 @@
 		<column name="termId" type="long"></column>
 		<column name="language" type="String"></column>
 		<column name="facultyName" type="String"></column>
-		<column name="lectureseriesId" type="long" primary="true" id-type="increment"></column>
+		<column name="lectureseriesId" type="long" primary="true"></column>
 		<column name="password" type="String"></column>
 		<column name="approved" type="int"></column>
 		<column name="longDesc" type="String"></column>
@@ -101,7 +101,7 @@
 		</finder>
 	</entity>
 	<entity name="Lectureseries_Institution" local-service="true" remote-service="false">
-		<column name="lectureseriesInstitutionId" type="long" primary="true" id-type="increment"></column>
+		<column name="lectureseriesInstitutionId" type="long" primary="true"></column>
 		<column name="lectureseriesId" type="long" primary="false"></column>
 		<column name="institutionId" type="long" primary="false"></column>
 		<column name="institutionParentId" type="long"></column>
@@ -144,7 +144,7 @@
 		</finder>
 	</entity>
 	<entity name="Producer_Lectureseries" local-service="true" remote-service="false">
-		<column name="producerLectureseriesId" type="long" primary="true" id-type="increment"></column>
+		<column name="producerLectureseriesId" type="long" primary="true"></column>
 		<column name="lectureseriesId" type="long"></column>
 		<column name="producerId" type="long"></column>
 		<finder name="LectureseriesId" return-type="Collection">
@@ -160,29 +160,24 @@
 	</entity>
 	<entity name="Host" local-service="true" remote-service="false">
 		<column name="hostId" type="long" primary="true"></column>
-		<column name="protocol" type="String"></column>
-		<column name="streamer" type="String"></column>
-		<column name="port" type="int"></column>
-		<column name="serverRoot" type="String"></column>
+		<column name="directory" type="String"></column>
 		<column name="name" type="String"></column>
 		<column name="defaultHost" type="int"></column>
+		<column name="prefix" type="String"></column>
 		<order by="asc">
-			<order-column name="serverRoot"></order-column>
+			<order-column name="directory"></order-column>
 		</order>
 		<finder name="hostId" return-type="Host">
 			<finder-column name="hostId"></finder-column>
-		</finder>
-		<finder name="protocol" return-type="Collection">
-			<finder-column name="protocol"></finder-column>
-		</finder>
-		<finder name="streamer" return-type="Collection">
-			<finder-column name="streamer"></finder-column>
 		</finder>
 		<finder name="name" return-type="Host">
 			<finder-column name="name"></finder-column>
 		</finder>
 		<finder name="defaultHost" return-type="Host">
 			<finder-column name="defaultHost"></finder-column>
+		</finder>
+		<finder name="Directory" return-type="Host">
+			<finder-column name="directory"></finder-column>
 		</finder>
 	</entity>
 	<entity name="Institution_Host" local-service="true" remote-service="false">
@@ -197,7 +192,7 @@
 		</finder>
 	</entity>
 	<entity name="Office" local-service="true" remote-service="false">
-		<column name="officeId" type="long" primary="true" id-type="increment"></column>
+		<column name="officeId" type="long" primary="true"></column>
 		<column name="name" type="String"></column>
 		<column name="www" type="String"></column>
 		<column name="email" type="String"></column>
@@ -218,19 +213,19 @@
 		</finder>
 	</entity>
 	<entity name="Sys" local-service="true" remote-service="false">
-		<column name="sysId" type="int" primary="true" id-type="increment"></column>
+		<column name="sysId" type="int" primary="true"></column>
 		<column name="version" type="String"></column>
 		<column name="setupWizard" type="int"></column>
 	</entity>
 	<entity name="Lastvideolist" local-service="true" remote-service="false">
-		<column name="lastvideolistId" type="int" primary="true" id-type="increment"></column>
+		<column name="lastvideolistId" primary="true" type="long"></column>
 		<column name="videoId" type="long"></column>
 		<finder name="Video" return-type="Collection">
 			<finder-column name="videoId"></finder-column>
 		</finder>
 	</entity>
 	<entity name="Metadata" local-service="true" remote-service="false">
-		<column name="metadataId" type="long" primary="true" id-type="increment"></column>
+		<column name="metadataId" type="long" primary="true"></column>
 		<column name="type" type="String"></column>
 		<column name="language" type="String"></column>
 		<column name="title" type="String"></column>
@@ -239,7 +234,7 @@
 		<column name="publisher" type="String"></column>
 	</entity>
 	<entity name="Segment" local-service="true" remote-service="false">
-		<column name="segmentId" type="long" primary="true" id-type="increment"></column>
+		<column name="segmentId" type="long" primary="true"></column>
 		<column name="videoId" type="long"></column>
 		<column name="start" type="String"></column>
 		<column name="title" type="String"></column>
@@ -258,7 +253,7 @@
 		</finder>
 	</entity>
 	<entity name="Video" local-service="true" remote-service="false">
-		<column name="videoId" type="long" primary="true" id-type="increment"></column>
+		<column name="videoId" type="long" primary="true"></column>
 		<column name="title" type="String"></column>
 		<column name="lectureseriesId" type="long"></column>
 		<column name="producerId" type="long"></column>
@@ -330,7 +325,7 @@
 		</finder>
 	</entity>
 	<entity name="Video_Institution" local-service="true" remote-service="false">
-		<column name="videoInstitutionId" type="long" primary="true" id-type="increment"></column>
+		<column name="videoInstitutionId" type="long" primary="true"></column>
 		<column name="videoId" type="long"></column>
 		<column name="institutionId" type="long"></column>
 		<column name="institutionParentId" type="long"></column>
@@ -349,7 +344,7 @@
 		</finder>
 	</entity>
 	<entity name="Videohitlist" local-service="true" remote-service="false">
-		<column name="videohitlistId" type="long" primary="true" id-type="increment"></column>
+		<column name="videohitlistId" type="long" primary="true"></column>
 		<column name="hitsPerDay" type="long"></column>
 		<column name="hitsPerWeek" type="long"></column>
 		<column name="hitsPerMonth" type="long"></column>
@@ -384,7 +379,7 @@
 		</finder>
 	</entity>
 	<entity name="Category" local-service="true" remote-service="false">
-		<column name="categoryId" type="long" primary="true" id-type="increment"></column>
+		<column name="categoryId" type="long" primary="true"></column>
 		<!-- PK fields -->
 		<!-- Group instance -->
 		<!-- Audit fields -->
@@ -400,7 +395,7 @@
 		</finder>
 	</entity>
 	<entity name="Video_Category" local-service="true" remote-service="false">
-		<column name="videoCategoryId" type="long" primary="true" id-type="increment"></column>
+		<column name="videoCategoryId" type="long" primary="true"></column>
 		<column name="videoId" type="long"></column>
 		<column name="categoryId" type="long"></column>
 		<finder name="Video" return-type="Collection">
@@ -418,7 +413,7 @@
 		</finder>
 	</entity>
 	<entity name="Lectureseries_Category" local-service="true" remote-service="false">
-		<column name="lectureseriesCategoryId" type="long" primary="true" id-type="increment"></column>
+		<column name="lectureseriesCategoryId" type="long" primary="true"></column>
 		<column name="categoryId" type="long"></column>
 		<column name="lectureseriesId" type="long"></column>
 		<finder name="Lectureseries" return-type="Collection">
@@ -433,7 +428,7 @@
 		</finder>
 	</entity>
 	<entity name="Creator" local-service="true" remote-service="false">
-		<column name="creatorId" type="long" primary="true" id-type="increment"></column>
+		<column name="creatorId" type="long" primary="true"></column>
 		<column name="firstName" type="String"></column>
 		<column name="lastName" type="String"></column>
 		<column name="middleName" type="String"></column>
@@ -465,7 +460,7 @@
 		</finder>
 	</entity>
 	<entity name="Lectureseries_Creator" local-service="true" remote-service="false">
-		<column name="lectureseriesCreatorId" type="long" primary="true" id-type="increment"></column>
+		<column name="lectureseriesCreatorId" type="long" primary="true"></column>
 		<column name="lectureseriesId" type="long"></column>
 		<column name="creatorId" type="long"></column>
 		<finder name="Lectureseries" return-type="Collection">
@@ -480,7 +475,7 @@
 		</finder>
 	</entity>
 	<entity name="Video_Creator" local-service="true" remote-service="false">
-		<column name="videoCreatorId" type="long" primary="true" id-type="increment"></column>
+		<column name="videoCreatorId" type="long" primary="true"></column>
 		<column name="creatorId" type="long"></column>
 		<column name="videoId" type="long"></column>
 		<finder name="Video" return-type="Collection">
@@ -515,7 +510,7 @@
 		<column name="publicVideos" type="int"></column>
 		<column name="privateVideos" type="int"></column>
 		<column name="autofillRow" type="int"></column>
-		<column name="statisticId" type="long" primary="true" id-type="increment"></column>
+		<column name="statisticId" type="long" primary="true"></column>
 		<column name="groupId" type="long"></column>
 		<column name="companyId" type="long"></column>
 		<column name="userId" type="long"></column>
@@ -557,7 +552,7 @@
 		</finder>
 	</entity>
 	<entity name="License" local-service="true" remote-service="false">
-		<column name="licenseId" type="long" primary="true" id-type="increment"></column>
+		<column name="licenseId" type="long" primary="true"></column>
 		<column name="fullName" type="String"></column>
 		<column name="shortIdentifier" type="String"></column>
 		<column name="url" type="String"></column>
@@ -570,7 +565,7 @@
 		</finder>
 	</entity>
 	<entity name="OaiRecord" remote-service="false" local-service="true">
-		<column name="oaiRecordId" primary="true" type="long" id-type="increment"></column>
+		<column name="oaiRecordId" primary="true" type="long"></column>
 		<column name="videoId" type="long" accessor="false"></column>
 		<column name="identifier" type="String"></column>
 		<column name="datestamp" type="Date"></column>
@@ -586,13 +581,13 @@
 		</finder>
 	</entity>
 	<entity name="OaiSet" local-service="true" remote-service="false">
-		<column name="oaiSetId" primary="true" type="long" id-type="increment"></column>
+		<column name="oaiSetId" primary="true" type="long"></column>
 		<column name="setSpec" type="String"></column>
 		<column name="setName" type="String"></column>
 		<column name="setDescription" type="String"></column>
 	</entity>
 	<entity name="OaiRecord_OaiSet" local-service="true" remote-service="false">
-		<column name="oaiRecordOaiSetId" type="long" primary="true" id-type="increment"></column>
+		<column name="oaiRecordOaiSetId" type="long" primary="true"></column>
 		<column name="oaiRecordId" type="long"></column>
 		<column name="oaiSetId" type="long"></column>
 		<finder name="oaiSet" return-type="Collection">
@@ -601,6 +596,10 @@
 		<finder name="oaiRecord" return-type="Collection">
 			<finder-column name="oaiRecordId"></finder-column>
 		</finder>
+	</entity>
+	<entity name="Autocomplete" remote-service="false" local-service="true">
+		<column name="autocompleteId" primary="true" type="long" id-type="increment"></column>
+		<column type="String" name="searchWordsJson" accessor="false"></column>
 	</entity>
 	<entity local-service="true" remote-service="false" name="InstallWizard">
 		<!-- PK fields -->

@@ -33,6 +33,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import de.uhh.l2g.plugins.model.Lastvideolist;
 import de.uhh.l2g.plugins.service.LastvideolistLocalService;
+import de.uhh.l2g.plugins.service.persistence.AutocompletePersistence;
 import de.uhh.l2g.plugins.service.persistence.CategoryFinder;
 import de.uhh.l2g.plugins.service.persistence.CategoryPersistence;
 import de.uhh.l2g.plugins.service.persistence.CoordinatorPersistence;
@@ -125,7 +126,7 @@ public abstract class LastvideolistLocalServiceBaseImpl
 	 * @return the new lastvideolist
 	 */
 	@Override
-	public Lastvideolist createLastvideolist(int lastvideolistId) {
+	public Lastvideolist createLastvideolist(long lastvideolistId) {
 		return lastvideolistPersistence.create(lastvideolistId);
 	}
 
@@ -139,7 +140,7 @@ public abstract class LastvideolistLocalServiceBaseImpl
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Lastvideolist deleteLastvideolist(int lastvideolistId)
+	public Lastvideolist deleteLastvideolist(long lastvideolistId)
 		throws PortalException, SystemException {
 		return lastvideolistPersistence.remove(lastvideolistId);
 	}
@@ -252,7 +253,7 @@ public abstract class LastvideolistLocalServiceBaseImpl
 	}
 
 	@Override
-	public Lastvideolist fetchLastvideolist(int lastvideolistId)
+	public Lastvideolist fetchLastvideolist(long lastvideolistId)
 		throws SystemException {
 		return lastvideolistPersistence.fetchByPrimaryKey(lastvideolistId);
 	}
@@ -266,7 +267,7 @@ public abstract class LastvideolistLocalServiceBaseImpl
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Lastvideolist getLastvideolist(int lastvideolistId)
+	public Lastvideolist getLastvideolist(long lastvideolistId)
 		throws PortalException, SystemException {
 		return lastvideolistPersistence.findByPrimaryKey(lastvideolistId);
 	}
@@ -318,6 +319,44 @@ public abstract class LastvideolistLocalServiceBaseImpl
 	public Lastvideolist updateLastvideolist(Lastvideolist lastvideolist)
 		throws SystemException {
 		return lastvideolistPersistence.update(lastvideolist);
+	}
+
+	/**
+	 * Returns the autocomplete local service.
+	 *
+	 * @return the autocomplete local service
+	 */
+	public de.uhh.l2g.plugins.service.AutocompleteLocalService getAutocompleteLocalService() {
+		return autocompleteLocalService;
+	}
+
+	/**
+	 * Sets the autocomplete local service.
+	 *
+	 * @param autocompleteLocalService the autocomplete local service
+	 */
+	public void setAutocompleteLocalService(
+		de.uhh.l2g.plugins.service.AutocompleteLocalService autocompleteLocalService) {
+		this.autocompleteLocalService = autocompleteLocalService;
+	}
+
+	/**
+	 * Returns the autocomplete persistence.
+	 *
+	 * @return the autocomplete persistence
+	 */
+	public AutocompletePersistence getAutocompletePersistence() {
+		return autocompletePersistence;
+	}
+
+	/**
+	 * Sets the autocomplete persistence.
+	 *
+	 * @param autocompletePersistence the autocomplete persistence
+	 */
+	public void setAutocompletePersistence(
+		AutocompletePersistence autocompletePersistence) {
+		this.autocompletePersistence = autocompletePersistence;
 	}
 
 	/**
@@ -1841,6 +1880,10 @@ public abstract class LastvideolistLocalServiceBaseImpl
 		}
 	}
 
+	@BeanReference(type = de.uhh.l2g.plugins.service.AutocompleteLocalService.class)
+	protected de.uhh.l2g.plugins.service.AutocompleteLocalService autocompleteLocalService;
+	@BeanReference(type = AutocompletePersistence.class)
+	protected AutocompletePersistence autocompletePersistence;
 	@BeanReference(type = de.uhh.l2g.plugins.service.CategoryLocalService.class)
 	protected de.uhh.l2g.plugins.service.CategoryLocalService categoryLocalService;
 	@BeanReference(type = CategoryPersistence.class)

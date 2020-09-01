@@ -5,7 +5,7 @@
   vertical-align: middle; }
 
 /* ---------- Table styles ---------- */
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .responsive-table-horizontal {
     display: block;
     position: relative;

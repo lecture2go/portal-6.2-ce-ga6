@@ -23,45 +23,41 @@ $theme.include($body_top_include)
 #dockbar()
 
 <div class="container-fluid" id="wrapper">
-	<header id="banner" role="banner">
+	<header id="banner">
 		<div class="meta">
 			#if (!$is_signed_in)
 				<a href="$sign_in_url">$sign_in_text</a> 
-				&nbsp;&nbsp;&nbsp;
 				#foreach( $language in $languageUtil.getAvailableLocales() )
-					<a href="/$language.getLanguage()/web$themeDisplay.getLayout().getGroup().getFriendlyURL()">$language.getLanguage()</a>
-					#if( $velocityHasNext )&nbsp;|&nbsp;#end
+					<a class="language" href="/$language.getLanguage()/web$themeDisplay.getLayout().getGroup().getFriendlyURL()">$language.getLanguage()</a>
+					#if( $velocityHasNext )|#end
 				#end
 			#else
 				<a href="#" onclick="window.open('$my_account_url', '_blank', 'height=700px, width=980px, resizable=no, scrollbars=yes, location=no, toolbar=no, status=no' )" id="myAccount"> $my_account_text</a> 
-				&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+				|
 				
 				#if($control_panel_url)
 					<a href="#" onclick="window.open('$control_panel_url', '_blank', 'height=700px, width=980px, resizable=no, scrollbars=yes, location=no, toolbar=no, status=no' )" id="myAccount"> $control_panel_text</a> 
-					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+					|
 				#end
 				
 				<a href="$sign_out_url">$sign_out_text</a> 
 			#end
 		</div>
 		<div id="heading">
-			<h1 class="site-title">
+			<div class="site-title">
 				<a class="$logo_css_class" href="http://www.uni-hamburg.de" title="#language_format ("go-to-x", [$site_name])">
-					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+					<img alt="Lecture2Go Open Source Media Portal" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
 				<div class="l2go-logo">
 					#if ($show_site_name)
-						<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
-							<a href="$home_url">$site_name</a>
-						</span>
+						<div class="site-name" title="#language_format ("go-to-x", [$site_name])">
+							<h1><a href="$home_url">$site_name</a></h1>
+						</div>
 					#end
 				</div>
 
-			</h1>
+			</div>
 
-			<h2 class="page-title">
-				<span>$the_title</span>
-			</h2>
 		</div>
 
 		#if ($has_navigation || $is_signed_in)
@@ -73,9 +69,9 @@ $theme.include($body_top_include)
 		
 		<div class="search">
 			<form action="/web/vod/l2go/-/get/0/0/0/0/0/"  method="post" name="_lgopenaccessvideos_WAR_lecture2goportlet_fm" id="_lgopenaccessvideos_WAR_lecture2goportlet_fm"> 
-				<input autocomplete="off" aria-owns="yui_patched_v3_11_0_1_1449737860306_123" aria-expanded="false" aria-autocomplete="list" class="field yui3-aclist-input" id="_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery" name="_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery" value="$param1" type="text" placeholder='#language("search-videos")'>
-				<button id="_lgopenaccessvideos_WAR_lecture2goportlet_searchButton" class="btn btn-primary button" type="submit">
-					<i class="icon-search"></i><span></span>
+				<input role="search-field" autocomplete="off" aria-owns="yui_patched_v3_11_0_1_1449737860306_123" aria-expanded="false" aria-autocomplete="list" class="field yui3-aclist-input" id="_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery" name="_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery" value="$param1" type="text" placeholder='#language("search-videos")'>
+				<button title="#language("search")" aria-label="#language("search")" id="_lgopenaccessvideos_WAR_lecture2goportlet_searchButton" class="btn btn-primary button" type="submit">
+					<i class="icon-search"></i>
 				</button>
 				<div id="search-container"></div>
 			</form>
@@ -116,6 +112,8 @@ $theme.include($body_top_include)
 			<a href="/disclaimer" id="disclaimer">#language("disclaimer")</a>
 			<span class="sep">|</span>
 			#language("privacy-policy")
+			<span class="sep">|</span>
+			#language("accessibility")			
 		</div>	
 		
 	</footer>

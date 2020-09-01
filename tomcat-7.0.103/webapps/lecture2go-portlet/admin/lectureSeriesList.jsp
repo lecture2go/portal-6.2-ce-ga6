@@ -11,7 +11,7 @@
 	
 	Long producerId = ServletRequestUtils.getLongParameter(request, "producerId", 0);
 	Long semesterId = ServletRequestUtils.getLongParameter(request, "semesterId", 0);
-	Integer statusId = ServletRequestUtils.getIntParameter(request, "statusId", 0);
+	Integer statusId = ServletRequestUtils.getIntParameter(request, "statusId", 1);
 	
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setParameter("institutionId", institutionId+"");

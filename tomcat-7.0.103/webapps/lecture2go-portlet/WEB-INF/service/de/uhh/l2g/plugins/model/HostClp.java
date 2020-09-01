@@ -73,12 +73,10 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("hostId", getHostId());
-		attributes.put("protocol", getProtocol());
-		attributes.put("streamer", getStreamer());
-		attributes.put("port", getPort());
-		attributes.put("serverRoot", getServerRoot());
+		attributes.put("directory", getDirectory());
 		attributes.put("name", getName());
 		attributes.put("defaultHost", getDefaultHost());
+		attributes.put("prefix", getPrefix());
 
 		return attributes;
 	}
@@ -91,28 +89,10 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 			setHostId(hostId);
 		}
 
-		String protocol = (String)attributes.get("protocol");
+		String directory = (String)attributes.get("directory");
 
-		if (protocol != null) {
-			setProtocol(protocol);
-		}
-
-		String streamer = (String)attributes.get("streamer");
-
-		if (streamer != null) {
-			setStreamer(streamer);
-		}
-
-		Integer port = (Integer)attributes.get("port");
-
-		if (port != null) {
-			setPort(port);
-		}
-
-		String serverRoot = (String)attributes.get("serverRoot");
-
-		if (serverRoot != null) {
-			setServerRoot(serverRoot);
+		if (directory != null) {
+			setDirectory(directory);
 		}
 
 		String name = (String)attributes.get("name");
@@ -125,6 +105,12 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 
 		if (defaultHost != null) {
 			setDefaultHost(defaultHost);
+		}
+
+		String prefix = (String)attributes.get("prefix");
+
+		if (prefix != null) {
+			setPrefix(prefix);
 		}
 	}
 
@@ -152,90 +138,21 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 	}
 
 	@Override
-	public String getProtocol() {
-		return _protocol;
+	public String getDirectory() {
+		return _directory;
 	}
 
 	@Override
-	public void setProtocol(String protocol) {
-		_protocol = protocol;
+	public void setDirectory(String directory) {
+		_directory = directory;
 
 		if (_hostRemoteModel != null) {
 			try {
 				Class<?> clazz = _hostRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setProtocol", String.class);
+				Method method = clazz.getMethod("setDirectory", String.class);
 
-				method.invoke(_hostRemoteModel, protocol);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getStreamer() {
-		return _streamer;
-	}
-
-	@Override
-	public void setStreamer(String streamer) {
-		_streamer = streamer;
-
-		if (_hostRemoteModel != null) {
-			try {
-				Class<?> clazz = _hostRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setStreamer", String.class);
-
-				method.invoke(_hostRemoteModel, streamer);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public int getPort() {
-		return _port;
-	}
-
-	@Override
-	public void setPort(int port) {
-		_port = port;
-
-		if (_hostRemoteModel != null) {
-			try {
-				Class<?> clazz = _hostRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setPort", int.class);
-
-				method.invoke(_hostRemoteModel, port);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getServerRoot() {
-		return _serverRoot;
-	}
-
-	@Override
-	public void setServerRoot(String serverRoot) {
-		_serverRoot = serverRoot;
-
-		if (_hostRemoteModel != null) {
-			try {
-				Class<?> clazz = _hostRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setServerRoot", String.class);
-
-				method.invoke(_hostRemoteModel, serverRoot);
+				method.invoke(_hostRemoteModel, directory);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -282,6 +199,29 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 				Method method = clazz.getMethod("setDefaultHost", int.class);
 
 				method.invoke(_hostRemoteModel, defaultHost);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getPrefix() {
+		return _prefix;
+	}
+
+	@Override
+	public void setPrefix(String prefix) {
+		_prefix = prefix;
+
+		if (_hostRemoteModel != null) {
+			try {
+				Class<?> clazz = _hostRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPrefix", String.class);
+
+				method.invoke(_hostRemoteModel, prefix);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -359,12 +299,10 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 		HostClp clone = new HostClp();
 
 		clone.setHostId(getHostId());
-		clone.setProtocol(getProtocol());
-		clone.setStreamer(getStreamer());
-		clone.setPort(getPort());
-		clone.setServerRoot(getServerRoot());
+		clone.setDirectory(getDirectory());
 		clone.setName(getName());
 		clone.setDefaultHost(getDefaultHost());
+		clone.setPrefix(getPrefix());
 
 		return clone;
 	}
@@ -373,7 +311,7 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 	public int compareTo(Host host) {
 		int value = 0;
 
-		value = getServerRoot().compareTo(host.getServerRoot());
+		value = getDirectory().compareTo(host.getDirectory());
 
 		if (value != 0) {
 			return value;
@@ -415,22 +353,18 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{hostId=");
 		sb.append(getHostId());
-		sb.append(", protocol=");
-		sb.append(getProtocol());
-		sb.append(", streamer=");
-		sb.append(getStreamer());
-		sb.append(", port=");
-		sb.append(getPort());
-		sb.append(", serverRoot=");
-		sb.append(getServerRoot());
+		sb.append(", directory=");
+		sb.append(getDirectory());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append(", defaultHost=");
 		sb.append(getDefaultHost());
+		sb.append(", prefix=");
+		sb.append(getPrefix());
 		sb.append("}");
 
 		return sb.toString();
@@ -438,7 +372,7 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("de.uhh.l2g.plugins.model.Host");
@@ -449,20 +383,8 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 		sb.append(getHostId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>protocol</column-name><column-value><![CDATA[");
-		sb.append(getProtocol());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>streamer</column-name><column-value><![CDATA[");
-		sb.append(getStreamer());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>port</column-name><column-value><![CDATA[");
-		sb.append(getPort());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>serverRoot</column-name><column-value><![CDATA[");
-		sb.append(getServerRoot());
+			"<column><column-name>directory</column-name><column-value><![CDATA[");
+		sb.append(getDirectory());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
@@ -472,6 +394,10 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 			"<column><column-name>defaultHost</column-name><column-value><![CDATA[");
 		sb.append(getDefaultHost());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>prefix</column-name><column-value><![CDATA[");
+		sb.append(getPrefix());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -479,12 +405,10 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 	}
 
 	private long _hostId;
-	private String _protocol;
-	private String _streamer;
-	private int _port;
-	private String _serverRoot;
+	private String _directory;
 	private String _name;
 	private int _defaultHost;
+	private String _prefix;
 	private BaseModel<?> _hostRemoteModel;
 	private Class<?> _clpSerializerClass = de.uhh.l2g.plugins.service.ClpSerializer.class;
 }

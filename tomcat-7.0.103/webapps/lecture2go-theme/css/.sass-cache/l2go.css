@@ -33,6 +33,10 @@
   display: inline; }
 
 /*** MOVED FROM MIN-960  ***/
+.add-link {
+  font-size: 20px;
+  margin-bottom: 10px; }
+
 .aui #navigation {
   display: table;
   float: left;
@@ -48,7 +52,9 @@
   margin: 0 5px;
   overflow: hidden;
   text-align: center;
-  width: 13px; }
+  width: 13px;
+  height: 8px;
+  display: inline-block; }
 
 .aui .icon-chevron-right::before {
   background-image: url("/lecture2go-theme/images/arrow_right.svg");
@@ -92,7 +98,7 @@
   float: right;
   margin-right: 6px;
   margin-top: 41px;
-  font-family: TheSansUHHBold,sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   font-size: 20px; }
 
@@ -100,7 +106,7 @@
   margin-bottom: 0; }
 
 .aui a:hover {
-  color: #c40017;
+  color: #f50000;
   text-decoration: underline; }
 
 .site-name a {
@@ -206,7 +212,7 @@
   border-width: 1px;
   color: #4e4e4e;
   display: block;
-  font-family: TheSansUHH,sans-serif !important;
+  font-family: sans-serif !important;
   font-size: 12px;
   margin-left: 3px;
   margin-top: -3px;
@@ -273,7 +279,7 @@ mark {
   clear: both; }
 
 .aui .navbar .nav {
-  font-family: TheSansUHHBold,sans-serif !important;
+  font-family: sans-serif !important;
   font-size: 14px;
   width: 100%; }
 
@@ -329,7 +335,7 @@ p.smallitalic {
   max-width: 70%; }
 
 .allcreators a:hover {
-  color: #c40017 !important; }
+  color: #f50000 !important; }
 
 #myToggler .toggler-header-collapsed:hover .video-image-overlay, #myToggler .toggler-header-collapsed:hover .tri, #myToggler .toggler-header-expanded .video-image-overlay, #myToggler .toggler-header-expanded .tri {
   visibility: visible; }
@@ -393,7 +399,7 @@ p.smallitalic {
   left: 10px;
   position: absolute;
   top: 10px;
-  background-color: #C40017;
+  background-color: #f50000;
   color: #FFF;
   margin-left: 7px;
   visibility: hidden; }
@@ -492,7 +498,7 @@ p.smallitalic {
 
 .path > span,
 .path-wide > span {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   font-weight: normal; }
 
 .meta-video-info {
@@ -553,7 +559,7 @@ p.smallitalic {
   font-style: normal !important; }
 
 .creator-small2.related:hover {
-  color: #c40017; }
+  color: #f50000; }
 
 .creator-small2.related {
   font-size: 12px;
@@ -698,6 +704,11 @@ not used anymore??
   border-bottom: 0 solid #f0f0f0 !important;
   margin-left: 13px; }
 
+#videolist h3 {
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 0 5px 0; }
+
 #searchedvideo {
   display: block;
   overflow: hidden;
@@ -745,8 +756,11 @@ a.list-group-item:hover, a.list-group-item:focus {
   padding: 0px;
   border-top: 1px solid #E5E5E5; }
 
-.tileheading {
-  font-size: 17px; }
+.sharetile h3 {
+  font-size: 17px;
+  font-family: sans-serif;
+  margin: 0;
+  line-height: 20px; }
 
 thead, th {
   display: none; }
@@ -811,7 +825,7 @@ thead, th {
   margin-right: 15px; }
 
 .title-small {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
@@ -937,7 +951,7 @@ thead, th {
   border-color: #EEE #EEE #EEE #EEE; }
 
 .aui .nav-tabs > .active > a, .aui .nav-tabs > .active > a:hover, .aui .nav-tabs > .active > a:focus {
-  color: #c40017;
+  color: #f50000;
   background-color: #eee;
   -moz-border-top-colors: none;
   -moz-border-right-colors: none;
@@ -980,14 +994,14 @@ thead, th {
   font-style: italic;
   margin-top: 53px; }
 
-.lectureseries-title {
-  font-family: TheSansUHHBold, sans-serif;
+h2.lectureseries-title {
+  font-family: sans-serif;
   font-size: 16px;
   margin-bottom: 10px;
   overflow: hidden; }
 
 .lectureseries-title a:hover {
-  color: #c40017; }
+  color: #f50000; }
 
 .aui .nav {
   margin-bottom: 0px; }
@@ -1005,13 +1019,13 @@ thead, th {
   height: 25px;
   float: right; }
 
-.meta-title {
+h2.meta-title {
   color: #4d4d4d;
   font-size: 15px;
   font-weight: normal;
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   line-height: inherit;
-  margin-top: 30px; }
+  margin: 30px 0 0 0; }
 
 .views {
   float: right;
@@ -1070,6 +1084,13 @@ thead, th {
 .related-lectureseries-name {
   font-size: 13px;
   padding-bottom: 5px; }
+
+.related-lectureseries-name h3 {
+  font-size: 13px;
+  line-height: 20px;
+  display: inline;
+  padding-left: 5px;
+  padding-right: 3px; }
 
 .date.related {
   font-size: 10px;
@@ -1137,7 +1158,7 @@ thead, th {
 #embed {
   width: 100%; }
 
-#permissions, #embed, #license, #_lgadminvideomanagement_WAR_lecture2goportlet_metadata, #embed, #postprocessing, #video-thumbnail, #video-rawdata {
+#permissions, #embed, #license, #_lgadminvideomanagement_WAR_lecture2goportlet_metadata, #embed, #postprocessing, #video-thumbnail {
   margin-top: 50px;
   overflow: auto; }
 
@@ -1323,7 +1344,7 @@ li.chaptertile {
 
 .admintile.wide > a {
   font-size: 14px;
-  font-family: TheSansUHHBold,sans-serif; }
+  font-family: sans-serif; }
 
 .admintile.wide.icons > a {
   float: right;
@@ -1349,11 +1370,11 @@ li.chaptertile {
   cursor: pointer; }
 
 .admintile.wide .admin-videolist-video-title {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   margin-bottom: 0px; }
 
 .admintile.wide .admin-videolist-lectureseries-title {
-  font-family: TheSansUHHItalic,sans-serif;
+  font-family: sans-serif;
   margin-bottom: 0px; }
 
 .admintile.wide .admin-videolist-date {
@@ -1403,7 +1424,7 @@ li.chaptertile {
   overflow: auto; }
 
 .aui input[type="color"], .aui input[type="date"], .aui input[type="datetime"], .aui input[type="datetime-local"], .aui input[type="email"], .aui input[type="month"], .aui input[type="number"], .aui input[type="password"], .aui input[type="search"], .aui input[type="tel"], .aui input[type="text"], .aui input[type="time"], .aui input[type="url"], .aui input[type="week"], .aui select, .aui textarea, .aui .uneditable-input {
-  font-family: TheSansUHH,sans-serif;
+  font-family: sans-serif;
   font-size: 14px; }
 
 .aui select {
@@ -1444,6 +1465,7 @@ li.chaptertile {
 
 #heading {
   margin-top: -30px;
+  margin-bottom: 12px;
   padding-bottom: 7px; }
 
 .aui .table th, .aui .table td {
@@ -1487,7 +1509,7 @@ li.chaptertile {
   border-color: #fff -moz-use-text-color -moz-use-text-color;
   border-style: solid none none;
   border-width: 1px 0 0;
-  color: #c40017;
+  color: #f50000;
   padding-left: 0;
   word-wrap: break-word; }
 
@@ -1653,7 +1675,7 @@ input#_lgadmincreatorsmanagement_WAR_lecture2goportlet_orcidId {
 
 .edit-video-lable {
   border-bottom: 3px solid #f0f0f0;
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   font-size: 15px !important;
   font-style: normal; }
 
@@ -1746,6 +1768,15 @@ label.edit-video-lable.first {
   top: 12px;
   z-index: 9999; }
 
+#banner .meta a:not(.language) {
+  margin: 0 8px; }
+
+#banner .meta a:last-child:not(.language) {
+  margin: 0 0 0 8px; }
+
+a.language {
+  margin: 0px 2px; }
+
 .aui .dockbar-split .dockbar .navbar-inner .nav-account-controls > li > a, .aui .dockbar-split .dockbar .navbar-inner .nav-account-controls li.open > a {
   color: #4e4e4e;
   margin-right: 0px;
@@ -1779,7 +1810,7 @@ label.edit-video-lable.first {
   visibility: hidden; }
 
 .aui .navbar.dockbar .navbar-inner li.sign-in {
-  font-family: TheSansUHH,sans-serif;
+  font-family: sans-serif;
   font-size: 11px; }
 
 .user-full-name {
@@ -1840,8 +1871,8 @@ div.filter-menu-link span.icon-large.icon-remove {
 #tw img, #fb img {
   height: 12px !important; }
 
-#impressum, #disclaimer, #tw, #fb, #privacy-policy {
-  font-family: TheSansUHHBold,sans-serif; }
+#impressum, #disclaimer, #tw, #fb, #privacy-policy, #accessibility {
+  font-family: sans-serif; }
 
 #license .control-group.form-inline {
   float: left;
@@ -1883,7 +1914,7 @@ div.filter-menu-link span.icon-large.icon-remove {
   padding: 0; }
 
 .title-text {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   color: #4d4d4d !important;
   float: left;
   font-size: 14px;
@@ -2120,6 +2151,10 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .front-page-teaser {
   position: relative; }
 
+#front-page-content h2 {
+  font-size: 17.5px;
+  margin-top: 10px; }
+
 /*** front page background-video specific ***/
 .bg-video-container {
   position: relative;
@@ -2174,7 +2209,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .l2go-subtitle {
   font-size: 18px;
   text-align: center;
-  margin-bottom: 8%; }
+  margin-bottom: 5%; }
 
 .lead-box {
   background-color: #fffff5;
@@ -2193,7 +2228,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 
 .lead-box a,
 .meta-description a {
-  color: #c40017; }
+  color: #f50000; }
 
 .big-search {
   height: 35px;
@@ -2331,12 +2366,13 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .video-box-content {
   padding: 10px 0; }
 
-.video-box-content .title-small {
+.video-box-content h3.title-small {
   color: #4d4d4d;
   font-size: 14px;
   width: 100%;
   margin: 19px 0 8px 0;
   color: #000;
+  line-height: 17px;
   /*height: 60px;*/ }
 
 .video-box-content .creator-small2 {
@@ -2367,7 +2403,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
   overflow: hidden; }
 
 .journal-content-article a {
-  color: #c40017; }
+  color: #f50000; }
 
 .journal-content-article a:HOVER {
   text-decoration: underline !important; }
@@ -2445,8 +2481,8 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
   padding: 10px; }
 
 strong, b, th, #kopf .sprachwechsel {
-  font-family: TheSansUHHBold,sans-serif;
-  font-weight: normal !important; }
+  font-family: sans-serif;
+  font-weight: normal; }
 
 .aui .portlet, .aui .portlet-borderless-container {
   margin-bottom: 0px; }
@@ -2656,7 +2692,7 @@ strong, b, th, #kopf .sprachwechsel {
   color: #33aadd; }
 
 .conversion-failed {
-  color: #c40017; }
+  color: #f50000; }
 
 #postprocessing-content label.control-label {
   float: left;
@@ -2707,4 +2743,7 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
 
 .disabled {
   color: #eaeaea !important; }
+
+:focus {
+  outline: solid 1px blue !important; }
 

@@ -61,7 +61,7 @@
   -o-border-radius: 5px;
   border-radius: 5px; }
 
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .dockbar .navbar-inner .btn-navbar {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -109,7 +109,7 @@
   -o-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0; }
 
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .navbar .navbar-search .form-search .search-query {
     -webkit-border-radius: 14px;
     -moz-border-radius: 14px;
@@ -487,7 +487,7 @@ body:first-of-type .portlet-borderless-container:hover .portlet-borderless-bar .
   max-width: 500px; }
 body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
   max-width: 200px; }
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   body:first-of-type .portlet-content .lfr-icon-actions .taglib-text {
     max-width: 200px; } }
 

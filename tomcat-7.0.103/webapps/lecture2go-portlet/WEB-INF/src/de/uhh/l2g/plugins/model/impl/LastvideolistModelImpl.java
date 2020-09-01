@@ -20,6 +20,10 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import de.uhh.l2g.plugins.model.Lastvideolist;
 import de.uhh.l2g.plugins.model.LastvideolistModel;
@@ -53,10 +57,10 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 	 */
 	public static final String TABLE_NAME = "LG_Lastvideolist";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "lastvideolistId", Types.INTEGER },
+			{ "lastvideolistId", Types.BIGINT },
 			{ "videoId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table LG_Lastvideolist (lastvideolistId INTEGER not null primary key,videoId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table LG_Lastvideolist (lastvideolistId LONG not null primary key,videoId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table LG_Lastvideolist";
 	public static final String ORDER_BY_JPQL = " ORDER BY lastvideolist.lastvideolistId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LG_Lastvideolist.lastvideolistId ASC";
@@ -81,12 +85,12 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 	}
 
 	@Override
-	public int getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _lastvideolistId;
 	}
 
 	@Override
-	public void setPrimaryKey(int primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setLastvideolistId(primaryKey);
 	}
 
@@ -97,7 +101,7 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Integer)primaryKeyObj).intValue());
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -122,7 +126,7 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Integer lastvideolistId = (Integer)attributes.get("lastvideolistId");
+		Long lastvideolistId = (Long)attributes.get("lastvideolistId");
 
 		if (lastvideolistId != null) {
 			setLastvideolistId(lastvideolistId);
@@ -136,12 +140,12 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 	}
 
 	@Override
-	public int getLastvideolistId() {
+	public long getLastvideolistId() {
 		return _lastvideolistId;
 	}
 
 	@Override
-	public void setLastvideolistId(int lastvideolistId) {
+	public void setLastvideolistId(long lastvideolistId) {
 		_lastvideolistId = lastvideolistId;
 	}
 
@@ -172,6 +176,19 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			Lastvideolist.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
 	public Lastvideolist toEscapedModel() {
 		if (_escapedModel == null) {
 			_escapedModel = (Lastvideolist)ProxyUtil.newProxyInstance(_classLoader,
@@ -195,7 +212,7 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public int compareTo(Lastvideolist lastvideolist) {
-		int primaryKey = lastvideolist.getPrimaryKey();
+		long primaryKey = lastvideolist.getPrimaryKey();
 
 		if (getPrimaryKey() < primaryKey) {
 			return -1;
@@ -220,7 +237,7 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 
 		Lastvideolist lastvideolist = (Lastvideolist)obj;
 
-		int primaryKey = lastvideolist.getPrimaryKey();
+		long primaryKey = lastvideolist.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -232,7 +249,7 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -296,7 +313,7 @@ public class LastvideolistModelImpl extends BaseModelImpl<Lastvideolist>
 	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			Lastvideolist.class
 		};
-	private int _lastvideolistId;
+	private long _lastvideolistId;
 	private long _videoId;
 	private long _originalVideoId;
 	private boolean _setOriginalVideoId;

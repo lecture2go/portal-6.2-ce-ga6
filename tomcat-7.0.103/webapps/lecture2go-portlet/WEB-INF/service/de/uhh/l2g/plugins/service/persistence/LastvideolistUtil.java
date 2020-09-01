@@ -239,7 +239,7 @@ public class LastvideolistUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist[] findByVideo_PrevAndNext(
-		int lastvideolistId, long videoId,
+		long lastvideolistId, long videoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchLastvideolistException {
@@ -298,7 +298,7 @@ public class LastvideolistUtil {
 	* @return the new lastvideolist
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist create(
-		int lastvideolistId) {
+		long lastvideolistId) {
 		return getPersistence().create(lastvideolistId);
 	}
 
@@ -311,7 +311,7 @@ public class LastvideolistUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist remove(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchLastvideolistException {
 		return getPersistence().remove(lastvideolistId);
@@ -332,7 +332,7 @@ public class LastvideolistUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist findByPrimaryKey(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			de.uhh.l2g.plugins.NoSuchLastvideolistException {
 		return getPersistence().findByPrimaryKey(lastvideolistId);
@@ -346,7 +346,7 @@ public class LastvideolistUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static de.uhh.l2g.plugins.model.Lastvideolist fetchByPrimaryKey(
-		int lastvideolistId)
+		long lastvideolistId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(lastvideolistId);
 	}

@@ -106,37 +106,43 @@ public class OaiRecordLocalServiceClpInvoker {
 				"de.uhh.l2g.plugins.model.OaiRecord"
 			};
 
-		_methodName172 = "getBeanIdentifier";
+		_methodName176 = "getBeanIdentifier";
 
-		_methodParameterTypes172 = new String[] {  };
+		_methodParameterTypes176 = new String[] {  };
 
-		_methodName173 = "setBeanIdentifier";
+		_methodName177 = "setBeanIdentifier";
 
-		_methodParameterTypes173 = new String[] { "java.lang.String" };
+		_methodParameterTypes177 = new String[] { "java.lang.String" };
 
-		_methodName178 = "getByVideo";
+		_methodName182 = "addOaiRecord";
 
-		_methodParameterTypes178 = new String[] { "java.lang.Long" };
+		_methodParameterTypes182 = new String[] {
+				"de.uhh.l2g.plugins.model.OaiRecord"
+			};
 
-		_methodName179 = "getByIdentifier";
-
-		_methodParameterTypes179 = new String[] { "java.lang.String" };
-
-		_methodName180 = "getEarliestDatestamp";
-
-		_methodParameterTypes180 = new String[] {  };
-
-		_methodName181 = "getByCreator";
-
-		_methodParameterTypes181 = new String[] { "java.lang.Long" };
-
-		_methodName182 = "getByCategory";
-
-		_methodParameterTypes182 = new String[] { "java.lang.Long" };
-
-		_methodName183 = "getByLectureseries";
+		_methodName183 = "getByVideo";
 
 		_methodParameterTypes183 = new String[] { "java.lang.Long" };
+
+		_methodName184 = "getByIdentifier";
+
+		_methodParameterTypes184 = new String[] { "java.lang.String" };
+
+		_methodName185 = "getEarliestDatestamp";
+
+		_methodParameterTypes185 = new String[] {  };
+
+		_methodName186 = "getByCreator";
+
+		_methodParameterTypes186 = new String[] { "java.lang.Long" };
+
+		_methodName187 = "getByCategory";
+
+		_methodParameterTypes187 = new String[] { "java.lang.Long" };
+
+		_methodName188 = "getByLectureseries";
+
+		_methodParameterTypes188 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -228,45 +234,50 @@ public class OaiRecordLocalServiceClpInvoker {
 			return OaiRecordLocalServiceUtil.updateOaiRecord((de.uhh.l2g.plugins.model.OaiRecord)arguments[0]);
 		}
 
-		if (_methodName172.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes172, parameterTypes)) {
+		if (_methodName176.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes176, parameterTypes)) {
 			return OaiRecordLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName173.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes173, parameterTypes)) {
+		if (_methodName177.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes177, parameterTypes)) {
 			OaiRecordLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName178.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes178, parameterTypes)) {
-			return OaiRecordLocalServiceUtil.getByVideo((java.lang.Long)arguments[0]);
-		}
-
-		if (_methodName179.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes179, parameterTypes)) {
-			return OaiRecordLocalServiceUtil.getByIdentifier((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName180.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes180, parameterTypes)) {
-			return OaiRecordLocalServiceUtil.getEarliestDatestamp();
-		}
-
-		if (_methodName181.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes181, parameterTypes)) {
-			return OaiRecordLocalServiceUtil.getByCreator((java.lang.Long)arguments[0]);
-		}
-
 		if (_methodName182.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes182, parameterTypes)) {
-			return OaiRecordLocalServiceUtil.getByCategory((java.lang.Long)arguments[0]);
+			return OaiRecordLocalServiceUtil.addOaiRecord((de.uhh.l2g.plugins.model.OaiRecord)arguments[0]);
 		}
 
 		if (_methodName183.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes183, parameterTypes)) {
+			return OaiRecordLocalServiceUtil.getByVideo((java.lang.Long)arguments[0]);
+		}
+
+		if (_methodName184.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes184, parameterTypes)) {
+			return OaiRecordLocalServiceUtil.getByIdentifier((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName185.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes185, parameterTypes)) {
+			return OaiRecordLocalServiceUtil.getEarliestDatestamp();
+		}
+
+		if (_methodName186.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes186, parameterTypes)) {
+			return OaiRecordLocalServiceUtil.getByCreator((java.lang.Long)arguments[0]);
+		}
+
+		if (_methodName187.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes187, parameterTypes)) {
+			return OaiRecordLocalServiceUtil.getByCategory((java.lang.Long)arguments[0]);
+		}
+
+		if (_methodName188.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes188, parameterTypes)) {
 			return OaiRecordLocalServiceUtil.getByLectureseries((java.lang.Long)arguments[0]);
 		}
 
@@ -305,20 +316,22 @@ public class OaiRecordLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName172;
-	private String[] _methodParameterTypes172;
-	private String _methodName173;
-	private String[] _methodParameterTypes173;
-	private String _methodName178;
-	private String[] _methodParameterTypes178;
-	private String _methodName179;
-	private String[] _methodParameterTypes179;
-	private String _methodName180;
-	private String[] _methodParameterTypes180;
-	private String _methodName181;
-	private String[] _methodParameterTypes181;
+	private String _methodName176;
+	private String[] _methodParameterTypes176;
+	private String _methodName177;
+	private String[] _methodParameterTypes177;
 	private String _methodName182;
 	private String[] _methodParameterTypes182;
 	private String _methodName183;
 	private String[] _methodParameterTypes183;
+	private String _methodName184;
+	private String[] _methodParameterTypes184;
+	private String _methodName185;
+	private String[] _methodParameterTypes185;
+	private String _methodName186;
+	private String[] _methodParameterTypes186;
+	private String _methodName187;
+	private String[] _methodParameterTypes187;
+	private String _methodName188;
+	private String[] _methodParameterTypes188;
 }

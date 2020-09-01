@@ -47,28 +47,28 @@ public interface LastvideolistModel extends BaseModel<Lastvideolist> {
 	 *
 	 * @return the primary key of this lastvideolist
 	 */
-	public int getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this lastvideolist.
 	 *
 	 * @param primaryKey the primary key of this lastvideolist
 	 */
-	public void setPrimaryKey(int primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the lastvideolist ID of this lastvideolist.
 	 *
 	 * @return the lastvideolist ID of this lastvideolist
 	 */
-	public int getLastvideolistId();
+	public long getLastvideolistId();
 
 	/**
 	 * Sets the lastvideolist ID of this lastvideolist.
 	 *
 	 * @param lastvideolistId the lastvideolist ID of this lastvideolist
 	 */
-	public void setLastvideolistId(int lastvideolistId);
+	public void setLastvideolistId(long lastvideolistId);
 
 	/**
 	 * Returns the video ID of this lastvideolist.

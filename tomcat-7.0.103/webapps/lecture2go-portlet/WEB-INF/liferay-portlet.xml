@@ -12,7 +12,7 @@
 		<header-portlet-javascript>/js/jquery.socialshareprivacy.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/jquery.cookie.js</header-portlet-javascript>
 		<header-portlet-javascript>https://content.jwplatform.com/libraries/meCDJ4WV.js</header-portlet-javascript>
-		<header-portlet-javascript>/js/mediaCheck-min.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/mediaquerysensor.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/readmore.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/jquery.dotdotdot.min.js</header-portlet-javascript>
 	</portlet>
@@ -31,6 +31,8 @@
 		<header-portlet-javascript>/js/jwplayer.custom.util.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/videoprocessor.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/autocomplete-creator.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/crypto-js.min.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/evaporate.js</footer-portlet-javascript>
 	</portlet>
 	<portlet>
 		<portlet-name>lg-admin-creators-management</portlet-name>
@@ -75,7 +77,7 @@
 		<header-portlet-javascript>/js/qrc.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/jquery.cookie.js</header-portlet-javascript>
 		<header-portlet-javascript>https://content.jwplatform.com/libraries/meCDJ4WV.js</header-portlet-javascript>
-		<header-portlet-javascript>/js/mediaCheck-min.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/mediaquerysensor.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/readmore.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/jquery.dotdotdot.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/jquery.mark.js</header-portlet-javascript>
@@ -178,6 +180,15 @@
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 0,12 ? * *</cron-trigger-value>
+				</cron>
+			</trigger>
+		</scheduler-entry>
+		<scheduler-entry>
+			<scheduler-description>This scheduler is used to delete aborted chunked uploads from the file system which are older than 1 day</scheduler-description>
+			<scheduler-event-listener-class>de.uhh.l2g.plugins.util.DeleteAbortedChunkedUploadsScheduler</scheduler-event-listener-class>
+			<trigger>
+				<cron>
+					<cron-trigger-value>0 0 3 * * ?</cron-trigger-value>
 				</cron>
 			</trigger>
 		</scheduler-entry>

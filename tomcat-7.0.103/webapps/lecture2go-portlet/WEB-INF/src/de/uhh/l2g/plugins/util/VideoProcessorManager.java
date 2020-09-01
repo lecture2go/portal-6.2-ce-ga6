@@ -1,57 +1,53 @@
 /*******************************************************************************
  * License
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
+ * Lecture2Go 
+ * 
  * The Lecture2Go software is based on the liferay portal 6.2-ga6
  * <http://www.liferay.com> (Copyright notice see below)
- * 
  * Lecture2Go <http://lecture2go.uni-hamburg.de> is an open source
  * platform for media management and distribution. Our goal is to
  * support the free access to knowledge because this is a component
  * of each democratic society. The open source software is aimed at
  * academic institutions and has to strengthen the blended learning.
- * 
  * All Lecture2Go plugins are continuously being developed and improved.
  * For more details please visit <http://lecture2go-open-source.rrz.uni-hamburg.de>
- * 
  * Copyright (c) 2013 - present University of Hamburg / Computer and Data Center (RRZ)
- * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
- * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
- * 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *  
  * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
  * 
  * The Liferay Plugins SDK:
  * 
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- * 
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  * 
+ * +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++ +++
+ * 
  * Third Party Software
  * 
- * Lecture2Go uses third-party libraries which may be distributed under different licenses 
- * to the above (but are compatible with the used GPL license). Informations about these 
- * licenses and copyright informations are mostly detailed in the library source code or jars themselves. 
- * You must agree to the terms of these licenses, in addition to  the above Lecture2Go source code license, 
+ * Lecture2Go uses third-party libraries which may be distributed under different licenses
+ * to the above (but are compatible with the used GPL license). Informations about these
+ * licenses and copyright informations are mostly detailed in the library source code or jars themselves.
+ * You must agree to the terms of these licenses, in addition tothe above Lecture2Go source code license,
  * in order to use this software.
  ******************************************************************************/
 package de.uhh.l2g.plugins.util;
@@ -69,6 +65,7 @@ import java.util.Map;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -81,6 +78,9 @@ import de.uhh.l2g.plugins.service.VideoLocalServiceUtil;
 
 public class VideoProcessorManager {
 	protected static Log LOG = LogFactoryUtil.getLog(VideoProcessorManager.class.getName());
+	
+	private static final String REBUILD_SMIL_PATH = "/rebuild-smil";
+
 
 	
 	/**
@@ -128,7 +128,7 @@ public class VideoProcessorManager {
 				
 				// set the complete path to the file
 				Video video = VideoLocalServiceUtil.getVideo(videoId);
-				String folder = PropsUtil.get("lecture2go.media.repository")+"/"+HostLocalServiceUtil.getByHostId(video.getHostId()).getServerRoot()+"/"+ProducerLocalServiceUtil.getProducer(video.getProducerId()).getHomeDir()+"/";
+				String folder = PropsUtil.get("lecture2go.media.repository")+"/"+HostLocalServiceUtil.getByHostId(video.getHostId()).getDirectory()+"/"+ProducerLocalServiceUtil.getProducer(video.getProducerId()).getHomeDir()+"/";
 				String filePath;
 				if(video.getOpenAccess()==1){
 					filePath = folder + video.getFilename();
@@ -305,7 +305,82 @@ public class VideoProcessorManager {
 			simpleStatus = "RUNNING";
 		}
 		return simpleStatus;
-	}	
+	}
+	
+	/**
+	 * Sends a request to the Videoprocessor to rebuild all smil files with the given quality restrictions
+	 * @param tenants array of tenants, for which SMIL files are processed
+	 * @param maxHeight the max height restriction (0 for no restriction)
+	 * @param maxBitrate the max bitrate restriction (0 for no restriction)
+	 * @return the amount of SMIL files which could not be processed 
+	 */
+	public static long rebuildAllSmilFiles(String[] tenants, long maxHeight, long maxBitrate) {
+		if (PropsUtil.contains("lecture2go.videoprocessing.provider")) {
+			LOG.info("Rebuild all SMIL files started for: ");
+			for (String tenant: tenants) {
+				LOG.info("tenant: " + tenant);
+			}
+			if (maxHeight>0) {
+				LOG.info("... with resolution limit (height) of: " + maxHeight + "pixels.");
+			} else {
+				LOG.info("... with no resolution limit");
+			}
+			if (maxBitrate>0) {
+				LOG.info("... with bitrate limit of " + maxBitrate + "bit/s");
+			} else {
+				LOG.info("... with no bitrate limit");
+			}
+			
+			long errorCount = 0;
+			String rebuildSmilUrl = PropsUtil.get("lecture2go.videoprocessing.provider.videoconversion") + REBUILD_SMIL_PATH;
+			// create json object with info 
+			JSONObject jo = JSONFactoryUtil.createJSONObject();
+			
+			// tenants
+			JSONArray tenantsJsonArray = JSONFactoryUtil.createJSONArray();
+			for (String tenant: tenants) {
+				tenantsJsonArray.put(tenant);
+			}
+			jo.put("tenants", tenantsJsonArray);
+			
+			if (maxHeight > 0) 
+				jo.put("maxHeight", String.valueOf(maxHeight));
+			if (maxBitrate > 0) 
+				jo.put("maxBitrate", String.valueOf(maxBitrate));
+			
+			// send POST request to video processor
+			try {
+				HttpManager httpManager = new HttpManager();
+				httpManager.addHeader("Tenant", PropsUtil.get("lecture2go.videoprocessing.tenant"));
+				httpManager.setUrl(rebuildSmilUrl);
+				if (PropsUtil.contains("lecture2go.videoprocessing.basicauth.user") && PropsUtil.contains("lecture2go.videoprocessing.basicauth.pass")) {
+					httpManager.setUser(PropsUtil.get("lecture2go.videoprocessing.provider.basicauth.user"));
+					httpManager.setPass(PropsUtil.get("lecture2go.videoprocessing.provider.basicauth.pass"));
+				}
+				HttpURLConnection conn = httpManager.sendPost(jo);
+				httpManager.close();
+				
+				// check response
+				int responseCode = conn.getResponseCode();
+				if (responseCode == 200) {
+					return 0;
+				} else if (responseCode == 500) {
+					JSONObject jsonResponse = getJsonObjectFromResponse(conn);
+					jsonResponse.getLong("errorCount");
+					
+					LOG.error("There were some errors with rebuild SMIL files. Amount of SMIL Files with errors: " + errorCount); 
+					return errorCount;
+				} else {
+					LOG.error("There were unknown errors with rebuild SMIL files. Responsecode: " + responseCode);
+				}
+			} catch (IOException e) {
+				LOG.error("Failed connecting to videoprocessor"); 
+				//e.printStackTrace();
+				return -1;
+			}
+		}
+		return -1;
+	}
 	
 
 	/**
@@ -344,8 +419,6 @@ public class VideoProcessorManager {
 					JSONObject jsonResponse = JSONFactoryUtil.createJSONObject(response.toString());
 					
 					return jsonResponse;
-				} else {
-					LOG.error("Failed getting the info of a video conversion of video with id: " + videoId + ". Responsecode: " + responseCode); 
 				}
 			} catch (IOException e) {
 				LOG.error("Failed connecting to videoprocessor to get status of video with id: " + videoId); 
@@ -354,5 +427,28 @@ public class VideoProcessorManager {
 			}
 		}
 		return null;
+	}
+	
+	private static JSONObject getJsonObjectFromResponse(HttpURLConnection conn) {
+		JSONObject jsonResponse = null;
+		
+		try {
+
+			BufferedReader in = new BufferedReader(
+			        new InputStreamReader(conn.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+	
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+			jsonResponse = JSONFactoryUtil.createJSONObject(response.toString());
+
+		} catch (Exception e) {
+			//
+		}
+
+		return jsonResponse;
 	}
 }

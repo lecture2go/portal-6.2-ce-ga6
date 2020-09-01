@@ -3,7 +3,7 @@
 	<form name="embedForm" id="embedForm">
 		<!-- embed start -->
 			<div class="sharetile">
-				<p class="tileheading"><liferay-ui:message key="links"/></p>
+				<h3><liferay-ui:message key="links"/></h3>
 				<div id="urls">
 					<ul>
 						<li>
@@ -36,7 +36,7 @@
 		<c:if test="<%= FeatureManager.hasCitation2Go()%>">
 			<c:if test="${video.citation2go==1}">
 				<div class="sharetile">
-					<p class="tileheading"><liferay-ui:message key="citation2go"/></p>
+					<h3><liferay-ui:message key="citation2go"/></h3>
 					<div id="c2g-generate">
 						<ul>
 							<li>
@@ -62,7 +62,7 @@
 		<!-- Facebook Twitter Google+ -->
 		<c:if test="<%= FeatureManager.hasSocialMediaSharing()%>">
 			<div class="sharetile">
-				<p class="tileheading"><liferay-ui:message key="social-media"/></p>
+				<h3><liferay-ui:message key="social-media"/></h3>
 				<div id="socialshareprivacy"></div>
 			</div>
 		</c:if>

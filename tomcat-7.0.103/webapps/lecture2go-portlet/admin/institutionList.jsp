@@ -129,7 +129,7 @@ String pageName = themeDisplay.getLayout().getName(themeDisplay.getLocale());
 									<aui:input name="outerListOrder" label="order" inlineField="true" value='<%= institution.getSort() %>'/>
 									<%-- Only display streamer if user is allowed to view host and institution is child of top level --%>
 									<c:if test='<%= institution.getParentId() == rootId %>'>
-										<aui:input name="outerListStreamer" label="streaming-server-name" inlineField="true" value = "<%= curHostName %>" disabled="true"/>
+										<aui:input name="outerListStreamer" label="host-name" inlineField="true" value = "<%= curHostName %>" cssClass="field"/>
 									</c:if>
 									<aui:input name="outerListInstitutionId" type='hidden' inlineField="true" value = "<%= institution.getPrimaryKey() %>"/>
 									<aui:input name="outerListHostId" type='hidden' inlineField="true" value = "<%= curHost.getPrimaryKey() %>"/>

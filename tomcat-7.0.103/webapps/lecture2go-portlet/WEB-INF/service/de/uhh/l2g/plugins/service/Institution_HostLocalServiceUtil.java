@@ -378,12 +378,6 @@ public class Institution_HostLocalServiceUtil {
 				   .deleteLinkByInstitution(institution, groupId, companyId);
 	}
 
-	public static long updateCounter()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateCounter();
-	}
-
 	public static void clearService() {
 		_service = null;
 	}

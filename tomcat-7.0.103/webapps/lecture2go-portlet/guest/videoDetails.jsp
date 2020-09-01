@@ -79,13 +79,13 @@
 									<portlet:param name="creatorId" value="0"/>
 								</portlet:actionURL>	
 								
-								<A HREF="<%=portalURL%>"><%=companyName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-								<A HREF="<%=backURL0%>"><%=pageName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-								<A HREF="<%=backURL0%>"><%=rInst.getName() %></A> <span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-						    	<A HREF="<%=backURL1%>"><%=pInst.getName() %></A> <span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-						    	<A HREF="<%=backURL2%>"><%=insti.getName() %></A> 
+								<A HREF="<%=portalURL%>"><%=companyName %></A><span class="uhh-icon-arrow-right"></span> 
+								<A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="page-name"/>: <%=pageName %>'><%=pageName %></A><span class="uhh-icon-arrow-right"></span> 
+								<A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="root-institution-name"/>: <%=rInst.getName() %>'><%=rInst.getName() %></A> <span class="uhh-icon-arrow-right"></span> 
+						    	<A HREF="<%=backURL1%>" aria-label='<liferay-ui:message key="parent-institution-name"/>: <%=pInst.getName() %>'><%=pInst.getName() %></A> <span class="uhh-icon-arrow-right"></span> 
+						    	<A HREF="<%=backURL2%>" aria-label='<liferay-ui:message key="institution-name"/>: <%=insti.getName() %>'><%=insti.getName() %></A> 
 						    	<%if(lec.getLectureseriesId()>0) {%>
-					    			<span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <SPAN><%=lec.getName()%></SPAN>
+					    			<span class="uhh-icon-arrow-right"></span> <SPAN><%=lec.getName()%></SPAN>
 					    		<%}%>
 						    	<br/>
 				    		<%}
@@ -114,14 +114,14 @@
 										<portlet:param name="creatorId" value="0"/>
 									</portlet:actionURL>		    	
 							    	
-   									<A HREF="/"><%=companyName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-							    	<A HREF="<%=backURL0%>"><%=pageName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-							    	<A HREF="<%=backURL0%>"><%=rInst.getName() %></A> <span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+   									<A HREF="/"><%=companyName %></A><span class="uhh-icon-arrow-right"></span> 
+							    	<A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="page-name"/>: <%=pageName %>'><%=pageName %></A><span class="uhh-icon-arrow-right"></span> 
+							    	<A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="root-institution-name"/>: <%=rInst.getName() %>'><%=rInst.getName() %></A> <span class="uhh-icon-arrow-right"></span> 
 							    	<%if(pInst.getLevel()>0) {%>
-							    	  <A HREF="<%=backURL3%>"><%=pInst.getName() %></A>
-							    	  <span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+							    	  <A HREF="<%=backURL3%>" aria-label='<liferay-ui:message key="parent-institution-name"/>: <%=pInst.getName() %>'><%=pInst.getName() %></A>
+							    	  <span class="uhh-icon-arrow-right"></span> 
 							    	<%}%>
-							    	<A HREF="<%=backURL4%>"><%=insti.getName() %></A>	
+							    	<A HREF="<%=backURL4%>" aria-label='<liferay-ui:message key="institution-name"/>: <%=insti.getName() %>'><%=insti.getName() %></A>	
 							    	<br/> 
 					      		<%
 				    		}catch(Exception e){}
@@ -129,9 +129,9 @@
 				      if (videoInstitutions.size()==0){
 				    	  Institution rootI = InstitutionLocalServiceUtil.getRoot();
 				    	  %>
-								<A HREF="/"><%=companyName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-							    <A HREF="<%=backURL0%>"><%=pageName %></A><span class="uhh-icon-arrow-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 				    	  
-							    <A HREF="<%=backURL0%>"><%=rootI.getName() %></A>
+								<A HREF="/"><%=companyName %></A><span class="uhh-icon-arrow-right"></span> 
+							    <A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="page-name"/>: <%=pageName %>'><%=pageName %></A><span class="uhh-icon-arrow-right"></span> 				    	  
+							    <A HREF="<%=backURL0%>" aria-label='<liferay-ui:message key="root-institution-name"/>: <%=rootI.getName() %>'><%=rootI.getName() %></A>
 							    <br/> 				    	  
 				    	  <%
 				      }
@@ -169,14 +169,14 @@
 			       <div class="views"><liferay-ui:message key="views"/>: ${video.hits}</div>	
 					  <c:if test="${relatedVideos.size()>1}"> <div class="meta-video-info"></c:if>
 					  <c:if test="${relatedVideos.size()<=1}"> <div class="meta-video-info-wide"></c:if>
-					    <div class="meta-title">
+					    <h2 class="meta-title">
 							<%
 								if(isCitation2Go){
 									%><div class="c2go-title"><liferay-ui:message key='citation-of'/></div><%
 								}
 							%>	
 						    <%=title%>
-					    </div>
+					    </h2>
 				      	<div class="meta-creators">
 										<%
 									        String date1 = "";
@@ -235,7 +235,7 @@
 									    	<c:forEach items="<%=segments %>" var="segment">
 									    		<li class="chaptertile" id="${segment.segmentId}" begin="${segment.start}" end="${segment.end}">
 													<div class="image">
-												    	<a><img src="${segment.image}"></a>
+												    	<a aria-label='<liferay-ui:message key="go-to-video-segment"/>'><img src="${segment.image}" alt="<liferay-ui:message key="thumbnail"/> - ${segment.title}"></a>
 												    </div>
 												    <div class="title">
 												    	<a><b>${segment.start} </b> ${segment.title}</a>
@@ -256,7 +256,7 @@
 			  %>
 			    <div class="related">
 					<div class="col-md-5">
-						    <div class="related-lectureseries-name"><liferay-ui:message key="lecture-series"/> &nbsp;<a target="_blank" class="icon-small icon-rss" href="${video.mp4RssLink}"></a> </div>
+						    <div class="related-lectureseries-name"><h3><liferay-ui:message key="lecture-series"/></h3> <a title="<liferay-ui:message key='rss-feed'/>" aria-label="<liferay-ui:message key='rss-feed'/>" target="_blank" class="icon-small icon-rss" href="${video.mp4RssLink}"></a> </div>
 							<ul class="ul-related">
 								<%
 								ListIterator<Video> vli = relatedVideos.listIterator();
@@ -277,14 +277,16 @@
 								</c:if>
 								<li class="videotile small related ${activeClass}" onClick="window.location='<%=viewOpenAccessVideoURL1.toString()%>'">
 										<div class="video-image-wrapper-small related">
-											<img class="video-image related" src="<%=vid.getImageSmall()%>">
+											<img class="video-image related" src="<%=vid.getImageSmall()%>" alt="<liferay-ui:message key="thumbnail"/> - <%=vid.getTitle() %>" />
 										</div>
 										<div class="metainfo-small related">
 												<%
 													String date = "";
 							           				try{ date = vid.getDate().trim().substring(0, 10);}catch(Exception e){}
 												%>
-												<div class="title-small related"><%=vid.getTitle()%></div>
+												<a href="<%=viewOpenAccessVideoURL1.toString()%>" aria-label='<liferay-ui:message key="go-to-video"/>: <%=vid.getTitle()%>'>
+													<h4 class="title-small related"><%=vid.getTitle()%></h4>
+												</a>
 							          			<p class="creator-small2 related">
 												<%=vid.getLinkedCreators() %>
 							           			</p>
@@ -346,8 +348,8 @@
     $( document ).ready(function() {
 		$('.meta-description').readmore({
 			collapsedHeight: 60,
-		  	moreLink: '<a href="#"><div><liferay-ui:message key="more"/><img class ="down_up" src="/lecture2go-theme/images/arrow_down.svg"/></div></a>',
-		  	lessLink: '<a href="#"><div><liferay-ui:message key="less"/><img class ="down_up" src="/lecture2go-theme/images/arrow_up.svg"/></div></a>'
+		  	moreLink: '<a href="#" aria-label="<liferay-ui:message key='more'/>"><div><liferay-ui:message key="more"/><img class ="down_up" src="/lecture2go-theme/images/arrow_down.svg"/></div></a>',
+		  	lessLink: '<a href="#" aria-label="<liferay-ui:message key='more'/>"><div><liferay-ui:message key="less"/><img class ="down_up" src="/lecture2go-theme/images/arrow_up.svg"/></div></a>'
 		});
 	}); 
 </script> 

@@ -5,7 +5,7 @@
   vertical-align: middle; }
 
 /* ---------- Table styles ---------- */
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .responsive-table-horizontal {
     display: block;
     position: relative;
@@ -810,7 +810,7 @@ body.html-editor {
             .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li.toggle-controls a:focus {
               clip: rect(auto auto auto auto);
               position: static; }
-          @media (max-width: 979px) {
+          @media (max-width: 767px) {
             .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li.page-preview-controls {
               display: none; } }
           .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a {
@@ -1079,7 +1079,7 @@ body.html-editor {
   @media (max-width: 1140px) {
     .aui .dockbar-split .dockbar .info-items {
       width: 515px; } }
-  @media (max-width: 979px) {
+  @media (max-width: 767px) {
     .aui #navigation {
       display: none; }
       .aui #navigation.open {
@@ -1139,7 +1139,7 @@ body.html-editor {
   text-align: center;
   top: 2px;
   width: 1em; }
-@media (min-width: 980px) {
+@media (min-width: 768px) {
   .modify-pages .lfr-nav-sortable > a > span {
     padding-left: 0; }
   .modify-pages .drag-handle {
@@ -1726,7 +1726,7 @@ body.portlet {
   -o-border-radius: 5px;
   border-radius: 5px; }
 
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .dockbar .navbar-inner .btn-navbar {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -1774,7 +1774,7 @@ body.portlet {
   -o-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0; }
 
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   .navbar .navbar-search .form-search .search-query {
     -webkit-border-radius: 14px;
     -moz-border-radius: 14px;
@@ -2152,7 +2152,7 @@ body:first-of-type .portlet-borderless-container:hover .portlet-borderless-bar .
   max-width: 500px; }
 body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
   max-width: 200px; }
-@media (max-width: 979px) {
+@media (max-width: 767px) {
   body:first-of-type .portlet-content .lfr-icon-actions .taglib-text {
     max-width: 200px; } }
 
@@ -2542,34 +2542,6 @@ body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
 .social_share_privacy_area li.settings_info .settings_info_menu form fieldset label.checked {
   color: #090; }
 
-@font-face {
-  font-family: 'TheSansUHHBold';
-  src: url(/lecture2go-theme/fonts/TheSansUHH_Bold.eot);
-  src: url(/lecture2go-theme/fonts/TheSansUHH_Bold.eot?#iefix) format("embedded-opentype"), url(/lecture2go-theme/fonts/TheSansUHH_Bold.woff) format("woff"), url(/lecture2go-theme/fonts/TheSansUHH_Bold.ttf) format("truetype"), url(/lecture2go-theme/fonts/TheSansUHH_Bold.svg) format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'TheSansUHHBoldItalic';
-  src: url(/lecture2go-theme/fonts/TheSansUHH_BoldItalic.eot);
-  src: url(/lecture2go-theme/fonts/TheSansUHH_BoldItalic.eot?#iefix) format("embedded-opentype"), url(/lecture2go-theme/fonts/TheSansUHH_BoldItalic.woff) format("woff"), url(/lecture2go-theme/fonts/TheSansUHH_BoldItalic.ttf) format("truetype"), url(/lecture2go-theme/fonts/TheSansUHH_BoldItalic.svg) format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'TheSansUHHItalic';
-  src: url(/lecture2go-theme/fonts/TheSansUHH_RegularItalic.eot);
-  src: url(/lecture2go-theme/fonts/TheSansUHH_RegularItalic.eot?#iefix) format("embedded-opentype"), url(/lecture2go-theme/fonts/TheSansUHH_RegularItalic.woff) format("woff"), url(/lecture2go-theme/fonts/TheSansUHH_RegularItalic.ttf) format("truetype"), url(/lecture2go-theme/fonts/TheSansUHH_RegularItalic.svg) format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'TheSansUHH';
-  src: url(/lecture2go-theme/fonts/TheSansUHH_Regular.eot);
-  src: url(/lecture2go-theme/fonts/TheSansUHH_Regular.eot?#iefix) format("embedded-opentype"), url(/lecture2go-theme/fonts/TheSansUHH_Regular.woff) format("woff"), url(/lecture2go-theme/fonts/TheSansUHH_Regular.ttf) format("truetype"), url(/lecture2go-theme/fonts/TheSansUHH_Regular.svg) format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2596,12 +2568,12 @@ input, select {
   .aui a {
     color: #4e4e4e; }
     .aui a:hover {
-      color: #c40017; }
+      color: #f50000; }
     .aui a [class^="icon-"], .aui a [class*=" icon-"] {
       display: inline-block; }
   .aui .alert, .aui .portlet-msg-alert, .aui .portlet-msg-error, .aui .portlet-msg-help, .aui .portlet-msg-info, .aui .portlet-msg-progress, .aui .portlet-msg-success {
     word-wrap: break-word;
-    color: #c40017;
+    color: #f50000;
     background-color: #f5f5f5;
     border: 1px solid #ddd; }
   .aui .table {
@@ -2694,7 +2666,7 @@ input, select {
         -webkit-font-smoothing: antialiased;
         *margin-right: .3em; } }
   .aui .navbar .nav > li > a:focus, .aui .navbar .nav > li > a:hover {
-    color: #c40017; }
+    color: #f50000; }
   .aui .lfr-tree .tree-node .tree-node-selected .tree-label {
     background: #E4F5FC; }
   .aui .previous-level:focus {
@@ -2886,7 +2858,7 @@ input, select {
   .aui .taglib-form-navigator > .form-steps > ul.form-navigator.well .tab .tab-label .number {
     background: #CCC;
     color: #FFF; }
-  @media (max-width: 979px) {
+  @media (max-width: 767px) {
     .aui .taglib-form-navigator .form-navigator-content {
       clear: both;
       float: none;
@@ -3398,7 +3370,7 @@ input, select {
   /* ---------- Extras ---------- */
   /* ---------- IE8 ---------- */ }
   .aui h1, .aui h2, .aui h3, .aui h4, .aui h5 {
-    font-family: TheSansUHHBold,sans-serif;
+    font-family: sans-serif;
     font-weight: normal; }
   .aui h1 {
     margin: 0 0 12px 0;
@@ -3544,14 +3516,14 @@ input, select {
         background: #f9f9f9;
         line-height: inherit;
         padding: 6px 8px; }
-        @media (max-width: 979px) {
+        @media (max-width: 767px) {
           .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a {
             background: transparent; } }
         .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a:hover {
           background: #e9e9e9; }
         .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a.toggle-controls-link {
           background: #92F545; }
-          @media (max-width: 979px) {
+          @media (max-width: 767px) {
             .aui .dockbar-split .dockbar .navbar-inner .nav-add-controls > li > a.toggle-controls-link {
               background: transparent; } }
   .aui .dockbar-split .dockbar .navbar-inner .nav li.dropdown.open > .dropdown-toggle {
@@ -3611,7 +3583,7 @@ input, select {
   .aui #navigation .nav > a {
     padding: 0px;
     height: 33px;
-    font-family: TheSansUHHBold,sans-serif;
+    font-family: sans-serif;
     font-size: 14px;
     line-height: 33px;
     text-align: center;
@@ -3657,7 +3629,7 @@ input, select {
     padding: 10px; }
     .aui .modify-pages .lfr-nav-item .lfr-nav-child-toggle i {
       margin: 0; }
-    @media (max-width: 979px) {
+    @media (max-width: 767px) {
       .aui .modify-pages .lfr-nav-item .lfr-nav-child-toggle {
         line-height: 1em;
         padding: 14px;
@@ -3883,7 +3855,7 @@ input, select {
     -ms-border-radius: 0 0 0 0;
     -o-border-radius: 0 0 0 0;
     border-radius: 0 0 0 0;
-    background: linear-gradient(center top, #c40017 0%, #ba0012 100%) repeat scroll 0 0 rgba(0, 0, 0, 0); }
+    background: linear-gradient(center top, #f50000 0%, #ba0012 100%) repeat scroll 0 0 rgba(0, 0, 0, 0); }
   .aui .dockbar .staging-bar .staging-toggle > a {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
@@ -3895,7 +3867,7 @@ input, select {
     -moz-box-shadow: none;
     box-shadow: none;
     text-shadow: none; }
-    @media (max-width: 979px) {
+    @media (max-width: 767px) {
       .aui .dockbar-split .dockbar .navbar-inner {
         background: #4e4e4e; } }
   .aui .lfr-hudcrumbs ul {
@@ -4031,6 +4003,10 @@ input, select {
   display: inline; }
 
 /*** MOVED FROM MIN-960  ***/
+.add-link {
+  font-size: 20px;
+  margin-bottom: 10px; }
+
 .aui #navigation {
   display: table;
   float: left;
@@ -4046,7 +4022,9 @@ input, select {
   margin: 0 5px;
   overflow: hidden;
   text-align: center;
-  width: 13px; }
+  width: 13px;
+  height: 8px;
+  display: inline-block; }
 
 .aui .icon-chevron-right::before {
   background-image: url("/lecture2go-theme/images/arrow_right.svg");
@@ -4090,7 +4068,7 @@ input, select {
   float: right;
   margin-right: 6px;
   margin-top: 41px;
-  font-family: TheSansUHHBold,sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   font-size: 20px; }
 
@@ -4098,7 +4076,7 @@ input, select {
   margin-bottom: 0; }
 
 .aui a:hover {
-  color: #c40017;
+  color: #f50000;
   text-decoration: underline; }
 
 .site-name a {
@@ -4204,7 +4182,7 @@ input, select {
   border-width: 1px;
   color: #4e4e4e;
   display: block;
-  font-family: TheSansUHH,sans-serif !important;
+  font-family: sans-serif !important;
   font-size: 12px;
   margin-left: 3px;
   margin-top: -3px;
@@ -4271,7 +4249,7 @@ mark {
   clear: both; }
 
 .aui .navbar .nav {
-  font-family: TheSansUHHBold,sans-serif !important;
+  font-family: sans-serif !important;
   font-size: 14px;
   width: 100%; }
 
@@ -4327,7 +4305,7 @@ p.smallitalic {
   max-width: 70%; }
 
 .allcreators a:hover {
-  color: #c40017 !important; }
+  color: #f50000 !important; }
 
 #myToggler .toggler-header-collapsed:hover .video-image-overlay, #myToggler .toggler-header-collapsed:hover .tri, #myToggler .toggler-header-expanded .video-image-overlay, #myToggler .toggler-header-expanded .tri {
   visibility: visible; }
@@ -4391,7 +4369,7 @@ p.smallitalic {
   left: 10px;
   position: absolute;
   top: 10px;
-  background-color: #C40017;
+  background-color: #f50000;
   color: #FFF;
   margin-left: 7px;
   visibility: hidden; }
@@ -4490,7 +4468,7 @@ p.smallitalic {
 
 .path > span,
 .path-wide > span {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   font-weight: normal; }
 
 .meta-video-info {
@@ -4551,7 +4529,7 @@ p.smallitalic {
   font-style: normal !important; }
 
 .creator-small2.related:hover {
-  color: #c40017; }
+  color: #f50000; }
 
 .creator-small2.related {
   font-size: 12px;
@@ -4696,6 +4674,11 @@ not used anymore??
   border-bottom: 0 solid #f0f0f0 !important;
   margin-left: 13px; }
 
+#videolist h3 {
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 0 5px 0; }
+
 #searchedvideo {
   display: block;
   overflow: hidden;
@@ -4743,8 +4726,11 @@ a.list-group-item:hover, a.list-group-item:focus {
   padding: 0px;
   border-top: 1px solid #E5E5E5; }
 
-.tileheading {
-  font-size: 17px; }
+.sharetile h3 {
+  font-size: 17px;
+  font-family: sans-serif;
+  margin: 0;
+  line-height: 20px; }
 
 thead, th {
   display: none; }
@@ -4809,7 +4795,7 @@ thead, th {
   margin-right: 15px; }
 
 .title-small {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
@@ -4935,7 +4921,7 @@ thead, th {
   border-color: #EEE #EEE #EEE #EEE; }
 
 .aui .nav-tabs > .active > a, .aui .nav-tabs > .active > a:hover, .aui .nav-tabs > .active > a:focus {
-  color: #c40017;
+  color: #f50000;
   background-color: #eee;
   -moz-border-top-colors: none;
   -moz-border-right-colors: none;
@@ -4978,14 +4964,14 @@ thead, th {
   font-style: italic;
   margin-top: 53px; }
 
-.lectureseries-title {
-  font-family: TheSansUHHBold, sans-serif;
+h2.lectureseries-title {
+  font-family: sans-serif;
   font-size: 16px;
   margin-bottom: 10px;
   overflow: hidden; }
 
 .lectureseries-title a:hover {
-  color: #c40017; }
+  color: #f50000; }
 
 .aui .nav {
   margin-bottom: 0px; }
@@ -5003,13 +4989,13 @@ thead, th {
   height: 25px;
   float: right; }
 
-.meta-title {
+h2.meta-title {
   color: #4d4d4d;
   font-size: 15px;
   font-weight: normal;
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   line-height: inherit;
-  margin-top: 30px; }
+  margin: 30px 0 0 0; }
 
 .views {
   float: right;
@@ -5068,6 +5054,13 @@ thead, th {
 .related-lectureseries-name {
   font-size: 13px;
   padding-bottom: 5px; }
+
+.related-lectureseries-name h3 {
+  font-size: 13px;
+  line-height: 20px;
+  display: inline;
+  padding-left: 5px;
+  padding-right: 3px; }
 
 .date.related {
   font-size: 10px;
@@ -5135,7 +5128,7 @@ thead, th {
 #embed {
   width: 100%; }
 
-#permissions, #embed, #license, #_lgadminvideomanagement_WAR_lecture2goportlet_metadata, #embed, #postprocessing, #video-thumbnail, #video-rawdata {
+#permissions, #embed, #license, #_lgadminvideomanagement_WAR_lecture2goportlet_metadata, #embed, #postprocessing, #video-thumbnail {
   margin-top: 50px;
   overflow: auto; }
 
@@ -5321,7 +5314,7 @@ li.chaptertile {
 
 .admintile.wide > a {
   font-size: 14px;
-  font-family: TheSansUHHBold,sans-serif; }
+  font-family: sans-serif; }
 
 .admintile.wide.icons > a {
   float: right;
@@ -5347,11 +5340,11 @@ li.chaptertile {
   cursor: pointer; }
 
 .admintile.wide .admin-videolist-video-title {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   margin-bottom: 0px; }
 
 .admintile.wide .admin-videolist-lectureseries-title {
-  font-family: TheSansUHHItalic,sans-serif;
+  font-family: sans-serif;
   margin-bottom: 0px; }
 
 .admintile.wide .admin-videolist-date {
@@ -5401,7 +5394,7 @@ li.chaptertile {
   overflow: auto; }
 
 .aui input[type="color"], .aui input[type="date"], .aui input[type="datetime"], .aui input[type="datetime-local"], .aui input[type="email"], .aui input[type="month"], .aui input[type="number"], .aui input[type="password"], .aui input[type="search"], .aui input[type="tel"], .aui input[type="text"], .aui input[type="time"], .aui input[type="url"], .aui input[type="week"], .aui select, .aui textarea, .aui .uneditable-input {
-  font-family: TheSansUHH,sans-serif;
+  font-family: sans-serif;
   font-size: 14px; }
 
 .aui select {
@@ -5442,6 +5435,7 @@ li.chaptertile {
 
 #heading {
   margin-top: -30px;
+  margin-bottom: 12px;
   padding-bottom: 7px; }
 
 .aui .table th, .aui .table td {
@@ -5485,7 +5479,7 @@ li.chaptertile {
   border-color: #fff -moz-use-text-color -moz-use-text-color;
   border-style: solid none none;
   border-width: 1px 0 0;
-  color: #c40017;
+  color: #f50000;
   padding-left: 0;
   word-wrap: break-word; }
 
@@ -5651,7 +5645,7 @@ input#_lgadmincreatorsmanagement_WAR_lecture2goportlet_orcidId {
 
 .edit-video-lable {
   border-bottom: 3px solid #f0f0f0;
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   font-size: 15px !important;
   font-style: normal; }
 
@@ -5744,6 +5738,15 @@ label.edit-video-lable.first {
   top: 12px;
   z-index: 9999; }
 
+#banner .meta a:not(.language) {
+  margin: 0 8px; }
+
+#banner .meta a:last-child:not(.language) {
+  margin: 0 0 0 8px; }
+
+a.language {
+  margin: 0px 2px; }
+
 .aui .dockbar-split .dockbar .navbar-inner .nav-account-controls > li > a, .aui .dockbar-split .dockbar .navbar-inner .nav-account-controls li.open > a {
   color: #4e4e4e;
   margin-right: 0px;
@@ -5777,7 +5780,7 @@ label.edit-video-lable.first {
   visibility: hidden; }
 
 .aui .navbar.dockbar .navbar-inner li.sign-in {
-  font-family: TheSansUHH,sans-serif;
+  font-family: sans-serif;
   font-size: 11px; }
 
 .user-full-name {
@@ -5838,8 +5841,8 @@ div.filter-menu-link span.icon-large.icon-remove {
 #tw img, #fb img {
   height: 12px !important; }
 
-#impressum, #disclaimer, #tw, #fb, #privacy-policy {
-  font-family: TheSansUHHBold,sans-serif; }
+#impressum, #disclaimer, #tw, #fb, #privacy-policy, #accessibility {
+  font-family: sans-serif; }
 
 #license .control-group.form-inline {
   float: left;
@@ -5881,7 +5884,7 @@ div.filter-menu-link span.icon-large.icon-remove {
   padding: 0; }
 
 .title-text {
-  font-family: TheSansUHHBold, sans-serif;
+  font-family: sans-serif;
   color: #4d4d4d !important;
   float: left;
   font-size: 14px;
@@ -6118,6 +6121,10 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .front-page-teaser {
   position: relative; }
 
+#front-page-content h2 {
+  font-size: 17.5px;
+  margin-top: 10px; }
+
 /*** front page background-video specific ***/
 .bg-video-container {
   position: relative;
@@ -6172,7 +6179,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .l2go-subtitle {
   font-size: 18px;
   text-align: center;
-  margin-bottom: 8%; }
+  margin-bottom: 5%; }
 
 .lead-box {
   background-color: #fffff5;
@@ -6191,7 +6198,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 
 .lead-box a,
 .meta-description a {
-  color: #c40017; }
+  color: #f50000; }
 
 .big-search {
   height: 35px;
@@ -6329,12 +6336,13 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
 .video-box-content {
   padding: 10px 0; }
 
-.video-box-content .title-small {
+.video-box-content h3.title-small {
   color: #4d4d4d;
   font-size: 14px;
   width: 100%;
   margin: 19px 0 8px 0;
   color: #000;
+  line-height: 17px;
   /*height: 60px;*/ }
 
 .video-box-content .creator-small2 {
@@ -6365,7 +6373,7 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
   overflow: hidden; }
 
 .journal-content-article a {
-  color: #c40017; }
+  color: #f50000; }
 
 .journal-content-article a:HOVER {
   text-decoration: underline !important; }
@@ -6443,8 +6451,8 @@ div#streamingServerSettings div.accordion-heading.toggler-header.toggler-header-
   padding: 10px; }
 
 strong, b, th, #kopf .sprachwechsel {
-  font-family: TheSansUHHBold,sans-serif;
-  font-weight: normal !important; }
+  font-family: sans-serif;
+  font-weight: normal; }
 
 .aui .portlet, .aui .portlet-borderless-container {
   margin-bottom: 0px; }
@@ -6654,7 +6662,7 @@ strong, b, th, #kopf .sprachwechsel {
   color: #33aadd; }
 
 .conversion-failed {
-  color: #c40017; }
+  color: #f50000; }
 
 #postprocessing-content label.control-label {
   float: left;
@@ -6705,6 +6713,9 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
 
 .disabled {
   color: #eaeaea !important; }
+
+:focus {
+  outline: solid 1px blue !important; }
 
 /* < 768px */
 @media (max-width: 767px) {
@@ -6850,7 +6861,7 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     margin-top: 15px; }
 
   /* Catalog */
-  .lectureseries-title {
+  h2.lectureseries-title {
     font-size: 14px;
     /*height: 60px; */
     margin-bottom: 5px; }
@@ -6991,7 +7002,7 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     margin-bottom: 5px;
     height: auto; }
 
-  .video-box-content .title-small {
+  .video-box-content h3.title-small {
     width: 100%;
     margin: 0;
     color: #000;
@@ -7062,13 +7073,17 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     padding: 0; }
 
   #banner .meta {
+    top: 3px;
+    right: 5px; }
+
+  #banner .meta a:not(.language) {
     display: none; }
 
   #_lgopenaccessvideos_WAR_lecture2goportlet_searchButton {
     height: 31px;
     padding: 2px;
     right: 6px;
-    top: 2px;
+    top: 14px;
     width: 31px; }
 
   #_lgopenaccessvideos_WAR_lecture2goportlet_searchQuery {
@@ -7173,7 +7188,10 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     margin: 0px; }
 
   #footer .right {
-    display: none; }
+    float: left !important;
+    margin-left: 10px;
+    font-size: 13px;
+    text-align: left; }
 
   #footer #fuss {
     margin-top: 0px; }
@@ -7531,12 +7549,23 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     width: 100%; }
 
   .aui #navigation .nav .dropdown-menu > li a:hover {
-    background: #dddddd url("/lecture2go-portlet/img/rot_navi-pfeil-rechts.png") no-repeat scroll 9px 13px !important;
-    line-height: 29px; }
+    background: transparent none repeat scroll 0 0 !important; }
+
+  .aui #navigation .nav .dropdown-menu > li:hover {
+    background: #e3e3e3 none repeat scroll 0 0 !important; }
+
+  .aui #navigation .nav .dropdown-menu > li {
+    margin: 0 1px 1px 0;
+    /*padding-left: 30px;*/ }
 
   .aui #navigation .nav .dropdown-menu > li a {
-    background: #f9f9f9 url("/lecture2go-portlet/img/rot_navi-pfeil-rechts.png") no-repeat scroll 9px 13px !important;
-    line-height: 29px; }
+    background: rgba(0, 0, 0, 0) linear-gradient(180deg, #f3f3f3 0%, #f3f3f3 100%) repeat scroll 0 0 !important;
+    line-height: 29px;
+    font-size: 14px;
+    padding-left: 60px; }
+
+  .aui #navigation .navbar-inner li.has-child a {
+    height: 38px; }
 
   .aui .portlet-borderless-container {
     padding: 0; }
@@ -7581,8 +7610,11 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     width: 100%; }
 
   .dropdown-menu.child-menu {
-    display: none;
-    visibility: hidden; }
+    display: block !important;
+    width: 100% !important;
+    background: rgba(0, 0, 0, 0) linear-gradient(180deg, #f3f3f3 0%, #f3f3f3 100%) repeat scroll 0 0 !important;
+    border: none !important;
+    margin: 0 1px 1px 0 !important; }
 
   .aui #navigation .nav li.open > a {
     background-color: #d81b1b;
@@ -7592,6 +7624,21 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
     height: 38px;
     padding-left: 30px;
     padding-top: 3px; }
+
+  .aui #navigation .nav li.open.has-child > a {
+    background: #e40613 url("/lecture2go-portlet/img/pfeil-schwarz-unten.png") no-repeat scroll 15px 13px !important; }
+
+  .aui #navigation .nav li.open > a {
+    background-color: #d81b1b;
+    background-image: linear-gradient(180deg, #e5331c 0%, #c90219 100%);
+    border-radius: 0;
+    color: #fff;
+    height: 38px;
+    padding-left: 30px;
+    padding-top: 3px; }
+
+  .aui #navigation .nav li.has-child {
+    height: auto; }
 
   .responsive_li_item:hover {
     background: #e3e3e3 none repeat scroll 0 0 !important;
@@ -7673,11 +7720,12 @@ label[for=_lgadminvideomanagement_WAR_lecture2goportlet_speakeronly]:before {
 
   .responsive_li_item {
     display: block;
-    font-family: TheSansUHH,sans-serif !important;
+    font-family: sans-serif !important;
     padding-left: 0;
     visibility: visible; }
 
-  .aui #navigation .nav li {
+  .aui #navigation .nav li,
+  .aui #navigation .nav li ul.dropdown-menu.child-menu li {
     background: rgba(0, 0, 0, 0) linear-gradient(180deg, #f3f3f3 0%, #f3f3f3 100%) repeat scroll 0 0;
     border-radius: 0;
     height: 38px;
