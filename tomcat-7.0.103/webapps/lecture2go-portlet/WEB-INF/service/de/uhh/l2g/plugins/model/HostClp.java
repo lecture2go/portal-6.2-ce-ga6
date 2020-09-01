@@ -309,15 +309,17 @@ public class HostClp extends BaseModelImpl<Host> implements Host {
 
 	@Override
 	public int compareTo(Host host) {
-		int value = 0;
+		long primaryKey = host.getPrimaryKey();
 
-		value = getDirectory().compareTo(host.getDirectory());
-
-		if (value != 0) {
-			return value;
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
 		}
-
-		return 0;
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override

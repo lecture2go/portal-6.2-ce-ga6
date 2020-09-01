@@ -767,12 +767,12 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	private static final String _FINDER_COLUMN_DEFAULTHOST_DEFAULTHOST_2 = "host.defaultHost = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_DIRECTORY = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
 			HostModelImpl.FINDER_CACHE_ENABLED, HostImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByDirectory",
+			FINDER_CLASS_NAME_ENTITY, "fetchBydirectory",
 			new String[] { String.class.getName() },
 			HostModelImpl.DIRECTORY_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_DIRECTORY = new FinderPath(HostModelImpl.ENTITY_CACHE_ENABLED,
 			HostModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByDirectory",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countBydirectory",
 			new String[] { String.class.getName() });
 
 	/**
@@ -784,9 +784,9 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Host findByDirectory(String directory)
+	public Host findBydirectory(String directory)
 		throws NoSuchHostException, SystemException {
-		Host host = fetchByDirectory(directory);
+		Host host = fetchBydirectory(directory);
 
 		if (host == null) {
 			StringBundler msg = new StringBundler(4);
@@ -816,8 +816,8 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Host fetchByDirectory(String directory) throws SystemException {
-		return fetchByDirectory(directory, true);
+	public Host fetchBydirectory(String directory) throws SystemException {
+		return fetchBydirectory(directory, true);
 	}
 
 	/**
@@ -829,7 +829,7 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Host fetchByDirectory(String directory, boolean retrieveFromCache)
+	public Host fetchBydirectory(String directory, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { directory };
 
@@ -891,7 +891,7 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 				else {
 					if ((list.size() > 1) && _log.isWarnEnabled()) {
 						_log.warn(
-							"HostPersistenceImpl.fetchByDirectory(String, boolean) with parameters (" +
+							"HostPersistenceImpl.fetchBydirectory(String, boolean) with parameters (" +
 							StringUtil.merge(finderArgs) +
 							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 					}
@@ -936,9 +936,9 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Host removeByDirectory(String directory)
+	public Host removeBydirectory(String directory)
 		throws NoSuchHostException, SystemException {
-		Host host = findByDirectory(directory);
+		Host host = findBydirectory(directory);
 
 		return remove(host);
 	}
@@ -951,7 +951,7 @@ public class HostPersistenceImpl extends BasePersistenceImpl<Host>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByDirectory(String directory) throws SystemException {
+	public int countBydirectory(String directory) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_DIRECTORY;
 
 		Object[] finderArgs = new Object[] { directory };
